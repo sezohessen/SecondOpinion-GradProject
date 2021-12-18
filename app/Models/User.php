@@ -22,6 +22,9 @@ class User extends Authenticatable
      *
      * @var array
      */
+    const PatientRole       = 'patient';
+    const DoctorRole        = 'doctor';
+    const CenterRole        = 'center';
     const SellerRole        = 'seller';
     const UserRole          = 'user';
     const InitialBase       = '/img/avatar/user-profile.png';

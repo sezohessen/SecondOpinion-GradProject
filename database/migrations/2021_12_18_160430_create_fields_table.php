@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCarCapacitiesTable extends Migration
+class CreateFieldsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class CreateCarCapacitiesTable extends Migration
      */
     public function up()
     {
-        Schema::create('car_capacities', function (Blueprint $table) {
+        Schema::create('fields', function (Blueprint $table) {
             $table->id();
-            $table->string("capacity");
+            $table->string('name');
+            $table->string('name_ar');
             $table->timestamps();
         });
     }
@@ -27,6 +28,6 @@ class CreateCarCapacitiesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('car_capacities');
+        Schema::dropIfExists('fields');
     }
 }

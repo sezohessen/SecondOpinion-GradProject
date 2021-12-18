@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBrandSellersTable extends Migration
+class CreateDoctorSpecializesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,18 @@ class CreateBrandSellersTable extends Migration
      */
     public function up()
     {
-        Schema::create('brand_sellers', function (Blueprint $table) {
+        Schema::create('doctor_specializes', function (Blueprint $table) {
             $table->id();
 
-            $table->bigInteger('brand_id')->unsigned();
-            $table->foreign('brand_id')
-            ->references('id')->on('car_makers')
+            $table->bigInteger('doctor_id')->unsigned();
+            $table->foreign('doctor_id')
+            ->references('id')->on('doctors')
             ->onDelete('cascade')
             ->onUpdate('cascade');
 
-            $table->bigInteger('seller_id')->unsigned();
-            $table->foreign('seller_id')
-            ->references('id')->on('sellers')
+            $table->bigInteger('specialize_id')->unsigned();
+            $table->foreign('specialize_id')
+            ->references('id')->on('specialties')
             ->onDelete('cascade')
             ->onUpdate('cascade');
             $table->timestamps();
@@ -38,6 +38,6 @@ class CreateBrandSellersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('brand_sellers');
+        Schema::dropIfExists('doctor_specializes');
     }
 }

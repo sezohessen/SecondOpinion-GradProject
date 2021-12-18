@@ -14,6 +14,78 @@ class imagesSeeder extends Seeder
     public function run()
     {
         $array = [
+            [
+                'name'              =>  "1.jpg",
+                'base'              =>  "/img/Doctors/",
+                'updated_at'        =>  now(),
+                'created_at'        =>  now()
+            ],
+            [
+                'name'              =>  "2.jpg",
+                'base'              =>  "/img/Doctors/",
+                'updated_at'        =>  now(),
+                'created_at'        =>  now()
+            ],
+            [
+                'name'              =>  "3.jpg",
+                'base'              =>  "/img/Doctors/",
+                'updated_at'        =>  now(),
+                'created_at'        =>  now()
+            ],
+            [
+                'name'              =>  "4.jpg",
+                'base'              =>  "/img/Doctors/",
+                'updated_at'        =>  now(),
+                'created_at'        =>  now()
+            ],
+            [
+                'name'              =>  "5.jpg",
+                'base'              =>  "/img/Doctors/",
+                'updated_at'        =>  now(),
+                'created_at'        =>  now()
+            ],
+            [
+                'name'              =>  "6.jpg",
+                'base'              =>  "/img/Doctors/",
+                'updated_at'        =>  now(),
+                'created_at'        =>  now()
+            ],
+            [
+                'name'              =>  "1.jpg",
+                'base'              =>  "/img/Centers/",
+                'updated_at'        =>  now(),
+                'created_at'        =>  now()
+            ],
+            [
+                'name'              =>  "2.jpg",
+                'base'              =>  "/img/Centers/",
+                'updated_at'        =>  now(),
+                'created_at'        =>  now()
+            ],
+            [
+                'name'              =>  "3.jpg",
+                'base'              =>  "/img/Centers/",
+                'updated_at'        =>  now(),
+                'created_at'        =>  now()
+            ],
+            [
+                'name'              =>  "4.jpg",
+                'base'              =>  "/img/Centers/",
+                'updated_at'        =>  now(),
+                'created_at'        =>  now()
+            ],
+            [
+                'name'              =>  "5.jpg",
+                'base'              =>  "/img/Centers/",
+                'updated_at'        =>  now(),
+                'created_at'        =>  now()
+            ],
+            [
+                'name'              =>  "6.jpg",
+                'base'              =>  "/img/Centers/",
+                'updated_at'        =>  now(),
+                'created_at'        =>  now()
+            ],
 
             [
                 'name'              =>  "parts (1).jpg",

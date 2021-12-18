@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUsersFavorite extends Migration
+class CreatePatientsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,21 +13,15 @@ class CreateUsersFavorite extends Migration
      */
     public function up()
     {
-        Schema::create('users_favorite', function (Blueprint $table) {
+        Schema::create('patients', function (Blueprint $table) {
             $table->id();
-
+            $table->string('national_id')->nullable();
+            $table->date('date_of_birth')->nullable();
             $table->bigInteger('user_id')->unsigned();
             $table->foreign('user_id')
             ->references('id')->on('users')
             ->onDelete('cascade')
             ->onUpdate('cascade');
-
-            $table->bigInteger('part_id')->unsigned();
-            $table->foreign('part_id')
-            ->references('id')->on('parts')
-            ->onDelete('cascade')
-            ->onUpdate('cascade');
-
             $table->timestamps();
         });
     }
@@ -39,6 +33,6 @@ class CreateUsersFavorite extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users_favorite');
+        Schema::dropIfExists('patients');
     }
 }

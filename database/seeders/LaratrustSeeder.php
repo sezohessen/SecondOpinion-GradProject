@@ -79,19 +79,24 @@ class LaratrustSeeder extends Seeder
             }
         }
         for ($i = 0; $i < 40; $i++) {
+            $rand = rand(0,2);
+            if($rand==0) $name = User::CenterRole;
+            elseif($rand==1) $name = User::PatientRole;
+            else  $name = User::DoctorRole;
             $user   = \App\Models\User::create([
-                'first_name' => ucwords(str_replace('_', ' ', 'agency')) . $i,
-                'last_name' => ucwords(str_replace('_', ' ', 'agency')) . $i,
+                'first_name' => ucwords(str_replace('_', ' ', $name)) . $i,
+                'last_name' => ucwords(str_replace('_', ' ', $name)) . $i,
                 'whats_app' => '012'  . rand(1000000, 10000000),
-                'email' => 'agency' . $i . '@app.com',
+                'email' => $name . $i . '@app.com',
                 'email_verified_at' => now(),
                 'phone' => rand(1000000, 10000000) . $i,
                 'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
                 'remember_token' => Str::random(10)
             ]);
-            $rand = rand(0,1);
-            if($rand)$user->attachRole(User::UserRole);
-            else $user->attachRole(User::SellerRole);
+            if($rand==0) $user->attachRole(User::CenterRole);
+            elseif($rand==1) $user->attachRole(User::PatientRole);
+            else  $user->attachRole(User::DoctorRole);
+
         }
     }
 
