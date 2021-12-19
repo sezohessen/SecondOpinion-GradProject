@@ -16,10 +16,10 @@ class CreateDoctorsTable extends Migration
         Schema::create('doctors', function (Blueprint $table) {
             $table->id();
 
-            $table->string('national_id')->nullable();
+            $table->string('national_id')->unique()->nullable();
             $table->string('facebook')->nullable();
-            $table->string('brief_desc')->nullable();
-            $table->string('brief_desc_ar')->nullable();
+            $table->text('brief_desc')->nullable();
+            $table->text('brief_desc_ar')->nullable();
             $table->boolean('active')->default(1);
 
             $table->bigInteger('field_id')->unsigned()->nullable();

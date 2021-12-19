@@ -28,7 +28,7 @@
                             <div class="col-md-12">
                                 <div class="mb-64 text-center bg-blue-100 py-7 rounded-b-xl">
                                     <span class="py-12 text-2xl">@lang('No Parts to show')</span>
-                                    <a class="p-3 text-gray-200 transition duration-500 ease-in-out bg-blue-500 rounded-2xl hover:text-gray-50 hover:bg-blue-300 " href="{{route('Website.Index')}}"> @lang('Home') </a>
+                                    <a class="p-3 text-gray-200 transition duration-500 ease-in-out bg-blue-500 rounded-2xl hover:text-gray-50 hover:bg-blue-300 " href="{{route('Website.index')}}"> @lang('Home') </a>
                                 </div>
                             </div>
                         </div>

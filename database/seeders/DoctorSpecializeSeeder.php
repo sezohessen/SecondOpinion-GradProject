@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Doctor;
-use App\Models\Specialtie;
+use App\Models\specialty;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Seeder;
 
@@ -17,7 +17,7 @@ class DoctorSpecializeSeeder extends Seeder
     public function run()
     {
         $doctors     = Doctor::where('active',1)->get();
-        $specializes = Specialtie::all();
+        $specializes = specialty::all();
         foreach($doctors as $doctor){
             for($i=0;$i<2;$i++){
                 DB::table('doctor_specializes')->insert([

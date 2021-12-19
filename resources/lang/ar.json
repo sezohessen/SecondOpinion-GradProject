@@ -894,5 +894,24 @@
 "Message Has Been Send successfully":"تم إرسال الرسالة بنجاح",
 "Created at":"أنشئ في",
 "Updated at":"تم التحديث في",
-"A website that provide easy access to auto parts companies and stores.":"موقع إلكتروني يوفر وصولاً سهلاً لشركات ومتاجر قطع غيار السيارات."
+"A website that provide easy access to auto parts companies and stores.":"موقع إلكتروني يوفر وصولاً سهلاً لشركات ومتاجر قطع غيار السيارات.",
+"Specialties":"التخصصات",
+"View Specialties":"التخصصات",
+"Add Specialty":"اضافة تخصص",
+"Add specialty":"اضافة تخصص",
+"Specialty Name(ENG)":"التخصص (بالانجليزية)",
+"Specialty Name(AR)":"التخصص (بالعربية)",
+"Add new specialty":"اضافة تخصص جديد",
+"Edit specialty":"تعديل تخصص",
+"Doctors":"الأطباء",
+"View Doctors":"عرض الأطباء",
+"Add Doctor":"اضافة طبيب",
+"Doctor Name(ENG)":"اسم الطبيب (بالأنجليزية)",
+"Doctor Name(AR)":"اسم الطبيب (بالعربية)",
+"Add new Doctor":"اضافة طبيب جديد",
+"Edit Doctor":"تعديل طبيب",
+"Brief Description About Yourself(ENG)":"وصف موجز عن نفسك (بالأنجليزية)",
+"Brief Description About Yourself(AR)":"وصف موجز عن نفسك (بالعربية)",
+"National ID":"الرقم القومي"
+
 }

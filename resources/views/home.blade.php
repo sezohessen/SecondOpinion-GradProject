@@ -15,7 +15,7 @@
                         <div class="p-20 mx-auto text-center bg-blue-200 rounded-xl">
                             <span>
                             @lang('You are now logged in')
-                            <a class="btn btn-primary" href="{{route('Website.Index')}}">@lang('Home')</a>
+                            <a class="btn btn-primary" href="{{route('Website.index')}}">@lang('Home')</a>
                             </span>
                         </div>
                     </div>

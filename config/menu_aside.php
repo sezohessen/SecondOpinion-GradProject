@@ -16,9 +16,10 @@ return [
 | FAQS (Frequently Asked Questions Section)
 |--------------------------------------------------------------------------
 */
+        // Location
         [
             'title' => 'Location',
-            'icon' => 'fas fa-map-marked-alt',
+            'icon' => 'media/svg/icons/Map/Marker2.svg',
             'bullet' => 'dot',
             'root' => true,
             'submenu' => [
@@ -57,6 +58,46 @@ return [
 
             ]
         ],
+        // Specialties
+        [
+            'title' => 'Specialties',
+            'icon' => 'fas fa-clinic-medical',
+            'bullet' => 'dot',
+            'root' => true,
+            'submenu' => [
+                [
+                    [
+                        'title' => 'Add Specialty',
+                        'page' => "/dashboard/specialty/create"
+                    ],
+                    [
+                        'title' => 'View Specialties',
+                        'page' => '/dashboard/specialty'
+                    ],
+                ],
+            ]
+        ],
+        // Doctors
+        [
+            'title' => 'Doctors',
+            'icon' => 'fas fa-user-md',
+            'bullet' => 'dot',
+            'root' => true,
+            'submenu' => [
+                [
+                    [
+                        'title' => 'Add Doctor',
+                        'page' => "/dashboard/doctor/create"
+                    ],
+                    [
+                        'title' => 'View Doctors',
+                        'page' => '/dashboard/doctor'
+                    ],
+                ],
+            ]
+        ],
+        /*
+        // Cars Settings
         [
             'title' => 'Cars Settings',
             'icon' => 'fas fa-car',
@@ -163,6 +204,7 @@ return [
                 ],
             ]
         ],
+        // Car parts
         [
             'title' => 'Car parts',
             'icon' => 'fas fa-tools',
@@ -179,6 +221,7 @@ return [
                 ],
             ]
         ],
+        // Sellers
         [
             'title' => 'Sellers',
             'icon' => 'fas fa-users-cog',
@@ -191,6 +234,7 @@ return [
                 ],
             ]
         ],
+        // Manage Users
         [
             'title' => 'Manage Users',
             'icon' => 'media/svg/icons/Communication/Group.svg',
@@ -208,9 +252,11 @@ return [
 
             ]
         ],
+        */
+        // Contact
         [
             'title' => 'Contact',
-            'icon' => 'fas fa-phone-square-alt',
+            'icon' => 'media/svg/icons/Communication/Incoming-mail.svg',
             'bullet' => 'line',
             'root' => true,
             'submenu' => [
@@ -229,9 +275,10 @@ return [
                 ],
             ]
         ],
+        //Pages
         [
             'title' => 'Pages',
-            'icon' => 'fas fa-scroll',
+            'icon' => 'media/svg/icons/General/Duplicate.svg',
             'bullet' => 'line',
             'root' => true,
             'submenu' => [
@@ -269,6 +316,7 @@ return [
                 ],
             ]
         ],
+        //Settings
         [
             'title' => 'Settings',
             'icon' => 'media/svg/icons/General/Settings-2.svg',

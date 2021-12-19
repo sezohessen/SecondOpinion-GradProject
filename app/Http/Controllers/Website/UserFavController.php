@@ -59,7 +59,7 @@ class UserFavController extends Controller
             ->where('part_id', $part)->first() ? 1 : 0;
             if ($isExist) {
                 session()->flash('Exist', __("Part Already In Your Favorite List"));
-                return redirect()->route('Website.Index');
+                return redirect()->route('Website.index');
             } else {
                 $addToFavorite     = UserFav::create([
                 'user_id' => Auth()->user()->id,

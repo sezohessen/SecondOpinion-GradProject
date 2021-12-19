@@ -26,7 +26,7 @@ Route::get('/lang/{locale}', function ($locale) {
 
 Auth::routes();
 Route::group(['prefix' => 'dashboard','as' => 'dashboard.','namespace'=>"Dashboard", 'middleware' => ['role:superadministrator|administrator']], function () {
-    Route::get('/', 'DashboardController@index')->name('dashboard');
+    Route::get('/', 'DashboardController@index')->name('index');
 
     Route::resource('/governorate','GovernorateController');
     Route::resource('/city','CityController');
@@ -34,8 +34,8 @@ Route::group(['prefix' => 'dashboard','as' => 'dashboard.','namespace'=>"Dashboa
     Route::resource('/PPolicy','PrivacyPolicyController');
     Route::resource('/settings','SettingsController');
     Route::resource('/contact','ContactController');
-
-
+    Route::resource("/specialty","SpecialtyController");
+    Route::resource("/doctor","DoctorController");
 
 
 
@@ -51,6 +51,9 @@ Route::group(['prefix' => 'dashboard','as' => 'dashboard.','namespace'=>"Dashboa
 // Start website /////////////////////////////////////////////////////////////////////////////////
 Route::group(['namespace'=>"Website",'as' => 'Website.'],function () {
 
+    Route::get('/', function(){
+        return redirect()->route("dashboard.index");
+    })->name('index');
 
 
 });

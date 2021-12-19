@@ -16,10 +16,11 @@ class GovernorateSeeder extends Seeder
     public function run()
     {
         $faker = Faker::create();
+        $faker_ar = Faker::create('ar_SA');
         for ($i = 0; $i < 30; $i++) {
             DB::table('governorates')->insert([
                 'title'             =>   $faker->country,
-                'title_ar'          =>   $faker->country,
+                'title_ar'          =>   $faker_ar->country,
                 'created_at'        =>  now(),
                 'updated_at'        =>  now(),
             ]);

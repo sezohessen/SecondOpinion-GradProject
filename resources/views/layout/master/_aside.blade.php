@@ -16,7 +16,7 @@
     <div class="brand flex-column-auto {{ Metronic::printClasses('brand', false) }}" id="kt_brand">
         <div class="brand-logo">
             <img alt="{{ Session::get('app_locale')=='en'? App\Models\Settings::first()->appName : App\Models\Settings::first()->appName_ar }}"
-            src="{{ find_image(App\Models\Settings::first()->logo,'img/settings/') }}" />
+            src="{{ find_image(App\Models\Settings::first()->logo,'img/settings/') }}" class="logo-dashboard"/>
         </div>
 
         @if (config('layout.aside.self.minimize.toggle'))

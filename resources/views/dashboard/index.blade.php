@@ -23,7 +23,7 @@
             </a>
         </div>
         <div class="col-md-4">
-            <a href="{{ route('dashboard.seller.index') }}" class="card card-custom bg-info bg-hover-state-info card-stretch card-stretch gutter-b">
+            <a href="#" class="card card-custom bg-info bg-hover-state-info card-stretch card-stretch gutter-b">
                 <!--begin::Body-->
                 <div class="card-body">
                     <span class="svg-icon svg-icon-white svg-icon-3x ml-n1">
@@ -31,20 +31,20 @@
                         <i class="fas fa-users-cog fa-3x" style="color: #ffffff"></i>
                         <!--end::Svg Icon-->
                     </span>
-                    <div class="text-inverse-info font-weight-bolder font-size-h3 mb-2 mt-5">{{ $sellers->count() }}</div>
+                    <div class="text-inverse-info font-weight-bolder font-size-h3 mb-2 mt-5"></div>
                     <div class="font-weight-bold text-inverse-info font-size-lg">@lang('No. Sellers')</div>
                 </div>
                 <!--end::Body-->
             </a>
         </div>
         <div class="col-md-4">
-            <a href="{{ route('dashboard.part.index') }}" class="card card-custom card-stretch gutter-b">
+            <a href="#" class="card card-custom card-stretch gutter-b">
                 <!--begin::Body-->
                 <div class="card-body">
                     <span class="svg-icon svg-icon-info svg-icon-3x ml-n1">
                         <i class="fas fas fa-tools fa-3x" style="color: #000000"></i>
                     </span>
-                    <div class="text-inverse-white font-weight-bolder font-size-h3 mb-2 mt-5">{{ $parts->count() }}</div>
+                    <div class="text-inverse-white font-weight-bolder font-size-h3 mb-2 mt-5">#</div>
                     <div class="font-weight-bold text-inverse-white font-size-lg">@lang('No. Parts')</div>
                 </div>
                 <!--end::Body-->

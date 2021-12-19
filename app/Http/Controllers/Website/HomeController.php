@@ -146,7 +146,7 @@ class HomeController extends Controller
         }else{
             $deals = $isExistReviews;
         }
-        return view('website.index',compact('parts','brands','governorates','capacities','totalParts'
+        return view('Website.index',compact('parts','brands','governorates','capacities','totalParts'
         ,'deals','Classes'));
 
     }
@@ -217,7 +217,7 @@ class HomeController extends Controller
         ->count();
         return view('website.part',compact('part','hasReview','RelatedModelParts','reviews','partReview','page_title','reviewCount'));
         }
-        else return redirect()->route('Website.Index');
+        else return redirect()->route('Website.index');
     }
 
     /**

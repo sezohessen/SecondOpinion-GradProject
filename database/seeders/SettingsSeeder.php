@@ -21,8 +21,8 @@ class SettingsSeeder extends Seeder
         $faker = Faker::create();
         $image = Image::where('base', Settings::base)->first();
         DB::table('settings')->insert([
-            'appName'       => 'To Part',
-            'appName_ar'    => 'قطع غيار',
+            'appName'       => 'Second Opinon',
+            'appName_ar'    => 'الرأي الثاني',
             'email'         => $faker->email,
             'phone'         => $faker->phoneNumber,
             'whatsapp'      => $faker->phoneNumber,

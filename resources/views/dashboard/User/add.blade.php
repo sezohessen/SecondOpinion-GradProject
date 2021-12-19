@@ -17,7 +17,7 @@
             @csrf
             <div class="card-body">
                <!--begin::Form group-->
-               <div class="form-group">
+            <div class="form-group">
                 <input id="first_name" type="text" class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6 @error('first_name') is-invalid @enderror" name="first_name" value="{{ old('first_name') }}" required autocomplete="first_name" autofocus placeholder="@lang('first name')">
                 @error('first_name')
                     <div class="fv-plugins-message-container">

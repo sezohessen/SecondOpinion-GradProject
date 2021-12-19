@@ -61,20 +61,16 @@
     <header class="header">
         <div class="container">
             <div class="clearfix navigation">
-                <div class="logo"><a href="{{ route('Website.Index') }}"><img style='height: 65px;' src="{{find_image(App\Models\Settings::first()->logo,'img/settings/')}}" alt="Automan" class="p-4 img-responsive"></a></div> <!-- end .logo -->
+                <div class="logo"><a href="{{ route('Website.index') }}"><img style='height: 65px;' src="{{find_image(App\Models\Settings::first()->logo,'img/settings/')}}" alt="Automan" class="p-4 img-responsive"></a></div> <!-- end .logo -->
                 <div class="contact">
                 </div> <!-- end .contact -->
                 <nav class="main-nav">
                     <ul class="list-unstyled">
 
                         <li class="active">
-                            <a href="{{ route('Website.Index') }}">@lang('Home')</a>
+                            <a href="{{ route('Website.index') }}">@lang('Home')</a>
                         </li>
-                        <li class="favorite">
-                            <a href="{{ route('Website.favorite')}}">@lang('Favorite')
-                        @if (Auth::check())<span id="QtyCount">( {{  App\Models\UserFav::where('user_id', Auth()->user()->id)->count(); }} )</span>@endif
-                            </a>
-                        </li>
+
                         <li>
                             <a href="{{ route('Messenger') }}">
                                 @lang('Messenger') <i class="far fa-comments fa-lg"></i>
@@ -93,7 +89,7 @@
                                 @endif
                             </a>
                         </li>
-                        <li><a href="{{ route('Website.ContactUs') }}">@lang('Contact Us')</a></li>
+                        {{-- <li><a href="{{ route('dashboard.contact') }}">@lang('Contact Us')</a></li> --}}
 
                         <!-- Langague -->
                         <li class="relative nav-lang-container">
@@ -128,32 +124,7 @@
                             </a>
                             <a href="#" class="visible-xs visible-sm hidden-lg hidden-md">@lang('Account')</a>
                             <ul class="absolute right-0">
-                            @auth
-                            <li>
-                                @if (auth()->user()->hasRole('seller'))
-                                    <a href="{{ route('seller.index') }}"> @lang('Dashboard') </a>
-                                @elseif (auth()->user()->hasRole('administrator') || auth()->user()->hasRole('superadministrator'))
-                                    <a href="{{ route('dashboard.dashboard') }}"> @lang('Dashboard') </a>
-                                @endif
-                            </li>
-                            <li><a href="{{ route('Website.EditUser') }}"> @lang('Profile') </a></li>
 
-                            <li>
-                                <a class="dropdown-item" href="{{ route('logout') }}"
-                                onclick="event.preventDefault();
-                                                document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
-                                </a>
-                            </li>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                @csrf
-                            </form>
-
-                            @endauth
-                            @guest
-                            <li class="p-4"><a href="{{ route('login') }}">@lang('Login')</a></li>
-                            @endguest
-                            </ul>
                         </li>
                     </ul>
                 </nav> <!-- end .main-nav -->
@@ -200,33 +171,7 @@
                     </div> <!-- end .col-sm-4 -->
                     <div class="my-10 col-md-4 col-sm-6 col-xs-12">
                         <h3 class="mb-10 sm:font-bold sm:text-3xl sm:mb-16 ">@lang('Top Sellers')</h3>
-                        @php
-                            $footerSellers = App\Models\Seller::leftJoin('sellers_rating', 'sellers_rating.seller_id', '=', 'sellers.id')
-                        ->select('sellers.*', DB::raw('AVG(rating) as rating_average' ))->groupBy('id')->orderBy('rating_average', 'DESC')->limit(3)->get();
-                        @endphp
-                        @foreach ($footerSellers as $seller)
-                            <div id="footer-parts">
-                                <div class="row">
-                                    <div class="img col-md-4 col-xs-6">
-                                        @if (!$seller->avatar)
-                                        <img
-                                            src="{{asset('img/avatar/user-profile.png')}}" alt="Profile picture">
-                                        @else
-                                        <img
-                                            src="{{find_image($seller->sellerAvatar , App\Models\Seller::avatarBase)}}" alt="{{$seller->sellerAvatar->name}}">
-                                        @endif
-                                    </div>
-                                    <div class="part-info col-md-8 col-xs-6">
-                                        <a href="{{ route('Website.SellerProfile',['id'=>$seller->user->id,'first'=>$seller->user->first_name,'second'=>$seller->user->last_name]) }}">
-                                            {{ $seller->user->FullName }}
-                                        </a>
-                                        @if ($seller->governorate)
-                                            <p>{{ LangDetail($seller->governorate->title,$seller->governorate->title_ar) }}</p>
-                                        @endif
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
+
 
                     </div> <!-- end .col-sm-4 -->
                     <div class="my-10 col-md-4 col-sm-12 col-xs-12">
@@ -234,15 +179,15 @@
                         <div class="row">
                             <div class="iconbox-left">
                                 <div class="px-5 icon"><i class="fas fa-envelope-open-text"></i></div> <!-- end .icon -->
-                                <div class="content"><a href="{{ route('Website.ContactUs') }}">@lang('Feel free to contact us')</a> </div> <!-- end .content -->
+                                {{-- <div class="content"><a href="{{ route('Website.ContactUs') }}">@lang('Feel free to contact us')</a> </div> <!-- end .content --> --}}
                             </div> <!-- end .iconbox-left -->
                             <div class="iconbox-left">
                                 <div class="px-5 icon"><i class="fas fa-journal-whills"></i></div> <!-- end .icon -->
-                                <div class="content"><a href="{{ route('OurTerms') }}">@lang('Check Terms and Conditions')</a></div> <!-- end .content -->
+                                {{-- <div class="content"><a href="{{ route('OurTerms') }}">@lang('Check Terms and Conditions')</a></div> <!-- end .content --> --}}
                             </div> <!-- end .iconbox-left -->
                             <div class="iconbox-left">
                                 <div class="px-5 icon"><i class="fas fa-handshake"></i></div> <!-- end .icon -->
-                                <div class="content"><a href="{{ route('OurPolicy') }}">@lang('Check Privacy and Policy')</a></div> <!-- end .content -->
+                                {{-- <div class="content"><a href="{{ route('OurPolicy') }}">@lang('Check Privacy and Policy')</a></div> <!-- end .content --> --}}
                             </div> <!-- end .iconbox-left -->
                         </div>
                         <!-- {{-- social links --}} -->

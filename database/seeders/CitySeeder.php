@@ -17,12 +17,13 @@ class CitySeeder extends Seeder
     public function run()
     {
         $faker          = Faker::create();
+        $faker_ar = Faker::create('ar_SA');
         $governorates   = Governorate::all();
         foreach ($governorates as $governorate) {
             for($i = 0;$i<3;$i++){
                 DB::table('cities')->insert([
                     'title'             =>  $faker->city,
-                    'title_ar'          =>  $faker->city,
+                    'title_ar'          =>  $faker_ar->city,
                     'governorate_id'    =>  $governorate->id,
                     'created_at'        =>  now(),
                     'updated_at'        =>  now(),

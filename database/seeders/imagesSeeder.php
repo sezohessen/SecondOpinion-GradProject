@@ -232,7 +232,7 @@ class imagesSeeder extends Seeder
                 'created_at'        =>  now()
             ],
             [
-                'name'              =>  "logo.png",
+                'name'              =>  "logo.jpg",
                 'base'              =>  "/img/settings/",
                 'updated_at'        =>  now(),
                 'created_at'        =>  now()
