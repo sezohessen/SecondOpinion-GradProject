@@ -61,7 +61,7 @@ return [
         // Specialties
         [
             'title' => 'Specialties',
-            'icon' => 'fas fa-clinic-medical',
+            'icon' => 'fas fa-hand-holding-medical',
             'bullet' => 'dot',
             'root' => true,
             'submenu' => [
@@ -95,6 +95,35 @@ return [
                     ],
                 ],
             ]
+        ],
+        // Radiology Type
+        [
+            'title' => 'Radiology Type',
+            'icon' => 'fas fa-x-ray',
+            'bullet' => 'dot',
+            'root' => true,
+        ],
+
+        // Centers
+        [
+            'title' => 'Centers',
+            'icon' => 'fas fa-clinic-medical',
+            'bullet' => 'dot',
+            'root' => true,
+        ],
+        // Patients
+        [
+            'title' => 'Patients',
+            'icon' => 'fas fa-user-nurse',
+            'bullet' => 'dot',
+            'root' => true,
+        ],
+        // Reviews
+        [
+            'title' => 'Reviews',
+            'icon' => 'fas fa-comments',
+            'bullet' => 'dot',
+            'root' => true,
         ],
         /*
         // Cars Settings

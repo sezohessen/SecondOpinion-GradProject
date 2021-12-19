@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\Dashboard;
 
+use App\DataTables\DoctorDatatable;
 use App\Models\User;
+use App\Models\Doctor;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
 
 class DoctorController extends Controller
 {
@@ -13,9 +16,11 @@ class DoctorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(DoctorDatatable $doctor)
     {
-        //
+        $page_title = __('Doctors');
+        $page_description = __('View Doctors');
+        return  $doctor->render("dashboard.Doctor.index", compact('page_title', 'page_description'));
     }
 
     /**
@@ -38,7 +43,15 @@ class DoctorController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        $userRules = User::rules($request);
+        $doctorRules = Doctor::rules($request);
+        $request->validate(array_merge($doctorRules,$userRules));
+        $userCredentials = User::credentials($request);
+        $user = User::create($userCredentials);
+        $doctorCredentials = Doctor::credentials($request,$user->id);
+        Doctor::create($doctorCredentials);
+        session()->flash('created',__("Changes has been Created Successfully"));
+        return redirect()->route("dashboard.doctor.index");
     }
 
     /**

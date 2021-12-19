@@ -36,6 +36,8 @@ Route::group(['prefix' => 'dashboard','as' => 'dashboard.','namespace'=>"Dashboa
     Route::resource('/contact','ContactController');
     Route::resource("/specialty","SpecialtyController");
     Route::resource("/doctor","DoctorController");
+    Route::resource("/patient","DoctorController");
+    Route::resource("/center","DoctorController");
 
 
 

@@ -14,7 +14,7 @@
             </div>
         </div>
         <!--begin::Form-->
-        <form action="{{route("dashboard.doctor.store")}}" method="POST" enctype="multipart/form-data">>
+        <form action="{{route("dashboard.doctor.store")}}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="card-body">
                 <!--begin::Form group-->
@@ -54,7 +54,7 @@
              <!--end::Form group-->
              <div class="form-group">
                 <input type="text" class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6 @error('national_id') is-invalid @enderror"
-                 name="phone" value="{{ old('national_id') }}"  autocomplete="national_id"  placeholder="@lang('National ID')">
+                 name="national_id" value="{{ old('national_id') }}"  autocomplete="national_id"  placeholder="@lang('National ID')">
                 @error('national_id')
                     <div class="fv-plugins-message-container">
                         <div class="fv-help-block">

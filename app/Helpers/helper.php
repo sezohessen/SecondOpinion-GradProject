@@ -345,3 +345,30 @@ if(!function_exists('find_image')){
 
         }
     }
+    if(!function_exists('file_encode')){
+        function file_encode($file,$base,$id=null){
+            $extension = $file->getClientOriginalExtension();
+            $fileName = time() . rand(11111, 99999) . '.' . $extension;
+            $destinationPath = public_path() . $base;
+            $file->move($destinationPath, $fileName);
+            if($id){//For update
+                $Image = Image::find($id);
+                //Delete Old image
+                try {
+                    $file_old = $destinationPath.$Image->name;
+                    unlink($file_old);
+                } catch (Exception $e) {
+                    echo 'Caught exception: ',  $e->getMessage(), "\n";
+                }
+                //Update new image
+                $Image->name = $fileName;
+                $Image->base = $base;
+                $Image->save();
+                return $Image->id;
+            }else{
+                $Image = Image::create(['name'=> $fileName, 'base' => $base]);
+                return $Image->id;
+            }
+        }
+    }
+

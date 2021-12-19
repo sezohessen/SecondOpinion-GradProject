@@ -912,6 +912,16 @@
 "Edit Doctor":"تعديل طبيب",
 "Brief Description About Yourself(ENG)":"وصف موجز عن نفسك (بالأنجليزية)",
 "Brief Description About Yourself(AR)":"وصف موجز عن نفسك (بالعربية)",
-"National ID":"الرقم القومي"
+"Brief Description(ENG)":"الوصف الموجز (بالأنجليزية)",
+"Brief Description(AR)":"الوصف الموجز (بالعربية)",
+"National ID":"الرقم القومي",
+"Radiology Type":"نوع الأشعة ",
+"Centers":"المعامل الطبية",
+"Patients":"المرضي",
+"No. Specialties":"عدد التخصصات",
+"No. Patients":"عدد المرضي",
+"No. Centers":"عدد المعامل الطبية",
+"No. Doctors":"عدد الأطباء"
+
 
 }
