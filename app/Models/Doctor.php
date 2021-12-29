@@ -24,7 +24,7 @@ class Doctor extends Model
     {
 
         $rules = [
-            'national_id'        => 'nullable|integer|max:255|unique:doctors,national_id,'.$edit_profile,
+            'national_id'        => 'nullable|integer|unique:doctors,national_id,'.$edit_profile,
             'facebook'           => 'nullable|url',
             'brief_desc'         => 'required|string',
             'brief_desc_ar'      => 'required|string',
