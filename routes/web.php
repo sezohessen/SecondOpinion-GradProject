@@ -52,15 +52,13 @@ Route::group(['prefix' => 'dashboard','as' => 'dashboard.','namespace'=>"Dashboa
 
 // Start website /////////////////////////////////////////////////////////////////////////////////
 Route::group(['namespace'=>"Website",'as' => 'Website.'],function () {
-
-    Route::get('/', function(){
-        return redirect()->route("dashboard.index");
-    })->name('index');
+    Route::get('/', 'HomeController@index')->name('Index');
+    
 
 
 });
 Route::group(['as' => 'Website.','namespace'=>"Website", 'middleware' => 'auth'], function () {
-
+    Route::get('doctor','DoctorController@index')->middleware('role:doctor');
 });
 
 Route::group(['prefix' => 'doctor','as' => 'doctor.','namespace'=>"Doctor", 'middleware' => ['role:doctor']], function () {

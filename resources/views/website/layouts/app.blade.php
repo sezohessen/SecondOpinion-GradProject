@@ -6,273 +6,208 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ LangDetail(App\Models\Settings::first()->appName,App\Models\Settings::first()->appName_ar) }} @yield('title',@$page_title ? ' | '.@$page_title : '')</title>
-
-    <!-- Bootstrap -->
-    <link href="{{ asset('css/website/css/bootstrap.min.css') }}" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link href="{{ asset('lang/fonts/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
-    <!-- Ionicons -->
-    <link href="{{ asset('lang/fonts/ionicons/css/ionicons.min.css') }}" rel="stylesheet">
-    <!-- Cars -->
-    <link href="{{ asset('lang/fonts/cars/style.css') }}" rel="stylesheet">
-    <!-- FlexSlider -->
-    <link href="{{ asset('js/website/scripts/FlexSlider/flexslider.css') }}" rel="stylesheet">
-    <!-- Owl Carousel -->
-    <link href="{{ asset('css/website/css/owl.carousel.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/website/css/owl.theme.default.css') }}" rel="stylesheet">
-    <!-- noUiSlider -->
-    <link href="{{ asset('css/website/css/jquery.nouislider.min.css') }}" rel="stylesheet">
-    <!-- Style.css -->
-    <link href="{{ asset('css/website/css/style.css') }}" rel="stylesheet">
-    <!-- Metronic css -->
-    <link href="{{ asset('css/pages/login/login-1.css') }}" rel="stylesheet" type="text/css"/>
-
-    @if (App::isLocale('ar')) <link href="{{ asset('css/website/css/style_ar.css') }}" rel="stylesheet"> @endif
-    <!-- Tailwindcss -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;300;400;500;700&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@300&display=swap" rel="stylesheet">
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    @if (App::isLocale('ar')) <link rel="stylesheet" href="{{ asset('css/website/css/fontfamilyAR.css') }}"> @endif
-    <link href="{{ asset('css/pages/error/error-3.css') }}" rel="stylesheet" type="text/css"/>
-
-    {{-- Favicon --}}
     <link rel="shortcut icon" href="{{ asset('img/settings/TO-PART-LOGO.svg') }}" />
     {{-- Meta Data --}}
     <meta name="description" content="@yield('page_description', $page_description ?? '')" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-
-
-
-    {{-- CDN --}}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&amp;family=Roboto:wght@400;700&amp;display=swap">
+    <link rel="stylesheet" href="{{ asset('css/website/css/all.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/website/css/libraries.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/website/css/style.css') }}">
+    @if (App::isLocale('ar')) <link href="{{ asset('css/website/css/style_ar.css') }}" rel="stylesheet"> @endif
     @yield('css')
 </head>
 <body>
-    <header class="header">
-        <div class="container">
-            <div class="clearfix navigation">
-                <div class="logo"><a href="{{ route('Website.index') }}"><img style='height: 65px;' src="{{find_image(App\Models\Settings::first()->logo,'img/settings/')}}" alt="Automan" class="p-4 img-responsive"></a></div> <!-- end .logo -->
-                <div class="contact">
-                </div> <!-- end .contact -->
-                <nav class="main-nav">
-                    <ul class="list-unstyled">
+    <div class="wrapper">
+        <div class="preloader">
+          <div class="loading"><span></span><span></span><span></span><span></span></div>
+        </div><!-- /.preloader -->
+        <header class="header header-layout1">
+          <nav class="navbar navbar-expand-lg sticky-navbar main-nav">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="index.html">
+                <!-- <img src="assets/images/logo/logo-light.png" class="logo-light" alt="logo">
+                <img src="assets/images/logo/logo-dark.png" class="logo-dark" alt="logo"> -->
+              </a>
+              <button class="navbar-toggler" type="button">
+                <span class="menu-lines"><span></span></span>
+              </button>
+              <div class="collapse navbar-collapse" id="mainNavigation">
+                <ul class="navbar-nav ml-auto">
+                  <li class="nav__item">
+                    <a href="#" class="nav__item-link active">Home</a>
+                  </li><!-- /.nav-item -->
+                  <li class="nav__item has-dropdown">
+                    <a href="#" data-toggle="dropdown" class="dropdown-toggle nav__item-link">Doctors</a>
+                    <ul class="dropdown-menu">
+                      <li class="nav__item">
+                        <a href="doctors-grid.html" class="nav__item-link">All doctors</a>
+                      </li> <!-- /.nav-item -->
+                      <li class="nav__item">
+                        <a href="doctors-single-doctor1.html" class="nav__item-link">Doctor page</a>
+                      </li> <!-- /.nav-item -->
 
-                        <li class="active">
-                            <a href="{{ route('Website.index') }}">@lang('Home')</a>
-                        </li>
-
-                        <li>
-                            <a href="{{ route('Messenger') }}">
-                                @lang('Messenger') <i class="far fa-comments fa-lg"></i>
-                                @if (Auth::check())
-                                    @php
-                                        $resevedMessages = App\Models\ChMessage::where('to_id',@Auth()->user()->id)
-                                        ->where('seen',0)
-                                        ->groupBy('from_id')
-                                        ->get();
-                                    @endphp
-                                    @if($resevedMessages->count())
-                                        <div class="resMessages" id="TotalMessages">
-                                            <span class="number-of-messages" id="Unseen">{{ $resevedMessages->count() }}</span>
-                                        </div>
-                                    @endif
-                                @endif
+                    </ul><!-- /.dropdown-menu -->
+                  </li><!-- /.nav-item -->
+                  <li class="nav__item has-dropdown">
+                    <a href="#" data-toggle="dropdown" class="dropdown-toggle nav__item-link">Centers</a>
+                    <ul class="dropdown-menu">
+                      <li class="nav__item">
+                        <a href="centers.html" class="nav__item-link">All centers</a>
+                      </li><!-- /.nav-item -->
+                      <li class="nav__item">
+                        <a href="center.html" class="nav__item-link">Center page</a>
+                      </li><!-- /.nav-item -->
+                    </ul><!-- /.dropdown-menu -->
+                  </li><!-- /.nav-item -->
+                  <li class="nav__item">
+                    <a href="faqs.html" class="nav__item-link">FAQs</a>
+                  </li><!-- /.nav-item -->
+                  <li class="nav__item">
+                    <a href="contact-us.html" class="nav__item-link">Contacts</a>
+                  </li><!-- /.nav-item -->
+                  <li class="nav__item has-dropdown">
+                    <a href="#" class="nav__item-link">About Us</a>
+                  </li><!-- /.nav-item -->
+                  <li class="nav__item has-dropdown">
+                    <a href="#" data-toggle="dropdown" class="dropdown-toggle nav__item-link">
+                      <i class="fas fa-user"></i>
+                        Dr. Walid
+                      </a>
+                    <ul class="dropdown-menu profile">
+                        <li class="nav__item">
+                            <a href="#" class="nav__item-link">@lang('Review radiology')</a>
+                        </li><!-- /.nav-item -->
+                        <li class="nav__item">
+                            <a href="#" class="nav__item-link">@lang('My account')</a>
+                        </li><!-- /.nav-item -->
+                        <li class="nav__item">
+                            <a class="nav__item-link" href="{{ route('logout') }}"
+                            onclick="event.preventDefault();
+                                            document.getElementById('logout-form').submit();">
+                                {{ __('Logout') }}
                             </a>
                         </li>
-                        {{-- <li><a href="{{ route('dashboard.contact') }}">@lang('Contact Us')</a></li> --}}
-
-                        <!-- Langague -->
-                        <li class="relative nav-lang-container">
-                            <a href="">@lang('language')</a>
-                            <ul class="absolute left-0 nav-lang" id='nav-lang'>
-                                <li class="py-3 navi-item">
-                                    <a href="{{url('/lang/en')}}" class="navi-link @if (App::isLocale('en'))  active  @endif">
-                                        <div>
-                                            <div class="flex">
-                                                <span class="leading-10">@lang('English') </span>
-                                                <img class="mr-auto" style="height: 30px;" src="{{ asset('img/language/united-kingdom.svg') }}" alt=""/>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="py-3 navi-item">
-                                    <a href="{{url('/lang/ar')}}" class="navi-link @if (App::isLocale('ar'))  active  @endif" href="{{url('/ar')}}">
-                                        <div>
-                                            <div class="flex">
-                                                <span class="leading-10">@lang('Arabic') </span>
-                                                <img class="mr-auto" style="height: 20px;" src="{{ asset('img/language/Flag_of_Egypt.svg') }}" alt=""/>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <!-- User component -->
-                        <li class="relative">
-                            <a id="user-logo" href="#">
-                                <i class="px-4 text-gray-100 bg-gray-600 rounded-lg ion-ios-person fa-2x"></i>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
+                    </ul><!-- /.dropdown-menu -->
+                  </li><!-- /.nav-item -->
+                  <li class="nav__item has-dropdown relative nav-lang-container">
+                    <a data-toggle="dropdown" class="dropdown-toggle nav__item-link">@lang('language')</a>
+                    <ul class="absolute left-0 nav-lang" id='nav-lang'>
+                        <li class="py-3 navi-item nav__item">
+                            <a href="{{url('/lang/en')}}" class="navi-link  @if (App::isLocale('en'))  active  @endif">
+                                <div>
+                                    <div class="flex">
+                                        <span class="leading-10">@lang('English') </span>
+                                        <img class="w-32 ml-auto mr-auto" style="height: 30px;" src="{{ asset('img/language/united-kingdom.svg') }}" alt=""/>
+                                    </div>
+                                </div>
                             </a>
-                            <a href="#" class="visible-xs visible-sm hidden-lg hidden-md">@lang('Account')</a>
-                            <ul class="absolute right-0">
-
+                        </li>
+                        <li class="py-3 navi-item nav__item">
+                            <a href="{{url('/lang/ar')}}" class="navi-link  @if (App::isLocale('ar'))  active  @endif" href="{{url('/ar')}}">
+                                <div>
+                                    <div class="flex">
+                                        <span class="leading-10">@lang('Arabic') </span>
+                                        <img class="w-32 ml-auto mr-auto" style="height: 30px;" src="{{ asset('img/language/saudi-arabia.svg') }}" alt=""/>
+                                    </div>
+                                </div>
+                            </a>
                         </li>
                     </ul>
-                </nav> <!-- end .main-nav -->
-                <a href="#" class="responsive-menu-open"><i class="fa fa-bars"></i></a>
-            </div> <!-- end .navigation -->
-        </div> <!-- end .container -->
-    </header> <!-- end .header -->
-    <div class="responsive-menu">
-        <a href="#" class="responsive-menu-close"><i class="ion-android-close"></i></a>
-        <nav class="responsive-nav"></nav> <!-- end .responsive-nav -->
-    </div> <!-- end .responsive-menu -->
-    <main>
-        @yield('website')
-    </main>
-    <footer class="footer">
-        <div class="top" style="padding-top:50px;">
+                </li>
+
+                </ul><!-- /.navbar-nav -->
+                <button class="close-mobile-menu d-block d-lg-none"><i class="fas fa-times"></i></button>
+              </div><!-- /.navbar-collapse -->
+            </div><!-- /.container -->
+          </nav><!-- /.navabr -->
+        </header>
+        <!-- /.Header -->
+
+        <main>
+            @yield('website')
+        </main>
+        <footer class="footer">
+            <div class="footer-primary">
             <div class="container">
                 <div class="row">
-                    <div class="my-10 col-md-4 col-sm-6 col-xs-12">
-                        <h3 class="mb-10 sm:font-bold sm:text-3xl">@lang('About Us')</h3>
-                        @php
-                            $settings  = App\Models\Settings::first();
-                        @endphp
-                        {{-- <p>{{ LangDetail($settings->about_us,$settings->about_us_ar) }}</p> --}}
-                        <p>@lang('A website that provide easy access to auto parts companies and stores.')</p>
-                        <hr class="my-10"/>
-                        <!-- Call Setting globaly -->
-                        @php
-                            use App\Models\Settings;
-                            $Settings = Settings::all()->first();
-                        @endphp
-                        <div class="iconbox-left">
-                            <div class="px-5 icon"><i class="fa fa-map-marker"></i></div> <!-- end .icon -->
-                            <div class="content"><p>{{ $Settings->location }}</p></div> <!-- end .content -->
-                        </div> <!-- end .iconbox-left -->
-                        <div class="iconbox-left">
-                            <div class="px-5 icon"><i class="fa fa-envelope"></i></div> <!-- end .icon -->
-                            <div class="content"><p> {{ $Settings->email }} </p></div> <!-- end .content -->
-                        </div> <!-- end .iconbox-left -->
-                        <div class="iconbox-left">
-                            <div class="px-5 icon"><i class="fa fa-phone"></i></div> <!-- end .icon -->
-                            <div class="content"><p>{{ $Settings->phone }}</p></div> <!-- end .content -->
-                        </div> <!-- end .iconbox-left -->
-                    </div> <!-- end .col-sm-4 -->
-                    <div class="my-10 col-md-4 col-sm-6 col-xs-12">
-                        <h3 class="mb-10 sm:font-bold sm:text-3xl sm:mb-16 ">@lang('Top Sellers')</h3>
-
-
-                    </div> <!-- end .col-sm-4 -->
-                    <div class="my-10 col-md-4 col-sm-12 col-xs-12">
-                        <h3 class="mb-10 sm:font-bold sm:text-3xl ">@lang('Get in Touch')</h3>
-                        <div class="row">
-                            <div class="iconbox-left">
-                                <div class="px-5 icon"><i class="fas fa-envelope-open-text"></i></div> <!-- end .icon -->
-                                {{-- <div class="content"><a href="{{ route('Website.ContactUs') }}">@lang('Feel free to contact us')</a> </div> <!-- end .content --> --}}
-                            </div> <!-- end .iconbox-left -->
-                            <div class="iconbox-left">
-                                <div class="px-5 icon"><i class="fas fa-journal-whills"></i></div> <!-- end .icon -->
-                                {{-- <div class="content"><a href="{{ route('OurTerms') }}">@lang('Check Terms and Conditions')</a></div> <!-- end .content --> --}}
-                            </div> <!-- end .iconbox-left -->
-                            <div class="iconbox-left">
-                                <div class="px-5 icon"><i class="fas fa-handshake"></i></div> <!-- end .icon -->
-                                {{-- <div class="content"><a href="{{ route('OurPolicy') }}">@lang('Check Privacy and Policy')</a></div> <!-- end .content --> --}}
-                            </div> <!-- end .iconbox-left -->
-                        </div>
-                        <!-- {{-- social links --}} -->
-                        @if ($Settings->instgram || $Settings->whatsapp)
-                        <h5 style="margin-top:15px;margin-bottom:10px;">@lang('Our Social media links')</h5>
-                        <div class="row">
-                            <div class="col-md-12">
-                            @if ($Settings->instgram)
-                                <!-- Instagram -->
-                                <a id="insta" class="btn btn-primary"  href="#!" role="button"
-                                title="Check our Instagram"
-                                ><i class="fab fa-instagram"></i
-                                ></a>
-                            @endif
-                            @if ($Settings->whatsapp)
-                                <!-- Whatsapp -->
-                                <a id="whatsapp" class="btn btn-primary"
-                                href="https://api.whatsapp.com/send?phone={{$Settings->whatsapp}}" role="button"
-                                target="_blank"
-                                title="{{ $Settings->whatsapp }}"
-                                ><i class="fab fa-whatsapp"></i
-                                ></a>
-                            @endif
-                            </div>
-                        </div>
-                        @endif
-                        <!-- {{-- Download IOS/ANDRIOD --}} -->
-                        @if ($Settings->andriod || $Settings->ios)
-                            <h5 style="margin-top:15px;margin-bottom:10px;">@lang('Download Our App..')</h5>
-                            <div class="row">
-                                <div class="col-md-12">
-                                @if ($Settings->ios)
-                                    <!-- Ios -->
-                                    <a class="btn btn-primary"
-                                    id="ios"
-                                    title="Download Ios App"
-                                    href="#!" role="button">
-                                    <i class="fab fa-apple"></i></a>
-                                @endif
-                                @if ($Settings->andriod)
-                                    <!-- Andriod -->
-                                    <a class="btn btn-primary"
-                                    id="andriod"
-                                    title="Download Andriod App"
-                                    href="#!" role="button">
-                                    <i class="fab fa-android"></i></a>
-                                @endif
-                                </div>
-                            </div>
-                        @endif
-                        </div>
-                        {{-- End Footer --}}
-                        </div>
-                    </div> <!-- end .col-sm-4 -->
-                </div> <!-- end .row -->
-            </div> <!-- end .container -->
-        </div> <!-- end .top -->
-        <div class="bottom">
-            <span class="copyright sm:text-lg sm:font-semibold">&copy;  ToPart.Services {{ now()->format('Y') }} @lang('Copyright All Rights Reserved.')</span>
-        </div> <!-- end .bottom -->
-    </footer> <!-- end .footer -->
-    <!-- jQuery -->
-    <script src="{{ asset('js/website/js/jquery-1.11.2.min.js') }}"></script>
-    <!-- Bootstrap -->
-    <script src="{{ asset('js/website/js/bootstrap.min.js') }}"></script>
-    <!-- Inview -->
-    <script src="{{ asset('js/website/js/jquery.inview.min.js') }}"></script>
-    <!-- google maps -->
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
-    <!-- Tweetie -->
-    <script src="{{ asset('js/website/scripts/Tweetie/tweetie.min.js') }}"></script>
-    <!-- FlexSlider -->
-    <script src="{{ asset('js/website/scripts/FlexSlider/jquery.flexslider-min.js') }}"></script>
-    <!-- Owl Carousel -->
-    <script src="{{ asset('js/website/js/owl.carousel.min.js') }}"></script>
-    <!-- Isotope -->
-    <script src="{{ asset('js/website/js/isotope.pkgd.min.js') }}"></script>
-
-    <script src="{{ asset('js/website/js/imagesloaded.pkgd.min.js') }}"></script>
-    <!-- noUiSlider -->
-    <script src="{{ asset('js/website/js/jquery.nouislider.all.min.js') }}"></script>
-    <!-- Scripts.js -->
-    <script src="{{ asset('js/website/js/scripts.js') }}"></script>
-    {{-- <script src="{{asset("js/pages/custom/login/login-general.js")}}"></script> --}}
+                <div class="col-sm-12 col-md-12 col-lg-3">
+                    <div class="footer-widget-about">
+                    <h4 class="text-white">Second Opinion</h4>
+                    <!-- <img src="assets/images/logo/logo-light.png" alt="logo" class="mb-30"> -->
+                    <p class="color-gray">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero quam doloribus earum non consectetur consequuntur, mollitia autem et id eos aliquam inventore provident? Illum molestiae iste laudantium nulla culpa expedita?
+                    </p>
+                    <a href="doctors-single-doctor1.html" class="btn btn__primary btn__primary-style2 btn__link">
+                        <span>Find doctors</span> <i class="icon-arrow-right"></i>
+                    </a>
+                    </div><!-- /.footer-widget__content -->
+                </div><!-- /.col-xl-2 -->
+                <div class="col-sm-6 col-md-6 col-lg-2 offset-lg-1">
+                    <div class="footer-widget-nav">
+                    <h6 class="footer-widget__title">Departments</h6>
+                    <nav>
+                        <ul class="list-unstyled">
+                        <li><a href="#">Neurology radiology</a></li>
+                        <li><a href="#">Cardiology radiology</a></li>
+                        <li><a href="#">Pathology radiology</a></li>
+                        <li><a href="#">Laboratory Analysis</a></li>
+                        <li><a href="#">Pediatric radiology</a></li>
+                        <li><a href="#">Cardiac radiology</a></li>
+                        </ul>
+                    </nav>
+                    </div><!-- /.footer-widget__content -->
+                </div><!-- /.col-lg-2 -->
+                <div class="col-sm-6 col-md-6 col-lg-2">
+                    <div class="footer-widget-nav">
+                    <h6 class="footer-widget__title">Links</h6>
+                    <nav>
+                        <ul class="list-unstyled">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Our radiology</a></li>
+                        <li><a href="#">Our Doctors</a></li>
+                        <li><a href="#">Appointments</a></li>
+                        </ul>
+                    </nav>
+                    </div><!-- /.footer-widget__content -->
+                </div><!-- /.col-lg-2 -->
+                <div class="col-sm-12 col-md-6 col-lg-4">
+                    <div class="footer-widget-contact">
+                    <h6 class="footer-widget__title color-heading">Quick Contacts</h6>
+                    <ul class="contact-list list-unstyled">
+                        <li>If you have any questions or need help, feel free to contact with our team.</li>
+                        <li>
+                        <a href="tel:01000000000" class="phone__number">
+                            <i class="icon-phone"></i> <span>01000000000</span>
+                        </a>
+                        </li>
+                        <li class="color-body">Egypt -Giza</li>
+                    </ul>
+                    <div class="d-flex align-items-center">
+                        <a href="contact-us.html" class="btn btn__primary btn__link mr-30">
+                        <i class="icon-arrow-right"></i> <span>Get Directions</span>
+                        </a>
+                        <ul class="social-icons list-unstyled mb-0">
+                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                        <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                        </ul><!-- /.social-icons -->
+                    </div>
+                    </div><!-- /.footer-widget__content -->
+                </div><!-- /.col-lg-2 -->
+                </div><!-- /.row -->
+            </div><!-- /.container -->
+            </div><!-- /.footer-primary -->
+        </footer><!-- /.Footer -->
+    </div>
+    <button id="scrollTopBtn"><i class="fas fa-long-arrow-alt-up"></i></button>
+    <script src="{{ asset('js/website/js/jquery-3.5.1.min.js') }}"></script>
+    <script src="{{ asset('js/website/js/plugins.js') }}"></script>
+    <script src="{{ asset('js/website/js/main.js') }}"></script>
     @yield('js')
-    @yield('jsFav')
 </body>
 </html>

@@ -29,7 +29,7 @@
                 <div id="kt_header_menu" class="header-menu header-menu-mobile {{ Metronic::printClasses('header_menu', false) }}" {{ Metronic::printAttrs('header_menu') }}>
                     <ul class="menu-nav {{ Metronic::printClasses('header_menu_nav', false) }}">
                         <li class="menu-item "  aria-haspopup="true">
-                            <a  href="{{ route('Website.index') }}" class="menu-link " target="_blank">
+                            <a  href="{{ route('Website.Index') }}" class="menu-link " target="_blank">
                                 <span class="menu-text">@lang('Website')</span>
                             </a>
                         </li>
