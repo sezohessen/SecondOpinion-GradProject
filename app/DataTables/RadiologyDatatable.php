@@ -3,13 +3,14 @@
 namespace App\DataTables;
 
 use App\Models\Doctor;
+use App\Models\Radiology;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class DoctorDatatable extends DataTable
+class RadiologyDatatable extends DataTable
 {
 
     /**
@@ -20,15 +21,22 @@ class DoctorDatatable extends DataTable
      */
     public function dataTable($query)
     {
-        return datatables()
-            ->eloquent($query)
-            ->editColumn('brief_desc', '{!! $brief_desc !!}')
-            ->editColumn('brief_desc_ar', '{!! $brief_desc_ar !!}')
-            ->editColumn('user.name', '{{ $user["first_name"]." ".$user["last_name"] }}')
-            ->addColumn('avatar.name', 'dashboard.Doctor.btn.avatar')
-            ->addColumn('checkbox', 'dashboard.Doctor.btn.checkbox')
-            ->addColumn('action', 'dashboard.Doctor.btn.action')
-            ->rawColumns(['checkbox', 'action','avatar.name','brief_desc','brief_desc_ar']);
+        $db=datatables()
+        ->eloquent($query)
+        ->editColumn('desc', '{{ $desc }}')
+        ->editColumn('doctor.user', function($q){
+            return "<a href=".route("dashboard.doctor.edit",["doctor"=> $q->doctor->user->id]).'>'. $q->doctor->user->first_name. " ". $q->doctor->user->last_name.'</a>';
+
+        })
+        ->editColumn('patient.user', function($q){
+            return "<a href=".route("dashboard.patient.edit",["patient"=> $q->patient->user->id]).'>'.$q->patient->user->first_name. " ". $q->patient->user->last_name.'</a>';
+
+        })
+        ->addColumn('checkbox', 'dashboard.Radiology.btn.checkbox')
+        ->addColumn('action', 'dashboard.Radiology.btn.action')
+        ->rawColumns(['checkbox', 'action','doctor.user','patient.user']);
+
+        return $db;
     }
 
     /**
@@ -39,7 +47,7 @@ class DoctorDatatable extends DataTable
      */
     public function query()
     {
-        return Doctor::query()->with(['user','avatar'])->select("doctors.*");
+        return Radiology::query()->with(['doctor.user','patient.user','center'])->select("radiologies.*");
     }
 
     /**
@@ -50,7 +58,7 @@ class DoctorDatatable extends DataTable
     public function html()
     {
         return $this->builder()
-            ->setTableId('doctors-table')
+            ->setTableId('Radiology-table')
             ->columns($this->getColumns())
             ->dom('Bfrtip')
             ->parameters([
@@ -106,11 +114,9 @@ class DoctorDatatable extends DataTable
                 "searchable" => false,
             ],
             Column::make('id'),
-            Column::make('user.name')->title(__('Name')),
-            Column::make('avatar.name')->title(__("Image")),
-            Column::make('brief_desc')->title(__('Brief Description(ENG)')),
-            Column::make('brief_desc_ar')->title(__('Brief Description(AR)')),
-
+            Column::make('desc')->title(__("Description")),
+            Column::make('patient.user')->title(__("Patient")),
+            Column::make('doctor.user')->title(__("Doctor")),
             Column::computed('action')
                 ->title(__('Action'))
                 ->exportable(false)
@@ -128,6 +134,6 @@ class DoctorDatatable extends DataTable
      */
     protected function filename()
     {
-        return 'Doctors' . date('YmdHis');
+        return 'Radiologies' . date('YmdHis');
     }
 }

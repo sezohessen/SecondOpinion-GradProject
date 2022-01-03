@@ -38,6 +38,7 @@ Route::group(['prefix' => 'dashboard','as' => 'dashboard.','namespace'=>"Dashboa
     Route::resource("/doctor","DoctorController");
     Route::resource("/patient","DoctorController");
     Route::resource("/center","DoctorController");
+    Route::resource("/radiology","RadiologyController");
 
 
 
@@ -45,6 +46,10 @@ Route::group(['prefix' => 'dashboard','as' => 'dashboard.','namespace'=>"Dashboa
 
     Route::delete('/governorate/destroy/all','GovernorateController@multi_delete');
     Route::delete('/city/destroy/all','CityController@multi_delete');
+    Route::resource("/specialty/destroy/all","SpecialtyController@multi_delete");
+    Route::resource("/doctor/destroy/all","DoctorController@multi_delete");
+    Route::resource("/radiology/destroy/all","RadiologyController@multi_delete");
+
 
 
 });

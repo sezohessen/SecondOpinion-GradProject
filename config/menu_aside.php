@@ -102,6 +102,14 @@ return [
             'icon' => 'fas fa-x-ray',
             'bullet' => 'dot',
             'root' => true,
+            'submenu' => [
+                [
+                    [
+                        'title' => 'View Radiologies',
+                        'page' => '/dashboard/radiology'
+                    ],
+                ],
+            ]
         ],
 
         // Centers
