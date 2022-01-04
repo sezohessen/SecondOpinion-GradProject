@@ -17,16 +17,21 @@ class RadiologySeeder extends Seeder
      */
     public function run()
     {
-        $faker        = Faker::create();
-        for ($i=0; $i < 30 ; $i++)
-        {
-           DB::table('radiologies')->insert([
-            "desc" => $faker->sentence,
-            "doctor_id" => Doctor::all()->random()->id,
-            "patient_id"  => Patient::all()->random()->id,
-            "center_id" => Center::all()->random()->id,
-           'created_at'     => now(),
-           'updated_at'     => now(),
+        $faker          = Faker::create();
+        $doctors        = Doctor::all();
+        $patients       = Patient::all();
+        $centers        = Center::all();
+
+        for ($i=0; $i < 30 ; $i++){
+            $rand           = rand(0,2);
+            DB::table('radiologies')->insert([
+                "desc"          => $faker->sentence,
+                "reviewed"       => $faker->boolean,
+                "doctor_id"     => $doctors->random()->id,
+                "patient_id"    => $patients->random()->id,
+                "center_id"     => !$rand ? NULL:$centers->random()->id,
+                'created_at'    => now(),
+                'updated_at'    => now(),
            ]);
        }
     }

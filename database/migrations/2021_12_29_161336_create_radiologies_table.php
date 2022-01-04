@@ -16,7 +16,7 @@ class CreateRadiologiesTable extends Migration
         Schema::create('radiologies', function (Blueprint $table) {
             $table->id();
             $table->text("desc");
-
+            $table->boolean('reviewed')->default(0);
             $table->bigInteger('doctor_id')->unsigned()->nullable();
             $table->foreign('doctor_id')
             ->references('id')->on('doctors')

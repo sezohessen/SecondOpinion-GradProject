@@ -19,4 +19,7 @@ class Center extends Model
         'city_id',
         'street',
     ];
+    public function user(){
+        return $this->belongsTo(User::class,"user_id");
+    }
 }

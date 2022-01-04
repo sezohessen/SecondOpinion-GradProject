@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Dashboard;
 
-use App\DataTables\SpecialtyDatatable;
-use App\Http\Controllers\Controller;
 use App\Models\Specialty;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\DataTables\SpecialtyDatatable;
 
 class SpecialtyController extends Controller
 {
@@ -99,6 +99,19 @@ class SpecialtyController extends Controller
     public function destroy(Specialty $specialty)
     {
         $specialty->delete();
+        session()->flash('deleted',__("Changes has been Deleted Successfully"));
+        return redirect()->route("dashboard.specialty.index");
+    }
+    public function multi_delete(){
+        if (is_array(request('item'))) {
+			foreach (request('item') as $id) {
+				$specialty = Specialty::find($id);
+				$specialty->delete();
+			}
+		} else {
+			$specialty = Specialty::find(request('item'));
+			$specialty->delete();
+		}
         session()->flash('deleted',__("Changes has been Deleted Successfully"));
         return redirect()->route("dashboard.specialty.index");
     }

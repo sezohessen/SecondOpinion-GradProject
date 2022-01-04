@@ -38,6 +38,7 @@ Route::group(['prefix' => 'dashboard','as' => 'dashboard.','namespace'=>"Dashboa
     Route::resource("/doctor","DoctorController");
     Route::resource("/patient","DoctorController");
     Route::resource("/center","DoctorController");
+    Route::resource("/radiology","RadiologyController");
 
 
 
@@ -45,6 +46,10 @@ Route::group(['prefix' => 'dashboard','as' => 'dashboard.','namespace'=>"Dashboa
 
     Route::delete('/governorate/destroy/all','GovernorateController@multi_delete');
     Route::delete('/city/destroy/all','CityController@multi_delete');
+    Route::resource("/specialty/destroy/all","SpecialtyController@multi_delete");
+    /* Route::resource("/doctor/destroy/all","DoctorController@multi_delete"); */
+    /* Route::resource("/radiology/destroy/all","RadiologyController@multi_delete");
+ */
 
 
 });
@@ -53,21 +58,22 @@ Route::group(['prefix' => 'dashboard','as' => 'dashboard.','namespace'=>"Dashboa
 // Start website /////////////////////////////////////////////////////////////////////////////////
 Route::group(['namespace'=>"Website",'as' => 'Website.'],function () {
     Route::get('/', 'HomeController@index')->name('Index');
-    
+
 
 
 });
 Route::group(['as' => 'Website.','namespace'=>"Website", 'middleware' => 'auth'], function () {
-    Route::get('doctor','DoctorController@index')->middleware('role:doctor');
+
 });
 
 Route::group(['prefix' => 'doctor','as' => 'doctor.','namespace'=>"Doctor", 'middleware' => ['role:doctor']], function () {
+    Route::get('pending-radiologies','DoctorRadiologyController@index')->name('pending.radiology');
+    Route::get('completed-radiologies','DoctorRadiologyController@completed')->name('completed.radiology');
+});
+Route::group(['prefix' => 'patient','as' => 'patient.','namespace'=>"Patient", 'middleware' => ['role:patient']], function () {
 
 });
-Route::group(['prefix' => 'doctor','as' => 'doctor.','namespace'=>"Doctor", 'middleware' => ['role:patient']], function () {
-
-});
-Route::group(['prefix' => 'doctor','as' => 'doctor.','namespace'=>"Doctor", 'middleware' => ['role:center']], function () {
+Route::group(['prefix' => 'center','as' => 'center.','namespace'=>"Center", 'middleware' => ['role:center']], function () {
 
 });
 

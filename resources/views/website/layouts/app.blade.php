@@ -78,7 +78,10 @@
                       </a>
                     <ul class="dropdown-menu profile">
                         <li class="nav__item">
-                            <a href="#" class="nav__item-link">@lang('Review radiology')</a>
+                            <a href="{{ route('doctor.pending.radiology') }}" class="nav__item-link">@lang('Pending radiology')</a>
+                        </li><!-- /.nav-item -->
+                        <li class="nav__item">
+                            <a href="{{ route('doctor.completed.radiology') }}" class="nav__item-link">@lang('Completed radiology')</a>
                         </li><!-- /.nav-item -->
                         <li class="nav__item">
                             <a href="#" class="nav__item-link">@lang('My account')</a>

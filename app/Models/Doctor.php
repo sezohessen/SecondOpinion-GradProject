@@ -20,11 +20,11 @@ class Doctor extends Model
         'user_id',
         'facebook'
     ];
-    public static function rules($edit_profile)
+    public static function rules($edit_profile=null)
     {
 
         $rules = [
-            'national_id'        => 'nullable|integer|unique:doctors,national_id,'.$edit_profile,
+            'national_id'        => 'nullable|unique:doctors,national_id,'.$edit_profile,
             'facebook'           => 'nullable|url',
             'brief_desc'         => 'required|string',
             'brief_desc_ar'      => 'required|string',
@@ -32,7 +32,7 @@ class Doctor extends Model
             'field_id'           => 'nullable',
         ];
         if($edit_profile){
-            $rules['logo'] = 'nullable|image|mimes:jpeg,jpg,png,gif,svg|max:2048';
+            $rules['avatar_id'] = 'nullable|image|mimes:jpeg,jpg,png,gif,svg|max:2048';
         }
         return $rules;
     }

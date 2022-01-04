@@ -922,7 +922,15 @@
 "No. Patients":"عدد المرضي",
 "No. Centers":"عدد المعامل الطبية",
 "No. Doctors":"عدد الأطباء",
-"Review radiology":"مراجعة الأشعة"
-
-
+"Review radiology":"مراجعة الأشعة",
+"View Radiologies":"عرض الأشعة",
+"Pending radiology":"الاشغة المعلقة",
+"Completed radiology":"الأشعة المكتملة",
+"Patient Name":"اسم المريض",
+"Center Name":"اسم المركز",
+"Give Feedback":"اكشف علي الاشغة",
+"Feedback":"اكشف",
+"There is no pending radiology yet":"لا يوجد اشعة معلقة حتى الان",
+"Completed Radiology":"الأشعة المكتملة",
+"There is no completed radiology yet":"لا يوجد اشعة مكتملة حتى الان"
 }

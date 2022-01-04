@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Doctor;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use DOTNET;
 use Illuminate\Support\Facades\Validator;
 
 class DoctorController extends Controller
@@ -43,8 +44,8 @@ class DoctorController extends Controller
      */
     public function store(Request $request)
     {
-        $userRules = User::rules($request);
-        $doctorRules = Doctor::rules($request);
+        $userRules = User::rules();
+        $doctorRules = Doctor::rules();
         $request->validate(array_merge($doctorRules,$userRules));
         $userCredentials = User::credentials($request);
         $user = User::create($userCredentials);
@@ -71,9 +72,11 @@ class DoctorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Doctor $doctor)
     {
-        //
+        $page_title         = __("Edit Doctor");
+        $page_description   = __("Edit");
+        return view('dashboard.Doctor.edit', compact('page_title', 'page_description','doctor'));
     }
 
     /**
@@ -83,9 +86,17 @@ class DoctorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Doctor $doctor)
     {
-        //
+        $userRules = User::rules($doctor->user->id);
+        $doctorRules = Doctor::rules($doctor->id);
+        $request->validate(array_merge($doctorRules,$userRules));
+        $userCredentials = User::credentials($request);
+        $doctor->user->update($userCredentials);
+        $doctorCredentials = Doctor::credentials($request,$doctor->user->id,$doctor->avatar->id);
+        $doctor->update($doctorCredentials);
+        session()->flash('updated',__("Changes has been Updated Successfully"));
+        return  redirect()->route("dashboard.doctor.index");
     }
 
     /**
@@ -94,8 +105,29 @@ class DoctorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Doctor $doctor)
     {
-        //
+        delete_file($doctor->avatar->id);
+        $doctor->user()->delete();
+        $doctor->delete();
+        session()->flash('deleted',__("Changes has been Deleted Successfully"));
+        return redirect()->route("dashboard.doctor.index");
+    }
+    public function multi_delete(){
+        if (is_array(request('item'))) {
+			foreach (request('item') as $id) {
+				$doctor = Doctor::find($id);
+                delete_file($doctor->avatar->id);
+                $doctor->user()->delete();
+                $doctor->delete();
+			}
+		} else {
+			$doctor = Doctor::find(request('item'));
+            delete_file($doctor->avatar->id);
+            $doctor->user()->delete();
+            $doctor->delete();
+		}
+        session()->flash('deleted',__("Changes has been Deleted Successfully"));
+        return redirect()->route("dashboard.doctor.index");
     }
 }

@@ -371,4 +371,25 @@ if(!function_exists('find_image')){
             }
         }
     }
+    if(!function_exists('delete_file')){
+        function delete_file($file){
+            try{
+                $Image = Image::find($file);
+                //Delete Old image
+                $file_old = $Image->base . $Image->name;
+                unlink(public_path().$file_old);
+            }catch(Exception $e){
+                return null;
+            }
+        }
+    }
+    if(!function_exists('view_image')){
+        function view_image($image){
+            if (filter_var($image->base ?? '', FILTER_VALIDATE_URL) === FALSE) {
+                return asset($image->base . $image->name);
+            }
+            return null;
+        }
+    }
+
 
