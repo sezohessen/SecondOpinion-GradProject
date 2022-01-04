@@ -26,4 +26,11 @@ class DoctorRadiologyController extends Controller
         })->paginate(8);
         return view('Doctor.completed',compact('page_title','radiology'));
     }
+    public function feedback($id)
+    {
+        $page_title = __('Radiology feedback');
+        $radiology  = Radiology::findOrFail($id);
+
+        return view('Doctor.feedback',compact('page_title','radiology'));
+    }
 }

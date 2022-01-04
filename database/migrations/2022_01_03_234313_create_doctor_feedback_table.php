@@ -15,7 +15,7 @@ class CreateDoctorFeedbackTable extends Migration
     {
         Schema::create('doctor_feedback', function (Blueprint $table) {
             $table->id();
-            $table->string("desc");
+            $table->text("desc");
 
             $table->bigInteger('doctor_id')->unsigned();
             $table->foreign('doctor_id')

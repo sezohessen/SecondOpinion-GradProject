@@ -1257,7 +1257,30 @@ h6 {
     font-size: 30px;
   }
 }
-
+/* Doctor Feedback */
+.doctor-feedback{
+    margin: 50px 0;
+}
+.doctor-feedback .patient-name{
+    padding: 7px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.doctor-feedback .card-header h6{
+    padding: 10px;
+}
+.doctor-feedback .card-body .file label{
+    display: block;
+}
+.doctor-feedback button{
+    min-width: 130px;
+    height: 50px;
+    font-size: 14px;
+}
+/* Main page */
+.navbar{
+    margin: 0;
+}
 /* Mobile Phones and tablets */
 @media (min-width: 320px) and (max-width: 767px) {
   .heading__title {

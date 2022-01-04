@@ -14,6 +14,7 @@
                             <th scope="col">#</th>
                             <th scope="col">@lang('Patient Name')</th>
                             <th scope="col">@lang('Center Name')</th>
+                            <th scope="col">@lang('Date')</th>
                             <th scope="col">@lang('Give Feedback')</th>
                         </tr>
                     </thead>
@@ -28,8 +29,11 @@
                                     @endisset
                                 </td>
                                 <td>
+                                    <span>{{ $rad->created_at->format('j-F gA') }}</span>
+                                </td>
+                                <td>
                                     <button class="btn btn-primary">
-                                        <a href="#">
+                                        <a href="{{ route('doctor.feedback.radiology',['id'=>$rad->id]) }}">
                                             @lang('Feedback') <i class="fa fa-arrow-right"></i>
                                         </a>
                                     </button>

@@ -23,13 +23,13 @@ class DoctorFeedbackSeeder extends Seeder
         for ($i=0; $i < 30 ; $i++)
         {
            DB::table('doctor_feedback')->insert([
-                "doctor_id" => Doctor::all()->random()->id,
-                "radiology_id"  => Radiology::all()->random()->id,
-                "patient_id" => Patient::all()->random()->id,
-                "pdf_report" => $report[$i%2],
-                "desc"  => $faker->sentence,
-                'created_at'     => now(),
-                'updated_at'     => now(),
+                "doctor_id"         => Doctor::all()->random()->id,
+                "radiology_id"      => Radiology::all()->random()->id,
+                "patient_id"        => Patient::all()->random()->id,
+                "pdf_report"        => $report[$i%2],
+                "desc"              => $faker->sentence,
+                'created_at'        => now(),
+                'updated_at'        => now(),
            ]);
        }
     }

@@ -932,5 +932,8 @@
 "Feedback":"اكشف",
 "There is no pending radiology yet":"لا يوجد اشعة معلقة حتى الان",
 "Completed Radiology":"الأشعة المكتملة",
-"There is no completed radiology yet":"لا يوجد اشعة مكتملة حتى الان"
+"There is no completed radiology yet":"لا يوجد اشعة مكتملة حتى الان",
+"Radiology feedback":"تقرير الأشعة",
+"Upload radiology report file":"حمل ملف تقرير الأشعة",
+"only":"فقط"
 }
