@@ -72,7 +72,9 @@ Route::group(['prefix' => 'doctor','as' => 'doctor.','namespace'=>"Doctor", 'mid
     Route::get('feedback/{id}','DoctorRadiologyController@feedback')->name('feedback.radiology');
     Route::post('feedback/create/{id}','DoctorRadiologyController@givefeedback')->name('feedback.radiology.create');
     Route::get('radiology/show/{id}','DoctorRadiologyController@show')->name('show.radiology');
-    Route::get('/download/{id}','DoctorRadiologyController@DownloadFile')->name('downloadfile');
+    Route::get('download/{id}','DoctorRadiologyController@DownloadFile')->name('downloadfile');
+    Route::get('my-account','DoctorRadiologyController@Account')->name('account');
+    Route::post('update-account','DoctorRadiologyController@Update')->name('update.account');
 });
 Route::group(['prefix' => 'patient','as' => 'patient.','namespace'=>"Patient", 'middleware' => ['role:patient']], function () {
 

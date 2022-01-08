@@ -24,10 +24,12 @@
 .col-sm-12,
 label,
 input,
-button{
+button,
+h3,
+ul{
     float: right;
 }
-tr{
+tr,label{
     text-align: right;
 }
 /* Navbar */

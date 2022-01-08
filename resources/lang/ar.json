@@ -942,5 +942,14 @@
 "Show radiology":"عرض الأشعة",
 "Patient brief description about the radiology condition":"وصف موجز للمريض عن حالة الأشعة",
 "File":"ملف",
-"File not found":"الملف غير موجود"
+"File not found":"الملف غير موجود",
+"My Account":"حسابي",
+"Biography(AR)":"السيرة الذاتية(باللغة العربية)",
+"Biography(ENG)":"السيرة الذاتية(باللغة الانجليزية)",
+"Your main photo":"صورتك الشخصية",
+"Choose a field of specialization":"اختر مجال التخصص",
+"Select field":"اختر تخصص",
+"Areas Of Expertise":"مجالات الخبرة",
+"Radiology":"الاشعة",
+"Account has been updated":"تم تحديث الحساب "
 }

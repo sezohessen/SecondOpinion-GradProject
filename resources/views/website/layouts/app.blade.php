@@ -84,7 +84,7 @@
                             <a href="{{ route('doctor.completed.radiology') }}" class="nav__item-link">@lang('Completed radiology')</a>
                         </li><!-- /.nav-item -->
                         <li class="nav__item">
-                            <a href="#" class="nav__item-link">@lang('My account')</a>
+                            <a href="{{ route('doctor.account') }}" class="nav__item-link">@lang('My account')</a>
                         </li><!-- /.nav-item -->
                         <li class="nav__item">
                             <a class="nav__item-link" href="{{ route('logout') }}"
