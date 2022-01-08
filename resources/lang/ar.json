@@ -925,6 +925,7 @@
 "Review radiology":"مراجعة الأشعة",
 "View Radiologies":"عرض الأشعة",
 "Pending radiology":"الاشغة المعلقة",
+"Pending Radiology":"الاشعة المعلقة",
 "Completed radiology":"الأشعة المكتملة",
 "Patient Name":"اسم المريض",
 "Center Name":"اسم المركز",
@@ -935,5 +936,11 @@
 "There is no completed radiology yet":"لا يوجد اشعة مكتملة حتى الان",
 "Radiology feedback":"تقرير الأشعة",
 "Upload radiology report file":"حمل ملف تقرير الأشعة",
-"only":"فقط"
+"only":"فقط",
+"Feedback has been sent successfully":"تم إرسال الملاحظات بنجاح",
+"Examine":"افحص",
+"Show radiology":"عرض الأشعة",
+"Patient brief description about the radiology condition":"وصف موجز للمريض عن حالة الأشعة",
+"File":"ملف",
+"File not found":"الملف غير موجود"
 }

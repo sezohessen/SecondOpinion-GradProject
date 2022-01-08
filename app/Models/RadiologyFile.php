@@ -13,4 +13,8 @@ class RadiologyFile extends Model
         "image_id",
 
     ];
+    public function image()
+    {
+        return $this->belongsTo(Image::class,'image_id','id');
+    }
 }

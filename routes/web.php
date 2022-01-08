@@ -70,6 +70,8 @@ Route::group(['prefix' => 'doctor','as' => 'doctor.','namespace'=>"Doctor", 'mid
     Route::get('pending-radiologies','DoctorRadiologyController@index')->name('pending.radiology');
     Route::get('completed-radiologies','DoctorRadiologyController@completed')->name('completed.radiology');
     Route::get('feedback/{id}','DoctorRadiologyController@feedback')->name('feedback.radiology');
+    Route::post('feedback/create/{id}','DoctorRadiologyController@givefeedback')->name('feedback.radiology.create');
+    Route::get('radiology/show/{id}','DoctorRadiologyController@show')->name('show.radiology');
 });
 Route::group(['prefix' => 'patient','as' => 'patient.','namespace'=>"Patient", 'middleware' => ['role:patient']], function () {
 

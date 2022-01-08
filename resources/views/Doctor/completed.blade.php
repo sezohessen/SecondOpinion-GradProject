@@ -8,6 +8,11 @@
         </div>
         @if ($radiology->count())
             <div class="card-body">
+                @if(session()->has('created'))
+                    <div class="alert alert-success  m-4  ">
+                        <p>{{ session('created') }}</p>
+                    </div>
+                @endif
                 <table class="table table-striped">
                     <thead>
                         <tr>

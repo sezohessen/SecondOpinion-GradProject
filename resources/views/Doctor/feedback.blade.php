@@ -1,6 +1,7 @@
 @extends('website.layouts.app')
 
 @section('website')
+{{-- {{ dd($errors) }} --}}
 <div class="container">
     <div class="card doctor-feedback">
         <div class="card-header">
@@ -16,7 +17,8 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-md-12">
-                    <form action="">
+                    <form action="{{ route('doctor.feedback.radiology.create',['id'=>$radiology->id]) }}" method="POST" enctype="multipart/form-data">
+                        @csrf
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
@@ -31,7 +33,10 @@
                             <div class="col-md-12">
                                 <div class="form-group file">
                                     <label for="">@lang('Upload radiology report file')(pdf/doc) @lang('only') (@lang('Not required'))</label>
-                                    <input type="file" name="file" id="file">
+                                    <input type="file" name="file" id="file" >
+                                    @error('file')
+                                        <div class="invalid-feedback">{{ $errors->first('file') }}</div>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="col-md-12">

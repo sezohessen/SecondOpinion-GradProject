@@ -1175,7 +1175,9 @@ h5 {
 h6 {
   font-size: 18px;
 }
-
+.invalid-feedback{
+    display: block;
+}
 .heading__subtitle {
   font-family: "Roboto", sans-serif;
   font-size: 15px;

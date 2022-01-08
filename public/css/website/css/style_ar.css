@@ -27,6 +27,9 @@ input,
 button{
     float: right;
 }
+tr{
+    text-align: right;
+}
 /* Navbar */
 .navigation .logo{
     float: right;

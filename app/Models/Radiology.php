@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Radiology extends Model
 {
     use HasFactory;
+    const reviewed  = 1;
+    const base      = '/img/Radiology/';
     protected $fillable=[
         "desc",
         "reviewed",
@@ -24,5 +26,14 @@ class Radiology extends Model
     }
     public function center(){
         return $this->belongsTo(Center::class,"center_id");
+    }
+    /**
+     * Get all of the files for the Radiology
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function files()
+    {
+        return $this->hasMany(RadiologyFile::class, 'radiology_id', 'id');
     }
 }
