@@ -40,6 +40,7 @@ tr,label{
 	font-size: 0;
     margin-left: 30%;
     margin-right: auto;
+    margin: 0;
 }
 .main-nav ul>li.relative{
     float: left;

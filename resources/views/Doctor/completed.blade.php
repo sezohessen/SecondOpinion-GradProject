@@ -34,7 +34,7 @@
                                 </td>
                                 <td>
                                     <button class="btn btn-primary">
-                                        <a href="#">
+                                        <a href="{{ route('doctor.show.completed',['id'=>$rad->id]) }}">
                                             @lang('Show') <i class="fa fa-arrow-right"></i>
                                         </a>
                                     </button>

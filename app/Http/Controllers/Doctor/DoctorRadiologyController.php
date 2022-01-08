@@ -92,8 +92,18 @@ class DoctorRadiologyController extends Controller
 
         return view('Doctor.show_radiology',compact('page_title','radiology'));
     }
-    public function DownloadFile($id)//Image ID
+    public function DownloadFile($id,$radiology_id)//Image ID
     {
+        $radiology  = Radiology::FindOrFail($radiology_id);
+        /* Very important line for security */
+        /* Mandatory Check */
+        /* Mandatory Check */
+        /* Mandatory Check */
+        $DoctorID   = Doctor::where('user_id',Auth()->user()->id)->first();
+        if($DoctorID->id!=$radiology->doctor_id)return redirect()->back();
+        /* Mandatory Check */
+        /* Mandatory Check */
+        /* Mandatory Check */
         $image      = Image::FindOrFail($id);
         $filepath   = public_path().$image->base.$image->name;
         if(file_exists($filepath))return Response::download($filepath);
@@ -160,8 +170,31 @@ class DoctorRadiologyController extends Controller
         session()->flash('success',__("Account has been updated"));
         /* Multiple Select */
         return redirect()->back();
-
-
-
+    }
+    public function ShowCompleted($id)
+    {
+        $page_title = __('Show radiology');
+        $radiology  = Radiology::FindOrFail($id);
+        /* Very important line for security */
+        /* Mandatory Check */
+        /* Mandatory Check */
+        /* Mandatory Check */
+        $DoctorID   = Doctor::where('user_id',Auth()->user()->id)->first();
+        if($DoctorID->id!=$radiology->doctor_id)return redirect()->back();
+        /* Mandatory Check */
+        /* Mandatory Check */
+        /* Mandatory Check */
+        $feedback   = DoctorFeedback::where('radiology_id',$radiology->id)->first();
+        return view('Doctor.show_completed',compact('page_title','radiology','feedback'));
+    }
+    public function DownloadReport($id)
+    {
+        $feedback   = DoctorFeedback::FindOrFail($id);
+        $DoctorID   = Doctor::where('user_id',Auth()->user()->id)->first();
+        if($feedback->doctor_id!=$DoctorID->id)return redirect()->back();
+        $path       = storage_path('app').DoctorFeedback::Files.$feedback->pdf_report;
+        $name       = $feedback->patient->user->getFullNameAttribute().$feedback->pdf_report;
+        if (file_exists($path)) return Response::download($path,$name);
+        else return redirect()->back();
     }
 }

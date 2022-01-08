@@ -37,10 +37,10 @@
               <div class="collapse navbar-collapse" id="mainNavigation">
                 <ul class="navbar-nav ml-auto">
                   <li class="nav__item">
-                    <a href="#" class="nav__item-link active">Home</a>
+                    <a href="#" class="nav__item-link active">@lang('Home')</a>
                   </li><!-- /.nav-item -->
                   <li class="nav__item has-dropdown">
-                    <a href="#" data-toggle="dropdown" class="dropdown-toggle nav__item-link">Doctors</a>
+                    <a href="#" data-toggle="dropdown" class="dropdown-toggle nav__item-link">@lang('Doctors')</a>
                     <ul class="dropdown-menu">
                       <li class="nav__item">
                         <a href="doctors-grid.html" class="nav__item-link">All doctors</a>
@@ -52,7 +52,7 @@
                     </ul><!-- /.dropdown-menu -->
                   </li><!-- /.nav-item -->
                   <li class="nav__item has-dropdown">
-                    <a href="#" data-toggle="dropdown" class="dropdown-toggle nav__item-link">Centers</a>
+                    <a href="#" data-toggle="dropdown" class="dropdown-toggle nav__item-link">@lang('Radiology centers')</a>
                     <ul class="dropdown-menu">
                       <li class="nav__item">
                         <a href="centers.html" class="nav__item-link">All centers</a>
@@ -63,13 +63,13 @@
                     </ul><!-- /.dropdown-menu -->
                   </li><!-- /.nav-item -->
                   <li class="nav__item">
-                    <a href="faqs.html" class="nav__item-link">FAQs</a>
+                    <a href="faqs.html" class="nav__item-link">@lang('FAQs')</a>
                   </li><!-- /.nav-item -->
                   <li class="nav__item">
-                    <a href="contact-us.html" class="nav__item-link">Contacts</a>
+                    <a href="contact-us.html" class="nav__item-link">@lang('Contact us')</a>
                   </li><!-- /.nav-item -->
                   <li class="nav__item has-dropdown">
-                    <a href="#" class="nav__item-link">About Us</a>
+                    <a href="#" class="nav__item-link">@lang('About Us')</a>
                   </li><!-- /.nav-item -->
                   <li class="nav__item has-dropdown">
                     <a href="#" data-toggle="dropdown" class="dropdown-toggle nav__item-link">

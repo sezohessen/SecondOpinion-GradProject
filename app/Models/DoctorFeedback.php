@@ -9,13 +9,15 @@ class DoctorFeedback extends Model
 {
     use HasFactory;
     protected $table="doctor_feedback";
-    const Files        = '/img/DoctorFeedback/';
+    const Files        = '/public/feedback/';
     protected $fillable=[
         "doctor_id",
         "radiology_id",
         "patient_id",
         "pdf_report",
         "desc"
-
     ];
+    public function patient(){
+        return $this->belongsTo(Patient::class,"patient_id");
+    }
 }
