@@ -32,7 +32,9 @@
                                         $file_path = public_path() .$file->image->base.$file->image->name;
                                     @endphp
                                     @if (file_exists($file_path))
-                                        <a class="btn btn-primary" href="{{ asset($file_path) }}" target="_blank"> @lang('Download File') {{ $file->image->name }}</a>
+                                        <a class="btn btn-primary" href="{{ route('doctor.downloadfile',['id'=>$file->image_id]) }}" target="_blank">
+                                            @lang('Download File') {{ $file->image->name }}
+                                        </a>
                                     @else
                                         <p><strong>@lang('File not found')</strong></p>
                                     @endif

@@ -6,8 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateFeedBackRequest;
 use App\Models\Doctor;
 use App\Models\DoctorFeedback;
+use App\Models\Image;
 use App\Models\Radiology;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
 
 class DoctorRadiologyController extends Controller
 {
@@ -84,5 +86,22 @@ class DoctorRadiologyController extends Controller
         /* Mandatory Check */
 
         return view('Doctor.show_radiology',compact('page_title','radiology'));
+    }
+    public function DownloadFile($id)//Image ID
+    {
+        $image      = Image::FindOrFail($id);
+        $filepath   = public_path().$image->base.$image->name;
+        if(file_exists($filepath))return Response::download($filepath);
+        else return redirect()->back();
+
+        /* $seller     = Seller::find($id);
+        $extension  = explode('.',$seller->file);
+        $fileName   = $seller->user->full_name . '.' . $extension[1];
+        $file       = storage_path('app\files\\') . $seller->file;
+        $headers    = array(
+            'Content-Type: application/' . $extension[1],
+        );
+        // dd(1);
+        return response()->download($file,$fileName,$headers); */
     }
 }
