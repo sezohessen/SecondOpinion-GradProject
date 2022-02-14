@@ -15,6 +15,72 @@ class imagesSeeder extends Seeder
     {
         $array = [
             [
+                'name'              =>  "rad1.jpg",
+                'base'              =>  "/img/Radiology/",
+                'updated_at'        =>  now(),
+                'created_at'        =>  now()
+            ],
+            [
+                'name'              =>  "rad2.jpg",
+                'base'              =>  "/img/Radiology/",
+                'updated_at'        =>  now(),
+                'created_at'        =>  now()
+            ],
+            [
+                'name'              =>  "rad3.jpg",
+                'base'              =>  "/img/Radiology/",
+                'updated_at'        =>  now(),
+                'created_at'        =>  now()
+            ],
+            [
+                'name'              =>  "rad4.jpg",
+                'base'              =>  "/img/Radiology/",
+                'updated_at'        =>  now(),
+                'created_at'        =>  now()
+            ],
+            [
+                'name'              =>  "rad5.jpg",
+                'base'              =>  "/img/Radiology/",
+                'updated_at'        =>  now(),
+                'created_at'        =>  now()
+            ],
+            [
+                'name'              =>  "rad6.jpg",
+                'base'              =>  "/img/Radiology/",
+                'updated_at'        =>  now(),
+                'created_at'        =>  now()
+            ],
+            [
+                'name'              =>  "rad7.jpg",
+                'base'              =>  "/img/Radiology/",
+                'updated_at'        =>  now(),
+                'created_at'        =>  now()
+            ],
+            [
+                'name'              =>  "rad8.jpg",
+                'base'              =>  "/img/Radiology/",
+                'updated_at'        =>  now(),
+                'created_at'        =>  now()
+            ],
+            [
+                'name'              =>  "rad9.jpg",
+                'base'              =>  "/img/Radiology/",
+                'updated_at'        =>  now(),
+                'created_at'        =>  now()
+            ],
+            [
+                'name'              =>  "rad10.jpg",
+                'base'              =>  "/img/Radiology/",
+                'updated_at'        =>  now(),
+                'created_at'        =>  now()
+            ],
+            [
+                'name'              =>  "rad11.jpg",
+                'base'              =>  "/img/Radiology/",
+                'updated_at'        =>  now(),
+                'created_at'        =>  now()
+            ],
+            [
                 'name'              =>  "1.jpg",
                 'base'              =>  "/img/Doctors/",
                 'updated_at'        =>  now(),

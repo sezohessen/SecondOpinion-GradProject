@@ -28,8 +28,8 @@ class LoginController extends Controller
      */
     protected function redirectTo()
     {
-        if (auth()->user()->hasRole('seller')) {
-            return '/seller';
+        if (auth()->user()->hasRole('center')) {
+            return '/center';
         }
         if (auth()->user()->hasRole('administrator') or auth()->user()->hasRole('superadministrator')) {
             return '/dashboard';

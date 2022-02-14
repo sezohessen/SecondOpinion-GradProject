@@ -47,9 +47,9 @@ Route::group(['prefix' => 'dashboard','as' => 'dashboard.','namespace'=>"Dashboa
     Route::delete('/governorate/destroy/all','GovernorateController@multi_delete');
     Route::delete('/city/destroy/all','CityController@multi_delete');
     Route::resource("/specialty/destroy/all","SpecialtyController@multi_delete");
-    Route::resource("/doctor/destroy/all","DoctorController@multi_delete");
-    Route::resource("/radiology/destroy/all","RadiologyController@multi_delete");
-
+    /* Route::resource("/doctor/destroy/all","DoctorController@multi_delete"); */
+    /* Route::resource("/radiology/destroy/all","RadiologyController@multi_delete");
+ */
 
 
 });
@@ -57,10 +57,8 @@ Route::group(['prefix' => 'dashboard','as' => 'dashboard.','namespace'=>"Dashboa
 
 // Start website /////////////////////////////////////////////////////////////////////////////////
 Route::group(['namespace'=>"Website",'as' => 'Website.'],function () {
+    Route::get('/', 'HomeController@index')->name('Index');
 
-    Route::get('/', function(){
-        return redirect()->route("dashboard.index");
-    })->name('index');
 
 
 });
@@ -69,12 +67,21 @@ Route::group(['as' => 'Website.','namespace'=>"Website", 'middleware' => 'auth']
 });
 
 Route::group(['prefix' => 'doctor','as' => 'doctor.','namespace'=>"Doctor", 'middleware' => ['role:doctor']], function () {
+    Route::get('pending-radiologies','DoctorRadiologyController@index')->name('pending.radiology');
+    Route::get('completed-radiologies','DoctorRadiologyController@completed')->name('completed.radiology');
+    Route::get('feedback/{id}','DoctorRadiologyController@feedback')->name('feedback.radiology');
+    Route::post('feedback/create/{id}','DoctorRadiologyController@givefeedback')->name('feedback.radiology.create');
+    Route::get('radiology/show/{id}','DoctorRadiologyController@show')->name('show.radiology');
+    Route::get('download/{id}/{radiology_id}','DoctorRadiologyController@DownloadFile')->name('downloadfile');
+    Route::get('my-account','DoctorRadiologyController@Account')->name('account');
+    Route::post('update-account','DoctorRadiologyController@Update')->name('update.account');
+    Route::get('show-completed-radiology/{id}','DoctorRadiologyController@ShowCompleted')->name('show.completed');
+    Route::get('download-report/{id}','DoctorRadiologyController@DownloadReport')->name('download.report');
+});
+Route::group(['prefix' => 'patient','as' => 'patient.','namespace'=>"Patient", 'middleware' => ['role:patient']], function () {
 
 });
-Route::group(['prefix' => 'doctor','as' => 'doctor.','namespace'=>"Doctor", 'middleware' => ['role:patient']], function () {
-
-});
-Route::group(['prefix' => 'doctor','as' => 'doctor.','namespace'=>"Doctor", 'middleware' => ['role:center']], function () {
+Route::group(['prefix' => 'center','as' => 'center.','namespace'=>"Center", 'middleware' => ['role:center']], function () {
 
 });
 
