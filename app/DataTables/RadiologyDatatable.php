@@ -25,11 +25,17 @@ class RadiologyDatatable extends DataTable
         ->eloquent($query)
         ->editColumn('desc', '{{ $desc }}')
         ->editColumn('doctor.user', function($q){
-            return "<a href=".route("dashboard.doctor.edit",["doctor"=> $q->doctor->user->id]).'>'. $q->doctor->user->first_name. " ". $q->doctor->user->last_name.'</a>';
+            if($q->doctor){
+                return "<a href=".route("dashboard.doctor.edit",["doctor"=> $q->doctor->id]).'>'. $q->doctor->user->first_name. " ". $q->doctor->user->last_name.'</a>';
+            }
+
 
         })
         ->editColumn('patient.user', function($q){
-            return "<a href=".route("dashboard.patient.edit",["patient"=> $q->patient->user->id]).'>'.$q->patient->user->first_name. " ". $q->patient->user->last_name.'</a>';
+            if($q->patient){
+                return "<a href=".route("dashboard.patient.edit",["patient"=> $q->patient->id]).'>'.$q->patient->user->first_name. " ". $q->patient->user->last_name.'</a>';
+            }
+
 
         })
         ->addColumn('checkbox', 'dashboard.Radiology.btn.checkbox')
