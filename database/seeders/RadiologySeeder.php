@@ -21,18 +21,33 @@ class RadiologySeeder extends Seeder
         $doctors        = Doctor::all();
         $patients       = Patient::all();
         $centers        = Center::all();
-
+        $report         = [null,public_path()."/img/DoctorFeedback/test.txt" ];
         for ($i=0; $i < 30 ; $i++){
             $rand           = rand(0,2);
-            DB::table('radiologies')->insert([
+            $docID          = $doctors->random()->id;
+            $PatID          = $patients->random()->id;
+            $Review         = $faker->boolean;
+            $RadID          = DB::table('radiologies')->insertGetId([
                 "desc"          => $faker->sentence,
-                "reviewed"       => $faker->boolean,
-                "doctor_id"     => $doctors->random()->id,
-                "patient_id"    => $patients->random()->id,
+                "reviewed"      => $Review,
+                "doctor_id"     => $docID,
+                "patient_id"    => $PatID,
                 "center_id"     => !$rand ? NULL:$centers->random()->id,
                 'created_at'    => now(),
                 'updated_at'    => now(),
-           ]);
+            ]);
+            /* Doctor Feedback Seeder If Exist Review */
+            if($Review){
+                DB::table('doctor_feedback')->insert([
+                        "doctor_id"         => $docID,
+                        "radiology_id"      => $RadID,
+                        "patient_id"        => $PatID,
+                        "pdf_report"        => $report[$i%2],
+                        "desc"              => $faker->sentence,
+                        'created_at'        => now(),
+                        'updated_at'        => now(),
+                ]);
+            }
        }
     }
 }

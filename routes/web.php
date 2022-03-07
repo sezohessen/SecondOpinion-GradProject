@@ -82,7 +82,12 @@ Route::group(['prefix' => 'patient','as' => 'patient.','namespace'=>"Patient", '
 
 });
 Route::group(['prefix' => 'center','as' => 'center.','namespace'=>"Center", 'middleware' => ['role:center']], function () {
-
+    Route::get('pending-radiologies','CenterController@pending')->name('pending.radiology');
+    Route::get('completed-radiologies','CenterController@completed')->name('completed.radiology');
+    Route::get('radiology/show/{id}','CenterController@show')->name('show.radiology');
+    Route::get('show-completed-radiology/{id}','CenterController@ShowCompleted')->name('show.completed');
+    Route::get('download/{id}/{radiology_id}','CenterController@DownloadFile')->name('downloadfile');
+    Route::get('download-report/{id}/{rad}','CenterController@DownloadReport')->name('download.report');
 });
 
 

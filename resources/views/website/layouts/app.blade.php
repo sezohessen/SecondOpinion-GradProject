@@ -73,30 +73,46 @@
                   </li><!-- /.nav-item -->
                   <li class="nav__item has-dropdown">
                     <a href="#" data-toggle="dropdown" class="dropdown-toggle nav__item-link">
-                      <i class="fas fa-user"></i>
-                        Dr. Walid
-                      </a>
-                    <ul class="dropdown-menu profile">
-                        <li class="nav__item">
-                            <a href="{{ route('doctor.pending.radiology') }}" class="nav__item-link">@lang('Pending radiology')</a>
-                        </li><!-- /.nav-item -->
-                        <li class="nav__item">
-                            <a href="{{ route('doctor.completed.radiology') }}" class="nav__item-link">@lang('Completed radiology')</a>
-                        </li><!-- /.nav-item -->
-                        <li class="nav__item">
-                            <a href="{{ route('doctor.account') }}" class="nav__item-link">@lang('My account')</a>
-                        </li><!-- /.nav-item -->
-                        <li class="nav__item">
-                            <a class="nav__item-link" href="{{ route('logout') }}"
-                            onclick="event.preventDefault();
-                                            document.getElementById('logout-form').submit();">
-                                {{ __('Logout') }}
-                            </a>
-                        </li>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                            @csrf
-                        </form>
-                    </ul><!-- /.dropdown-menu -->
+                        <i class="fas fa-user"></i>
+                        @auth
+                        {{ auth()->user()->getFullNameAttribute() }}
+                        @endauth
+                        @guest
+                            <a href="{{ route('login') }}">@lang('Login')</a>
+                        @endguest
+                    </a>
+                    @auth
+                        <ul class="dropdown-menu profile">
+                            @if (auth()->user()->hasRole(App\Models\User::DoctorRole))
+                                <li class="nav__item">
+                                    <a href="{{ route('doctor.pending.radiology') }}" class="nav__item-link">@lang('Pending radiology')</a>
+                                </li><!-- /.nav-item -->
+                                <li class="nav__item">
+                                    <a href="{{ route('doctor.completed.radiology') }}" class="nav__item-link">@lang('Completed radiology')</a>
+                                </li><!-- /.nav-item -->
+                                <li class="nav__item">
+                                    <a href="{{ route('doctor.account') }}" class="nav__item-link">@lang('My account')</a>
+                                </li><!-- /.nav-item -->
+                            @elseif(auth()->user()->hasRole(App\Models\User::CenterRole))
+                            <li class="nav__item">
+                                <a href="#" class="nav__item-link">@lang('Send Radiology')</a>
+                                <a href="{{ route('center.pending.radiology') }}" class="nav__item-link">@lang('Pending Radiology')</a>
+                                <a href="{{ route('center.completed.radiology') }}" class="nav__item-link">@lang('Completed Radiology')</a>
+                                <a href="#" class="nav__item-link">@lang('Contracts')</a>
+                                </li><!-- /.nav-item -->
+                            @endif
+                            <li class="nav__item">
+                                <a class="nav__item-link" href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                                document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
+                                </a>
+                            </li>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
+                        </ul>
+                    @endauth
                   </li><!-- /.nav-item -->
                   <li class="nav__item has-dropdown relative nav-lang-container">
                     <a data-toggle="dropdown" class="dropdown-toggle nav__item-link">@lang('language')</a>
