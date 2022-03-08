@@ -43,7 +43,7 @@
                     <a href="#" data-toggle="dropdown" class="dropdown-toggle nav__item-link">@lang('Doctors')</a>
                     <ul class="dropdown-menu">
                       <li class="nav__item">
-                        <a href="doctors-grid.html" class="nav__item-link">All doctors</a>
+                        <a href="{{ route('Website.page.doctors') }}" class="nav__item-link">@lang('Search for doctor')</a>
                       </li> <!-- /.nav-item -->
                       <li class="nav__item">
                         <a href="doctors-single-doctor1.html" class="nav__item-link">Doctor page</a>

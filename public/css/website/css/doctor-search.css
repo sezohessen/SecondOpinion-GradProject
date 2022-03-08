@@ -1,0 +1,29 @@
+.Doctor-search {
+    padding-bottom: 200px;
+    background-size: cover;
+}
+.Doctor-search .search .card {
+    padding: 5px;
+}
+.Doctor-search .search .card .box{
+    display: inline-flex;
+}
+.Doctor-search .search .card .box label,
+.Doctor-search .nice-select .current,
+.Doctor-search .nice-select .option {font-size: 12px;}
+.Doctor-search .search .card .box .form-group{
+    margin-bottom: 0;
+    padding: 5px 0;
+}
+.Doctor-search .nice-select{
+    border-radius: 0;
+    height: 50px;
+    line-height: 50px;
+    margin: 0;
+}
+.Doctor-search .search .card .box label{
+    padding: 0px 10px;
+}
+.Doctor-search .search .card .search-button{
+
+}
