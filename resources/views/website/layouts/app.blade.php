@@ -78,9 +78,19 @@
                         {{ auth()->user()->getFullNameAttribute() }}
                         @endauth
                         @guest
-                            <a href="{{ route('login') }}">@lang('Login')</a>
+                            @lang('My Account')
                         @endguest
                     </a>
+                    @guest
+                        <ul class="dropdown-menu profile">
+                            <li class="nav__item">
+                                <a href="{{ route('login') }}"  class="nav__item-link"> @lang('Login')</a>
+                            </li>
+                            <li class="nav__item">
+                                <a href="{{ route('register') }}"  class="nav__item-link">  @lang('Register')</a>
+                            </li>
+                        </ul>
+                    @endguest
                     @auth
                         <ul class="dropdown-menu profile">
                             @if (auth()->user()->hasRole(App\Models\User::DoctorRole))
