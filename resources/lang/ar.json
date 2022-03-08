@@ -959,5 +959,13 @@
 "Your File":"ملفك",
 "Contracts":"العقود",
 "Send Radiology":"ارسل اشعة",
-"Search for doctor":"ابحث عن اطباء"
+"Search for doctor":"ابحث عن اطباء",
+"Doctor name":"اسم الدكتور",
+"Or search by name":"او ابحث بالاسم",
+"Choose area":"اختار منطقة",
+"In this area":"في منطقة",
+"In this city":"في محافظة",
+"Choose city":"اختار محافظة",
+"Choose Specialty":"اختر تخصص",
+"Select a specialty":"انا ابحث عن دكتور"
 }

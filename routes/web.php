@@ -59,7 +59,7 @@ Route::group(['prefix' => 'dashboard','as' => 'dashboard.','namespace'=>"Dashboa
 Route::group(['namespace'=>"Website",'as' => 'Website.'],function () {
     Route::get('/', 'HomeController@index')->name('Index');
     Route::get('/doctors','DoctorWebsitePagesController@home')->name('page.doctors');
-
+    Route::get('/doctors/getcity/{id}','DoctorWebsitePagesController@showCities');
 
 });
 Route::group(['as' => 'Website.','namespace'=>"Website", 'middleware' => 'auth'], function () {

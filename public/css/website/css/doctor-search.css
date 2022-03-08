@@ -3,27 +3,38 @@
     background-size: cover;
 }
 .Doctor-search .search .card {
-    padding: 5px;
-}
-.Doctor-search .search .card .box{
-    display: inline-flex;
+    padding: 10px;
+    padding-bottom: 0;
 }
 .Doctor-search .search .card .box label,
 .Doctor-search .nice-select .current,
-.Doctor-search .nice-select .option {font-size: 12px;}
-.Doctor-search .search .card .box .form-group{
-    margin-bottom: 0;
-    padding: 5px 0;
-}
+.Doctor-search .nice-select .option,
+.Doctor-search .card input {font-size: 12px;}
 .Doctor-search .nice-select{
     border-radius: 0;
     height: 50px;
     line-height: 50px;
     margin: 0;
+    display: none;
+}
+.Doctor-search select{
+    display: block!important;
+    border-radius: 0;
+    border: 1px solid #e6e8eb;
 }
 .Doctor-search .search .card .box label{
     padding: 0px 10px;
 }
-.Doctor-search .search .card .search-button{
+.Doctor-search .search .card button{
+    background-color: #45d5ca;
+    margin-top: 27px;
 
+}
+.Doctor-search .search .card input{
+    border-radius: 0;
+    border: 1px solid #e6e8eb;
+    height: 59px;
+}
+.Doctor-search .search .card input::placeholder {
+    color:#848ea5;
 }
