@@ -9,6 +9,7 @@ class Doctor extends Model
 {
     use HasFactory;
     const Avatar        = '/img/Doctors/';
+    const DefaultAvatar = '/img/Doctors/doctor.png';
     protected $table    = 'doctors';
     protected $fillable=[
         'active',
@@ -65,5 +66,8 @@ class Doctor extends Model
     }
     public function user(){
         return $this->belongsTo(User::class,"user_id");
+    }
+    public function field(){
+        return $this->belongsTo(Field::class,"field_id");
     }
 }

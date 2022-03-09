@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Website;
 use App\Http\Controllers\Controller;
 use App\Models\City;
+use App\Models\Doctor;
 use App\Models\Field;
 use App\Models\Governorate;
 use Illuminate\Http\Request;
@@ -26,6 +27,33 @@ class DoctorWebsitePagesController extends Controller
         return response()->json([
             'cities' => null
         ]);
+    }
+    public function search(Request $request)
+    {
+        $specialties    = Field::all();
+        $governorates   = Governorate::all();
+        $Doctors        = Doctor::where('active',1);
 
+        if(isset($request->name)){
+            $Doctors->whereHas('user',function($q) use($request){
+                $q->where('users.first_name','LIKE','%'.$request->name.'%')
+                  ->where('users.last_name','LIKE','%'.$request->name.'%');
+            });
+        }
+        if(isset($request->specialty_id))$Doctors->where('field_id',$request->specialty_id);
+        /*
+            Governorate,City after Migration
+        */
+
+        $Doctors = $Doctors->paginate(9);
+        $Doctors->appends(
+            [
+                'specialty_id'      => $request->field_id,
+                'governorate_id'    => $request->governorate_id,
+                'city_id'           => $request->city_id,
+                'name'              => $request->name
+            ]
+        );
+        return view('website.doctors',compact('specialties','governorates','Doctors'));
     }
 }

@@ -1,0 +1,16 @@
+.Doctor-search{
+    padding: 0;
+}
+.member .member__img{
+    max-height: 300px;
+    min-height: 300px;
+}
+.member .member__info .member__desc{
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    max-height: 105px;
+    min-height: 105px;
+}
+.list-unstyled{padding: 0;}

@@ -75,7 +75,7 @@
                     <a href="#" data-toggle="dropdown" class="dropdown-toggle nav__item-link">
                         <i class="fas fa-user"></i>
                         @auth
-                        {{ auth()->user()->getFullNameAttribute() }}
+                        {{ auth()->user()->FullName }}
                         @endauth
                         @guest
                             @lang('My Account')
