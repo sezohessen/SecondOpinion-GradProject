@@ -22,7 +22,7 @@ class RadiologySeeder extends Seeder
         $patients       = Patient::all();
         $centers        = Center::all();
         $report         = [null,public_path()."/img/DoctorFeedback/test.txt" ];
-        for ($i=0; $i < 30 ; $i++){
+        for ($i=0; $i < 80 ; $i++){
             $rand           = rand(0,2);
             $docID          = $doctors->random()->id;
             $PatID          = $patients->random()->id;

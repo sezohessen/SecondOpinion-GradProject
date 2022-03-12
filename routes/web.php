@@ -61,6 +61,7 @@ Route::group(['namespace'=>"Website",'as' => 'Website.'],function () {
     Route::get('/doctors','DoctorWebsitePagesController@home')->name('page.doctors');
     Route::get('/doctors/getcity/{id}','DoctorWebsitePagesController@showCities');
     Route::get('/doctors/search','DoctorWebsitePagesController@search')->name('doctors.search');
+    Route::get('/doctor/{field}/{id}/{name}','DoctorWebsitePagesController@show')->name('doctor.profile');
 
 });
 Route::group(['as' => 'Website.','namespace'=>"Website", 'middleware' => 'auth'], function () {

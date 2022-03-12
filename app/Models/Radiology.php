@@ -15,6 +15,7 @@ class Radiology extends Model
         "reviewed",
         "doctor_id",
         "patient_id",
+        "seen",
         "center_id"
 
     ];

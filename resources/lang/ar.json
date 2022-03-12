@@ -968,5 +968,8 @@
 "Choose city":"اختار محافظة",
 "Choose Specialty":"اختر تخصص",
 "Select a specialty":"انا ابحث عن دكتور",
-"Get Opinion":"احصل على الرأي"
+"Get Opinion":"احصل على الرأي",
+"There are no doctors with this search":"لا يوجد اطباء بهذه المواصفات",
+"Biography":"سيرة شخصية",
+"Treatments Price List":"قائمة أسعار العلاجات"
 }

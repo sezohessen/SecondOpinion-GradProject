@@ -78,7 +78,7 @@ class LaratrustSeeder extends Seeder
                 $user->attachRole($role);
             }
         }
-        for ($i = 0; $i < 40; $i++) {
+        for ($i = 0; $i < 80; $i++) {
             $rand = rand(0,2);
             if($rand==0) $name = User::CenterRole;
             elseif($rand==1) $name = User::PatientRole;

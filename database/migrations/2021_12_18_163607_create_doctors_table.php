@@ -34,6 +34,18 @@ class CreateDoctorsTable extends Migration
             ->onDelete('cascade')
             ->onUpdate('cascade');
 
+            $table->bigInteger('governorate_id')->unsigned();
+            $table->foreign('governorate_id')
+            ->references('id')->on('governorates')
+            ->onDelete('cascade')
+            ->onUpdate('cascade');
+
+            $table->bigInteger('city_id')->unsigned();
+            $table->foreign('city_id')
+            ->references('id')->on('cities')
+            ->onDelete('cascade')
+            ->onUpdate('cascade');
+
             $table->bigInteger('user_id')->unsigned();
             $table->foreign('user_id')
             ->references('id')->on('users')

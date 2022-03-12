@@ -88,41 +88,77 @@
 <section class="team-layout2 pb-10">
     <div class="container">
         <div class="row">
-            @foreach ($Doctors as $doctor)
-                <div class="col-sm-6 col-md-4 col-lg-4">
-                    <div class="member">
-                    <div class="member__img">
-                        @if (file_exists(public_path($doctor->avatar->base.$doctor->avatar->name)))
-                            <img src="{{ view_image($doctor->avatar) }}" alt="member img">
-                        @else
-                            <img src="{{ asset(App\Models\Doctor::DefaultAvatar) }}" alt="member img">
-                        @endif
-
-                    </div><!-- /.member-img -->
-                    <div class="member__info">
-                        <h5 class="member__name"><a href="doctors-single-doctor1.html">{{ $doctor->user->FullName }}</a></h5>
-                        <p class="member__job">{{ LangDetail($doctor->field->name,$doctor->field->name_ar) }}</p>
-                        <p class="member__desc">{{ LangDetail($doctor->brief_desc,$doctor->brief_desc_ar) }}</p>
-                        <div class="mt-20 d-flex flex-wrap justify-content-between align-items-center">
-                        <a href="doctors-single-doctor1.html" class="btn btn__secondary btn__link btn__rounded">
-                            <span>@lang('Get Opinion')</span>
-                            <i class="fa fa-arrow-right"></i>
-                        </a>
-                        <ul class="social-icons list-unstyled mb-0">
-                            @if ($doctor->facebook&& $doctor->facebook!='')
-                                <li><a href="{{ $doctor->facebook }}" class="facebook"><i class="fab fa-facebook-f"></i></a></li>
+            @if ($Doctors->count())
+                @foreach ($Doctors as $doctor)
+                    <div class="col-sm-6 col-md-4 col-lg-4">
+                        <div class="member">
+                        <div class="member__img">
+                            @if (file_exists(public_path($doctor->avatar->base.$doctor->avatar->name)))
+                                <a href="{{ route('Website.doctor.profile',[
+                                    'field' => LangDetail($doctor->field->name,$doctor->field->name_ar),
+                                    'id'    => $doctor->id,
+                                    'name'  => $doctor->user->FullName
+                                    ]) }}">
+                                    <img src="{{ view_image($doctor->avatar) }}" alt="member img">
+                                </a>
+                            @else
+                                <a href="{{ route('Website.doctor.profile',[
+                                    'field' => LangDetail($doctor->field->name,$doctor->field->name_ar),
+                                    'id'    => $doctor->id,
+                                    'name'  => $doctor->user->FullName
+                                    ]) }}">
+                                    <img src="{{ asset(App\Models\Doctor::DefaultAvatar) }}" alt="member img">
+                                </a>
                             @endif
-                            @if ($doctor->user->whats_app)
-                                <li><a href="https://api.whatsapp.com/send?phone={{ $doctor->user->whats_app }}" class="phone"><i class="fab fa-whatsapp"></i></a></li>
-                            @endif
-                            {{-- <li><a href="#" class="twitter"><i class="fab fa-twitter"></i></a></li> --}}
 
-                        </ul><!-- /.social-icons -->
+                        </div><!-- /.member-img -->
+                        <div class="member__info">
+                            <h5 class="member__name">
+                                <a href="{{ route('Website.doctor.profile',[
+                                    'field' => LangDetail($doctor->field->name,$doctor->field->name_ar),
+                                    'id'    => $doctor->id,
+                                    'name'  => $doctor->user->FullName
+                                    ]) }}">
+                                    {{ $doctor->user->FullName }}
+                                </a>
+                            </h5>
+                            <p class="member__job">{{ LangDetail($doctor->field->name,$doctor->field->name_ar) }}</p>
+                            <p class="member__desc">{{ LangDetail($doctor->brief_desc,$doctor->brief_desc_ar) }}</p>
+                            <div class="mt-20 d-flex flex-wrap justify-content-between align-items-center">
+                            <a href="doctors-single-doctor1.html" class="btn btn__secondary btn__link btn__rounded">
+                                <span>@lang('Get Opinion')</span>
+                                <i class="fa fa-arrow-right"></i>
+                            </a>
+                            <ul class="social-icons list-unstyled mb-0">
+                                @if ($doctor->facebook&& $doctor->facebook!='')
+                                    <li><a href="{{ $doctor->facebook }}" class="facebook"><i class="fab fa-facebook-f"></i></a></li>
+                                @endif
+                                @if ($doctor->user->whats_app)
+                                    <li>
+                                        <a href="https://api.whatsapp.com/send?phone={{ $doctor->user->whats_app }}" class="phone">
+                                            <i class="fab fa-whatsapp"></i>
+                                        </a>
+                                    </li>
+                                @endif
+                                {{-- <li><a href="#" class="twitter"><i class="fab fa-twitter"></i></a></li> --}}
+
+                            </ul><!-- /.social-icons -->
+                            </div>
+                        </div><!-- /.member-info -->
+                        </div><!-- /.member -->
+                    </div><!-- /.col-lg-4 -->
+                @endforeach
+            @else
+                <div class="col-md-12">
+                    <div class="card mt-30 mb-30">
+                        <div class="card-heading mx-10 my-10">
+                            <div class="alert alert-info d-inline-flex w-100" role="alert">
+                                <i class="fas fa-exclamation-triangle fa-2x"></i> <h4>@lang('There are no doctors with this search')</h4>
+                            </div>
                         </div>
-                    </div><!-- /.member-info -->
-                    </div><!-- /.member -->
-                </div><!-- /.col-lg-4 -->
-            @endforeach
+                    </div>
+                </div>
+            @endif
         </div> <!-- /.row -->
         <div class="row">
             <div class="col-12 text-center">

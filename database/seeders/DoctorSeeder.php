@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Doctor;
 use App\Models\Field;
+use App\Models\Governorate;
 use App\Models\Image;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
@@ -25,9 +26,11 @@ class DoctorSeeder extends Seeder
                 $q->where('name', User::DoctorRole);
             }
         )->get();
-        $avatar     = Image::where('base', Doctor::Avatar)->get();
-        $field  = Field::all();
+        $avatar         = Image::where('base', Doctor::Avatar)->get();
+        $field          = Field::all();
+        $governorates   = Governorate::all();
         foreach ($doctors as $doctor){
+            $governorate    = $governorates->random();
             DB::table('doctors')->insert([
                 'national_id'       => $faker->numberBetween(123123,123123123),
                 'facebook'          => $faker->url,
@@ -36,6 +39,8 @@ class DoctorSeeder extends Seeder
                 'active'            => 1,
                 'field_id'          => $field->random()->id,
                 'avatar_id'         => $avatar->random()->id,
+                'governorate_id'    => $governorate->id,
+                'city_id'           => $governorate->cities->random()->id,
                 'user_id'           => $doctor->id,
             ]);
         }

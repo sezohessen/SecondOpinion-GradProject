@@ -17,6 +17,9 @@ class CreateRadiologiesTable extends Migration
             $table->id();
             $table->text("desc");
             $table->boolean('reviewed')->default(0);
+            $table->boolean('doctor_seen')->default(0);
+            $table->boolean('center_seen')->default(0);
+            $table->boolean('patient_seen')->default(0);
             $table->bigInteger('doctor_id')->unsigned()->nullable();
             $table->foreign('doctor_id')
             ->references('id')->on('doctors')

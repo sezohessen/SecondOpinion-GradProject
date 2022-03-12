@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Website;
 use App\Http\Controllers\Controller;
 use App\Models\City;
 use App\Models\Doctor;
+use App\Models\DoctorSpecialize;
 use App\Models\Field;
 use App\Models\Governorate;
 use Illuminate\Http\Request;
@@ -41,9 +42,8 @@ class DoctorWebsitePagesController extends Controller
             });
         }
         if(isset($request->specialty_id))$Doctors->where('field_id',$request->specialty_id);
-        /*
-            Governorate,City after Migration
-        */
+        if(isset($request->governorate_id))$Doctors->where('governorate_id',$request->governorate_id);
+        if(isset($request->city_id))$Doctors->where('city_id',$request->city_id);
 
         $Doctors = $Doctors->paginate(9);
         $Doctors->appends(
@@ -55,5 +55,13 @@ class DoctorWebsitePagesController extends Controller
             ]
         );
         return view('website.doctors',compact('specialties','governorates','Doctors'));
+    }
+    public function show($field,$id,$name)
+    {
+        $doctor    = Doctor::where('active',1)
+        ->where('id',$id)->first();
+        if(!$doctor)return redirect()->route('Website.doctors.search');
+        $doctor_specializes  = DoctorSpecialize::where('doctor_id',$id)->get();
+        return view('website.doctor_profile',compact('doctor','doctor_specializes'));
     }
 }
