@@ -22,4 +22,7 @@ class Center extends Model
     public function user(){
         return $this->belongsTo(User::class,"user_id");
     }
+    public function cover(){
+        return $this->belongsTo(Image::class,"cover_id");
+    }
 }

@@ -18,4 +18,24 @@ class Patient extends Model
     public function user(){
         return $this->belongsTo(User::class,"user_id");
     }
+    public static function rules()
+    {
+
+        $rules = [
+            'national_id'        => 'nullable|string|digits:14',
+            'date_of_birth'         => 'nullable|date',
+        ];
+
+        return $rules;
+    }
+    public static function credentials($request,$user)
+    {
+        $credentials = [
+            'national_id'            => $request->national_id,
+            'date_of_birth'             => $request->date_of_birth,
+            'user_id'  => $user,
+        ];
+        return $credentials;
+    }
+
 }

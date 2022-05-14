@@ -78,14 +78,12 @@ class GovernorateController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Governorate $governorate)
     {
 
         $page_title         = __("Edit governorate");
         $page_description   = __("Edit");
-        $governorate        = Governorate::find($id);
-        if($governorate)return view('dashboard.Governorate.edit', compact('page_title', 'page_description','governorate'));
-        else return redirect()->route('dashboard.governorate.index');
+        return view('dashboard.Governorate.edit', compact('page_title', 'page_description','governorate'));
     }
 
     /**

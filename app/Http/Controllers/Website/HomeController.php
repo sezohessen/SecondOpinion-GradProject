@@ -32,7 +32,7 @@ class HomeController extends Controller
     public function index(Request $Request)
     {
 
-        return view('Website.index');
+        return view('website.index');
 
     }
     public function getPosition(Request $request)

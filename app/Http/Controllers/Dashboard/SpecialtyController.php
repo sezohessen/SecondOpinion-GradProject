@@ -70,7 +70,7 @@ class SpecialtyController extends Controller
     {
         $page_title         = __("Edit specialty");
         $page_description   = __("Edit");
-        return view('dashboard.Governorate.edit', compact('page_title', 'page_description','specialty'));
+        return view('dashboard.Specialty.edit', compact('page_title', 'page_description','specialty'));
     }
 
     /**

@@ -971,5 +971,11 @@
 "Get Opinion":"احصل على الرأي",
 "There are no doctors with this search":"لا يوجد اطباء بهذه المواصفات",
 "Biography":"سيرة شخصية",
-"Treatments Price List":"قائمة أسعار العلاجات"
+"Treatments Price List":"قائمة أسعار العلاجات",
+"View Patients":"عرض المرضي",
+"Add Patient":"اضافة مريض",
+"Add new Patient":"اضافة مريض جديد ",
+"Edit Patient":"تعديل بيانات المريض",
+"Date of bith":"يوم ميلادك",
+"View Centers":"عرض المراكز الطبية"
 }

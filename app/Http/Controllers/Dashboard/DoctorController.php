@@ -88,6 +88,7 @@ class DoctorController extends Controller
      */
     public function update(Request $request, Doctor $doctor)
     {
+
         $userRules = User::rules($doctor->user->id);
         $doctorRules = Doctor::rules($doctor->id);
         $request->validate(array_merge($doctorRules,$userRules));
