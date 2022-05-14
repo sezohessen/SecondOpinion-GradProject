@@ -24,15 +24,16 @@
                 <div class="d-flex flex-column-fluid ">
                     <div class="login-form login-signup pt-11" style="display: block">
                         <!--begin::Form-->
-                        <form class="form" method="POST" action="{{ route('Website.patient.create') }}">
+                        <form class="form" method="POST" action="{{ route('Website.doctor.create') }}" enctype="multipart/form-data">
                             @csrf
                             <!--begin::Title-->
                             <div class="py-10 reg_doctor">
-                                <h2 class="text-4xl font-bold text-dark font-size-h2 font-size-h1-lg pb-9">@lang('Sign Up As Patient')
+                                <h2 class="text-4xl font-bold text-dark font-size-h2 font-size-h1-lg pb-9">@lang('Sign Up As
+                                    Doctor')
                                 </h2>
-                                <a href="{{ route('Website.doctor.register') }}" class="my-2">
+                                <a href="{{ route('register') }}" class="my-2">
                                     <h6>
-                                        @lang('Register as doctor') ?
+                                        @lang('Register as patient') ?
                                     </h6>
                                 </a>
                                 <a href="{{ route('Website.center.register') }}" class="my-2">
@@ -90,46 +91,47 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label class="d-block">@lang('Age') <span class="text-danger">*</span></label>
-                                <div class="field_age">
-                                    <div class="field-inline-block">
-                                    <label>@lang('Day')</label>
-                                    <input type="text" pattern="[0-9]*" maxlength="2" size="2" class="date-field" name="day" />
-                                    @error('day')
-                                        <div class="fv-plugins-message-container">
-                                            <div class="text-red-600 fv-help-block">
-                                                <strong>{{ $message }}</strong>
-                                            </div>
-                                        </div>
-                                    @enderror
-                                    </div>
-                                    /
-                                    <div class="field-inline-block">
-                                    <label>@lang('Month')</label>
-                                    <input type="text" pattern="[0-9]*" maxlength="2" size="2" class="date-field" name="month" />
-                                    @error('month')
-                                        <div class="fv-plugins-message-container">
-                                            <div class="text-red-600 fv-help-block">
-                                                <strong>{{ $message }}</strong>
-                                            </div>
-                                        </div>
-                                    @enderror
-                                    </div>
-                                    /
-                                    <div class="field-inline-block">
-                                    <label>@lang('Year')</label>
-                                    <input type="text" pattern="[0-9]*" maxlength="4" size="4" class="date-field date-field--year" name="year" />
-                                    @error('year')
-                                        <div class="fv-plugins-message-container">
-                                            <div class="text-red-600 fv-help-block">
-                                                <strong>{{ $message }}</strong>
-                                            </div>
-                                        </div>
-                                    @enderror
-                                    </div>
-                                </div>
+                                <label>@lang('Select field') <span class="text-danger">*</span></label>
+                                <select class="form-control select2{{ $errors->has('field_id') ? 'is-invalid' : '' }}"
+                                    name="field_id" required>
+                                    <option value="">@lang('Choose a field of specialization')</option>
+                                    @foreach ($fields as $field)
+                                        <option value="{{ $field->id }}">
+                                            {{ LangDetail($field->name, $field->name_ar) }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                @error('field_id')
+                                    <div class="invalid-feedback">{{ $errors->first('field_id') }}</div>
+                                @enderror
                             </div>
-                            <!--end::Form group-->
+                            <div class="form-group">
+                                <label for="governorate">@lang('Select Governorate') <span
+                                        class="text-danger">*</span></label>
+                                <select class="form-control {{ $errors->has('governorate_id') ? 'is-invalid' : '' }}"
+                                    id="governorate" name="governorate_id" required>
+                                    <option value="">@lang('Select Governorate')</option>
+                                    @foreach ($governorates as $governorate)
+                                        <option value="{{ $governorate->id }}"
+                                            @if (old('governorate_id') == $governorate->id) {{ 'selected' }} @endif>
+                                            {{ LangDetail($governorate->title, $governorate->title_ar) }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                @error('governorate_id')
+                                    <div class="invalid-feedback">{{ $errors->first('governorate_id') }}</div>
+                                @enderror
+                            </div>
+                            <div class="form-group city">
+                                <label for="city">@lang('Select City') <span class="text-danger">*</span></label>
+                                <select class="form-control {{ $errors->has('city_id') ? 'is-invalid' : '' }}" id="city"
+                                    name="city_id" required>
+                                    <option value="">@lang('--Select governorate first--')</option>
+                                </select>
+                                @error('city_id')
+                                    <div class="invalid-feedback">{{ $errors->first('city_id') }}</div>
+                                @enderror
+                            </div>
                             <!--end::Form group-->
                             <div class="form-group">
                                 <label>@lang('Phone')</label>
@@ -179,8 +181,7 @@
                                 <label>@lang('Confirm Password') <span class="text-danger">*</span> </label>
                                 <input id="confirm_password" type="password"
                                     class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6 @error('password') is-invalid @enderror"
-                                    name="password_confirmation" required
-                                    placeholder="@lang('Confirm Password')">
+                                    name="password_confirmation" required placeholder="@lang('Confirm Password')">
                                 <label class="form-label">
                                     <input type="checkbox" onclick="myFunction()" />
                                     <span></span>
@@ -189,11 +190,31 @@
                                     </div>
                                 </label>
                             </div>
+                            <div class="form-group">
+                                <label for="Image">@lang('Your main photo')<span class="text-danger">*</span></label>
+                                <br>
+                                <div class="avatar-upload">
+                                    <div class="avatar-edit">
+                                        <input type='file' name="avatar" id="imageUpload" accept=".png, .jpg, .jpeg"
+                                            required />
+                                        <label for="imageUpload"><i class="fa fa-pen"></i> </label>
+                                    </div>
+                                    <div class="avatar-preview">
+                                        <div id="imagePreview"
+                                            style="background-image: url({{ asset(App\Models\Doctor::Avatar . 'doctor.png') }});">
+                                        </div>
+                                    </div>
+                                </div>
+                                @error('avatar')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
                             <!--end::Form group-->
                             <!--begin::Form group-->
                             <div class="pt-10 mt-10 text-center">
                                 <button type="submit"
-                                    class="px-8 py-4 mx-4 my-3 btn btn-primary font-weight-bolder font-size-h6">@lang('Sign Up')</button>
+                                    class="px-8 py-4 mx-4 my-3 btn btn-primary font-weight-bolder font-size-h6">@lang('Sign
+                                    Up')</button>
                             </div>
                             <!--end::Form group-->
                         </form>
@@ -209,6 +230,21 @@
 {{-- Scripts Section --}}
 @section('js')
     <script>
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    $('#imagePreview').css('background-image', 'url(' + e.target.result + ')');
+                    $('#imagePreview').hide();
+                    $('#imagePreview').fadeIn(650);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+        $("#imageUpload").change(function() {
+            readURL(this);
+        });
+
         function myFunction() {
             var x = document.getElementById("password");
             var y = document.getElementById("confirm_password");
@@ -220,6 +256,53 @@
                 y.type = "password";
             }
         }
+
+        function governorate(id) {
+            console.log(id);
+            $('#city').empty();
+            $.ajax({
+                url: '/governorate/' + id,
+                success: data => {
+                    if (data.cities) {
+                        data.cities.forEach(city =>
+                            $('#city').append(`<option value="${city.id}" >${city.title}</option>`))
+                        $('.city .nice-select ul').empty();
+                        data.cities.forEach(city =>
+                            $('.city .nice-select ul').append(
+                                `<li data-value="${city.id}" class="option">${city.title}</li>`))
+
+                    } else {
+                        $('#city').append(`<option value="">@lang('Select Governorate first')</option>`)
+                    }
+                }
+            });
+        }
+
+        function governorate_ar(id) {
+
+            $('#city').empty();
+            $.ajax({
+                url: '/governorate/' + id,
+                success: data => {
+                    if (data.cities) {
+                        data.cities.forEach(city =>
+                            $('#city').append(`<option value="${city.id}" >${city.title_ar}</option>`))
+                        $('.city .nice-select ul').empty();
+                        data.cities.forEach(city =>
+                            $('.city .nice-select ul').append(
+                                `<li data-value="${city.id}" class="option">${city.title_ar}</li>`))
+                    } else {
+                        $('#city').append(`<option value="">@lang('Select Governorate first')</option>`)
+                    }
+                }
+            });
+        }
+        $('#governorate').on('change', function() {
+            var id = this.value;
+            var en = <?php echo Session::get('app_locale') == 'en' ? 1 : 0; ?>;
+            console.log(en);
+            en ? governorate(id) : governorate_ar(id);
+        });
     </script>
     <script src="{{ asset('js/pages/custom/login/login-general.js') }}"></script>
 @endsection

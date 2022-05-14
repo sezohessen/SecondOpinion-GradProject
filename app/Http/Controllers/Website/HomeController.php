@@ -31,7 +31,6 @@ class HomeController extends Controller
      */
     public function index(Request $Request)
     {
-
         return view('Website.index');
 
     }

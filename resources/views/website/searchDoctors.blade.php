@@ -11,6 +11,11 @@
                 <h2>@lang('Get Second Opinion')</h2>
             </div>
             <div class="search col-md-12 mt-50">
+                @if(session()->has('created'))
+                    <div class="alert alert-success  m-4  ">
+                        <p>{{ session('created') }}</p>
+                    </div>
+                @endif
                 <div class="card">
                     <div class="card-heading">
                         <form action="{{ route('Website.doctors.search') }}" method="get">

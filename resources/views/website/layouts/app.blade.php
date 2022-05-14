@@ -45,10 +45,6 @@
                       <li class="nav__item">
                         <a href="{{ route('Website.page.doctors') }}" class="nav__item-link">@lang('Search for doctor')</a>
                       </li> <!-- /.nav-item -->
-                      <li class="nav__item">
-                        <a href="doctors-single-doctor1.html" class="nav__item-link">Doctor page</a>
-                      </li> <!-- /.nav-item -->
-
                     </ul><!-- /.dropdown-menu -->
                   </li><!-- /.nav-item -->
                   <li class="nav__item has-dropdown">
@@ -75,7 +71,7 @@
                     <a href="#" data-toggle="dropdown" class="dropdown-toggle nav__item-link">
                         <i class="fas fa-user"></i>
                         @auth
-                        {{ auth()->user()->FullName }}
+                        {{ auth()->user()->first_name }}
                         @endauth
                         @guest
                             @lang('My Account')

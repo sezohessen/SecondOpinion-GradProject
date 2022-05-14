@@ -17,6 +17,8 @@ class Doctor extends Model
         'brief_desc',
         'brief_desc_ar',
         'field_id',
+        'governorate_id',
+        'city_id',
         'avatar_id',
         'user_id',
         'facebook'

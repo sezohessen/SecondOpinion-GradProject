@@ -15,7 +15,7 @@
         display: block;
     }
 </style>
-@if (Session::get('app_locale')!='en')
+@if (Session::get('app_locale')!='en')`
     <style>
         .ck.ck-editor__editable_inline[dir=ltr]{
             text-align: right!important;

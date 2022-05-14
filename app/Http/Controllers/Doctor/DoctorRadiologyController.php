@@ -126,6 +126,7 @@ class DoctorRadiologyController extends Controller
         $fields                 = Field::all();
         $specialties            = Specialty::all();
         $DoctorSpecialties      = DoctorSpecialize::where('doctor_id',$doctor->id)->get();
+        $Selectedspecialties    = [];
         foreach($DoctorSpecialties as $specialty)$Selectedspecialties[] = $specialty->specialize_id;
         return view('Doctor.account',compact('page_title','doctor','fields','specialties','Selectedspecialties'));
     }

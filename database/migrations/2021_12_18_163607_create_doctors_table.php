@@ -18,8 +18,8 @@ class CreateDoctorsTable extends Migration
 
             $table->string('national_id')->unique()->nullable();
             $table->string('facebook')->nullable();
-            $table->text('brief_desc');
-            $table->text('brief_desc_ar');
+            $table->text('brief_desc')->nullable();
+            $table->text('brief_desc_ar')->nullable();
             $table->boolean('active')->default(1);
 
             $table->bigInteger('field_id')->unsigned()->nullable();

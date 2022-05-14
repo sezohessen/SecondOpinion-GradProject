@@ -21,28 +21,43 @@
         </div>
         <div class="card-body">
             <div class="row">
+                @if(session()->has('success'))
                 <div class="col-md-12">
-                    @if(session()->has('success'))
-                        <div class="alert alert-success  m-4  ">
-                            <p>{{ session('success') }}</p>
-                        </div>
-                    @endif
+                    <div class="alert alert-success  m-4  ">
+                        <p>{{ session('success') }}</p>
+                    </div>
                 </div>
+                @endif
                 <div class="col-md-3">
-                    <div class="card">
-                        <div class="card-header account-header">
-                            <h6>@lang('Radiology')</h6>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-header account-header">
+                                    <h6>@lang('Radiology')</h6>
+                                </div>
+                                <div class="card-body">
+                                    <ul class="profile">
+                                        <li class="nav__item">
+                                            <a href="{{ route('doctor.pending.radiology') }}" class="nav__item-link">@lang('Pending radiology')</a>
+                                        </li><!-- /.nav-item -->
+                                        <li class="nav__item">
+                                            <a href="{{ route('doctor.completed.radiology') }}" class="nav__item-link">@lang('Completed radiology')</a>
+                                        </li><!-- /.nav-item -->
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
-                        <div class="card-body">
-                            <ul class="profile">
-                                <li class="nav__item">
-                                    <a href="{{ route('doctor.pending.radiology') }}" class="nav__item-link">@lang('Pending radiology')</a>
-                                </li><!-- /.nav-item -->
-                                <li class="nav__item">
-                                    <a href="{{ route('doctor.completed.radiology') }}" class="nav__item-link">@lang('Completed radiology')</a>
-                                </li><!-- /.nav-item -->
-                            </ul>
-                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <a href="{{ route('Website.doctor.profile',[
+                            'field' => LangDetail($doctor->field->name,$doctor->field->name_ar),
+                            'id'    => $doctor->id,
+                            'name'  => $doctor->user->FullName
+                            ]) }}" class="my-3">
+                            <h5>
+                                @lang('See Profile')
+                            </h5>
+                        </a>
                     </div>
                 </div>
                 <div class="col-md-9">
@@ -129,7 +144,7 @@
                                     <br>
                                     <div class="avatar-upload">
                                         <div class="avatar-edit">
-                                            <input type='file' name="avatar" id="imageUpload" accept=".png, .jpg, .jpeg" required />
+                                            <input type='file' name="avatar" id="imageUpload" accept=".png, .jpg, .jpeg" />
                                             <label for="imageUpload"><i class="fa fa-pen"></i> </label>
                                         </div>
                                         <div class="avatar-preview">

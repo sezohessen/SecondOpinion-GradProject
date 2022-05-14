@@ -62,6 +62,12 @@ Route::group(['namespace'=>"Website",'as' => 'Website.'],function () {
     Route::get('/doctors/getcity/{id}','DoctorWebsitePagesController@showCities');
     Route::get('/doctors/search','DoctorWebsitePagesController@search')->name('doctors.search');
     Route::get('/doctor/{field}/{id}/{name}','DoctorWebsitePagesController@show')->name('doctor.profile');
+    Route::post('/register/patient','RegisterPatientController@create')->name('patient.create');
+    Route::get('/register/doctor','RegisterDoctorController@register')->name('doctor.register');
+    Route::post('/register/doctor','RegisterDoctorController@create')->name('doctor.create');
+    Route::get('/register/center','RegisterCenterController@register')->name('center.register');
+    Route::post('/register/center','RegisterCenterController@create')->name('center.create');
+    Route::get('/governorate/{id}','RegisterDoctorController@showCities')->name('governorate.show');
 
 });
 Route::group(['as' => 'Website.','namespace'=>"Website", 'middleware' => 'auth'], function () {
