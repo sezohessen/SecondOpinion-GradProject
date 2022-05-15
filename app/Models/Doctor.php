@@ -16,6 +16,7 @@ class Doctor extends Model
         'national_id',
         'brief_desc',
         'brief_desc_ar',
+        'price',
         'field_id',
         'governorate_id',
         'city_id',

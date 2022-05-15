@@ -90,7 +90,7 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label class="d-block">@lang('Age') <span class="text-danger">*</span></label>
+                                <label class="d-block">@lang('Date of birth') <span class="text-danger">*</span></label>
                                 <div class="field_age">
                                     <div class="field-inline-block">
                                     <label>@lang('Day')</label>

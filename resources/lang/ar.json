@@ -981,5 +981,14 @@
 "Sign Up As Patient":"سجل كامريض",
 "Sign Up As Doctor":"سجل كاطبيب",
 "Register Successfully":"تم التسجيل بنجاح",
-"See Profile":"صفحتي"
+"See Profile":"صفحتي",
+"Fees":"سعر الكشف",
+"Book Second Opinion":"قدم علي الرأي الثاني",
+"You can now get second opinion radiology quickly. We have doctors who are experts in different fields and have extensive experience in radiology evaluation and treatment.":"يمكنك الآن الحصول على رأي ثانٍ بالأشعة بسرعة. لدينا أطباء خبراء في مجالات مختلفة ولديهم خبرة واسعة في تقييم الأشعة وعلاجها.",
+"Get":"احجز",
+"Case description":"وصف الحالة",
+"Date of birth":"تاريخ الولادة",
+"Upload Radiology and files":"حمل الأشعة والملفات",
+"Max:3 files":"حد اقصي 3 ملفات",
+"Total Fees is":"إجمالي الرسوم هو"
 }

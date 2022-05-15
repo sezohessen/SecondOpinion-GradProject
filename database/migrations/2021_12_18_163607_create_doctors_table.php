@@ -21,7 +21,7 @@ class CreateDoctorsTable extends Migration
             $table->text('brief_desc')->nullable();
             $table->text('brief_desc_ar')->nullable();
             $table->boolean('active')->default(1);
-
+            $table->integer('price')->nullable();
             $table->bigInteger('field_id')->unsigned()->nullable();
             $table->foreign('field_id')
             ->references('id')->on('fields')

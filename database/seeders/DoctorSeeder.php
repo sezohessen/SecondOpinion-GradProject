@@ -36,6 +36,7 @@ class DoctorSeeder extends Seeder
                 'facebook'          => $faker->url,
                 'brief_desc'        => $faker->text,
                 'brief_desc_ar'     => $faker->text,
+                'price'             => $faker->numberBetween(20,100),
                 'active'            => 1,
                 'field_id'          => $field->random()->id,
                 'avatar_id'         => $avatar->random()->id,
