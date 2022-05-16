@@ -133,7 +133,7 @@
                     <section class="contact-layout4 bg-overlay bg-overlay-secondary-gradient pb-50 pb-50">
                         <div class="bg-img"><img src="assets/images/banners/3.jpg" alt="banner"></div>
                         <div class="contact-panel mb-0">
-                            <form  method="post" action="{{ route('Website.book-opinion',['id'=>$doctor->id]) }}">
+                            <form  method="GET" action="{{ route('Website.book-opinion',['id'=>$doctor->id]) }}">
                                 @csrf
                                 <div class="row">
                                     <div class="col-sm-12">

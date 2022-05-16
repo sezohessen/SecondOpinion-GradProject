@@ -68,8 +68,8 @@ Route::group(['namespace'=>"Website",'as' => 'Website.'],function () {
     Route::get('/register/center','RegisterCenterController@register')->name('center.register');
     Route::post('/register/center','RegisterCenterController@create')->name('center.create');
     Route::get('/governorate/{id}','RegisterDoctorController@showCities')->name('governorate.show');
-    Route::post('/book-opinion/{id}','BookOpinionController@book')->name('book-opinion')->middleware(['role:patient','auth']);
-    Route::post('/book-opinion','BookOpinionController@store')->name('book-opinion.store')->middleware(['role:patient','auth']);
+    Route::get('/book-opinion/{id}','BookOpinionController@book')->name('book-opinion')->middleware(['role:patient','auth']);
+    Route::post('/book/{id}','BookOpinionController@store')->name('book.store')->middleware(['role:patient','auth']);
 });
 Route::group(['as' => 'Website.','namespace'=>"Website", 'middleware' => 'auth'], function () {
 
