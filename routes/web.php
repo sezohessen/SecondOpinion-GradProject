@@ -75,7 +75,7 @@ Route::group(['as' => 'Website.','namespace'=>"Website", 'middleware' => 'auth']
 
 });
 
-Route::group(['prefix' => 'doctor','as' => 'doctor.','namespace'=>"Doctor", 'middleware' => ['role:doctor']], function () {
+Route::group(['as' => 'doctor.','namespace'=>"Doctor", 'middleware' => ['role:doctor']], function () {
     Route::get('/pending-radiologies','DoctorRadiologyController@index')->name('pending.radiology');
     Route::get('/completed-radiologies','DoctorRadiologyController@completed')->name('completed.radiology');
     Route::get('/feedback/{id}','DoctorRadiologyController@feedback')->name('feedback.radiology');

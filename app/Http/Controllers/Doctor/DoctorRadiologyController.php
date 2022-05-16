@@ -24,7 +24,9 @@ class DoctorRadiologyController extends Controller
         $radiology  = Radiology::where('reviewed',0)
         ->whereHas('doctor',function($q){
             $q->where('doctors.user_id',Auth()->user()->id);
-        })->paginate(8);
+        })
+        ->orderBy('id','desc')
+        ->paginate(8);
         return view('Doctor.pending',compact('page_title','radiology'));
     }
     public function completed()
@@ -33,7 +35,9 @@ class DoctorRadiologyController extends Controller
         $radiology  = Radiology::where('reviewed',1)
         ->whereHas('doctor',function($q){
             $q->where('doctors.user_id',Auth()->user()->id);
-        })->paginate(8);
+        })
+        ->orderBy('id','desc')
+        ->paginate(8);
         return view('Doctor.completed',compact('page_title','radiology'));
     }
     public function feedback($id)
@@ -105,9 +109,12 @@ class DoctorRadiologyController extends Controller
         /* Mandatory Check */
         /* Mandatory Check */
         $image      = Image::FindOrFail($id);
-        $filepath   = public_path().$image->base.$image->name;
-        if(file_exists($filepath))return Response::download($filepath);
-        else return redirect()->back();
+        $file_path = storage_path('app/public').'/'.$image->base.'/'.$image->name;
+        if(file_exists($file_path))return Response::download($file_path);
+        else{
+            session()->flash('notfound',__("Sorry, File not found"));
+            return redirect()->back();
+        }
 
         /* $seller     = Seller::find($id);
         $extension  = explode('.',$seller->file);
