@@ -2957,6 +2957,12 @@ input[type=radio] {
   position: relative;
   margin-right: 29px;
 }
+.navbar .nav__item .number_pending {
+    background-color: #21cdc0;
+    padding: 4px 8px;
+    border-radius: 50%;
+    color: #ffffff;
+}
 
 .navbar .nav__item:last-child {
   margin-right: 0;

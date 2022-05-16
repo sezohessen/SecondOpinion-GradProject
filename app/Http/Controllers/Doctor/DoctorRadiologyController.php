@@ -21,6 +21,9 @@ class DoctorRadiologyController extends Controller
     public function index()
     {
         $page_title = __('Pending radiology');
+        $UpdateRad  = Radiology::whereHas('doctor',function($q){
+            $q->where('doctors.user_id',Auth()->user()->id);
+        })->update(['doctor_seen' => 1]);
         $radiology  = Radiology::where('reviewed',0)
         ->whereHas('doctor',function($q){
             $q->where('doctors.user_id',Auth()->user()->id);
