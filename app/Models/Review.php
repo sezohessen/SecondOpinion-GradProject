@@ -8,19 +8,20 @@ use Illuminate\Database\Eloquent\Model;
 class Review extends Model
 {
     use HasFactory;
-    const HasReview = 1;
-    const HasNotReview = 0;
-    const NotLogin = 2;
+
     protected $table    = 'reviews';
     protected $fillable=[
-        'title',
-        'review',
+        'comment',
         'rating',
-        'user_id',
-        'part_id',
+        'doctor_id',
+        'patient_id',
     ];
-    public function user()
+    public function patient()
     {
-        return $this->belongsTo(User::class,"user_id","id");
+        return $this->belongsTo(Patient::class,"patient_id");
+    }
+    public function doctor()
+    {
+        return $this->belongsTo(Doctor::class,"doctor_id");
     }
 }

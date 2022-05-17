@@ -977,5 +977,9 @@
 "Add new Patient":"اضافة مريض جديد ",
 "Edit Patient":"تعديل بيانات المريض",
 "Date of bith":"يوم ميلادك",
-"View Centers":"عرض المراكز الطبية"
+"View Centers":"عرض المراكز الطبية",
+"based on":"اعتمادا علي",
+"reviews":"التقيمات",
+"Overall Rating":"التقيم الكلي",
+"Patients Review":"تقيم المرضي"
 }

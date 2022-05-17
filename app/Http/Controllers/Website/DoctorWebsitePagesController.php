@@ -8,7 +8,6 @@ use App\Models\DoctorSpecialize;
 use App\Models\Field;
 use App\Models\Governorate;
 use Illuminate\Http\Request;
-
 class DoctorWebsitePagesController extends Controller
 {
     public function home()
@@ -31,6 +30,7 @@ class DoctorWebsitePagesController extends Controller
     }
     public function search(Request $request)
     {
+
         $specialties    = Field::all();
         $governorates   = Governorate::all();
         $Doctors        = Doctor::where('active',1);
@@ -62,6 +62,8 @@ class DoctorWebsitePagesController extends Controller
         ->where('id',$id)->first();
         if(!$doctor)return redirect()->route('Website.doctors.search');
         $doctor_specializes  = DoctorSpecialize::where('doctor_id',$id)->get();
-        return view('website.doctor_profile',compact('doctor','doctor_specializes'));
+        $reviews=$doctor->reviews;
+        
+        return view('website.doctor_profile',compact('doctor','doctor_specializes','reviews'));
     }
 }

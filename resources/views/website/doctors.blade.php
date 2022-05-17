@@ -125,7 +125,11 @@
                             <p class="member__job">{{ LangDetail($doctor->field->name,$doctor->field->name_ar) }}</p>
                             <p class="member__desc">{{ LangDetail($doctor->brief_desc,$doctor->brief_desc_ar) }}</p>
                             <div class="mt-20 d-flex flex-wrap justify-content-between align-items-center">
-                            <a href="doctors-single-doctor1.html" class="btn btn__secondary btn__link btn__rounded">
+                            <a href="{{ route('Website.doctor.profile',[
+                                'field' => LangDetail($doctor->field->name,$doctor->field->name_ar),
+                                'id'    => $doctor->id,
+                                'name'  => $doctor->user->FullName
+                                ]) }}" class="btn btn__secondary btn__link btn__rounded">
                                 <span>@lang('Get Opinion')</span>
                                 <i class="fa fa-arrow-right"></i>
                             </a>

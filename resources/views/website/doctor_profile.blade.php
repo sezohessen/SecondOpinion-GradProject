@@ -8,11 +8,16 @@
             <div class="col-12 d-flex flex-wrap justify-content-end align-items-center">
             <div class="testimonials__rating mr-30">
                 <div class="testimonials__rating-inner d-flex align-items-center">
-                <span class="total__rate">4.9</span>
-                <div>
-                    <span class="overall__rate">Zocdoc Overall Rating</span>
-                    <span>, based on 7541 reviews.</span>
-                </div>
+                @if($reviews->count())
+                    <span class="total__rate">{{number_format($reviews->sum('rating') / $reviews->count(),1)}}</span>
+                    <div>
+                        <span class="overall__rate">@lang("Overall Rating")</span>
+                        <span>,@lang("based on") {{$reviews->count()}} @lang("reviews").</span>
+                    </div>
+
+                @endif
+
+
                 </div><!-- /.testimonials__rating-inner -->
             </div><!-- /.testimonials__rating -->
             <a href="#Form" id="ClickMe" class="btn btn__white btn__rounded">
@@ -57,6 +62,7 @@
                     </div><!-- /.member-info -->
                     </div><!-- /.member -->
                 </div><!-- /.widget-member -->
+
                 </aside><!-- /.sidebar -->
             </div><!-- /.col-lg-4 -->
             <div class="col-sm-12 col-md-12 col-lg-8">
@@ -182,12 +188,43 @@
                         </div><!-- /.col-lg-12 -->
                     </div><!-- /.row -->
                     </form>
-                </div>
+
                 </section><!-- /.contact layout 2 -->
+                <hr>
+                <div class="reviews">
+                    <h4> @lang("Patients Review") <div class="star-rating float-left"> <i class="zmdi zmdi-star" style="font-size:39px"></i> </div> </h4>
+                    @foreach ($reviews as $review)
+                        <div class="comment-list">
+                            <div class="comment-item">
+                                <div class="comment-content">
+                                        <div class="comment-author">
+                                            <span class="author">{{$review->patient->user->fullName}}</span>
+                                            <div class="star-rating">
+                                            @for ($i = 1; $i <= 5; $i++)
+                                                @if ($review->rating >= $i)
+                                                    <i class="zmdi zmdi-star"></i>
+                                                @else
+                                                    <i class="zmdi zmdi-star-outline"></i>
+                                                @endif
+                                            @endfor
+                                            </div>
+
+                                        <em class="comment-time">{{$review->created_at->format('Y-m-d')}}</em>
+
+                                        <p>{{$review->comment}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
             </div><!-- /.col-lg-8 -->
+
         </div><!-- /.row -->
     </div><!-- /.container -->
+
 </section>
+
 @endsection
 @section('js')
 <script>
