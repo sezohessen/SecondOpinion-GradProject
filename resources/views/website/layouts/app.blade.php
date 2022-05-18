@@ -69,15 +69,17 @@
                   </li><!-- /.nav-item -->
                   <li class="nav__item has-dropdown">
                     <a href="#" data-toggle="dropdown" class="dropdown-toggle nav__item-link">
+                        <i class="fas fa-user"></i>
+                        @auth
                         @if (auth()->user()->hasRole(App\Models\User::DoctorRole))
-                            @php
-                                 $CountPendingRequest = App\Models\Radiology::whereHas('doctor',function($q){
-                                            $q->where('doctors.user_id',Auth()->user()->id);
-                                    })->where('doctor_seen',0)->get()->count();
-                            @endphp
-                            @if ($CountPendingRequest)
-                                <span class="number_pending">{{ $CountPendingRequest }}</span>
-                            @endif
+                        @php
+                             $CountPendingRequest = App\Models\Radiology::whereHas('doctor',function($q){
+                                        $q->where('doctors.user_id',Auth()->user()->id);
+                                })->where('doctor_seen',0)->get()->count();
+                        @endphp
+                        @if ($CountPendingRequest)
+                            <span class="number_pending">{{ $CountPendingRequest }}</span>
+                        @endif
                         @elseif(auth()->user()->hasRole(App\Models\User::PatientRole))
                             @php
                                 $CountPendingRequest = App\Models\Radiology::whereHas('patient',function($q){
@@ -88,9 +90,6 @@
                                 <span class="number_pending">{{ $CountPendingRequest }}</span>
                             @endif
                         @endif
-                        <i class="fas fa-user"></i>
-                        @auth
-
                         {{ auth()->user()->first_name }}
 
                         @endauth
