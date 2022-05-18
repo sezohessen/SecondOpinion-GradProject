@@ -84,7 +84,8 @@
                         @endif
                         @elseif(auth()->user()->hasRole(App\Models\User::PatientRole))
                             @php
-                                $CountPendingRequest = App\Models\Radiology::whereHas('patient',function($q){
+                                $CountPendingRequest = App\Models\Radiology::where('reviewed',1)
+                                    ->whereHas('patient',function($q){
                                             $q->where('patients.user_id',Auth()->user()->id);
                                     })->where('patient_seen',0)->get()->count();
                             @endphp
@@ -140,11 +141,13 @@
                                 </li><!-- /.nav-item -->
                             @elseif(auth()->user()->hasRole(App\Models\User::PatientRole))
                                 @php
-                                    $patient         = App\Models\Patient::where('user_id',auth()->user()->id)->first();
-                                    $CountPendingRequest = App\Models\Radiology::where('patient_id',$patient->id)->where('patient_seen',0)->get()->count();
+                                    $CountPendingRequest = App\Models\Radiology::where('reviewed',1)
+                                    ->whereHas('patient',function($q){
+                                            $q->where('patients.user_id',Auth()->user()->id);
+                                    })->where('patient_seen',0)->get()->count();
                                 @endphp
                                 <li class="nav__item">
-                                    <a href="{{-- {{ route('doctor.pending.radiology') }} --}}" class="nav__item-link">
+                                    <a href="{{ route('Website.patient.completed.radiology') }}" class="nav__item-link">
                                         @if ($CountPendingRequest)
                                             <span class="number_pending">{{ $CountPendingRequest }}</span>
                                         @endif

@@ -70,6 +70,8 @@ Route::group(['namespace'=>"Website",'as' => 'Website.'],function () {
     Route::get('/governorate/{id}','RegisterDoctorController@showCities')->name('governorate.show');
     Route::get('/book-opinion/{id}','BookOpinionController@book')->name('book-opinion')->middleware(['role:patient','auth']);
     Route::post('/book/{id}','BookOpinionController@store')->name('book.store')->middleware(['role:patient','auth']);
+    Route::get('/patient/completed-radiologies','PatientController@showComplete')->name('patient.completed.radiology')->middleware(['role:patient','auth']);
+    Route::get('/patient/view-radiologies/{id}','PatientController@Complete')->name('patient.show.radiology')->middleware(['role:patient','auth']);
 });
 Route::group(['as' => 'Website.','namespace'=>"Website", 'middleware' => 'auth'], function () {
 

@@ -62,8 +62,8 @@ class DoctorWebsitePagesController extends Controller
         ->where('id',$id)->first();
         if(!$doctor)return redirect()->route('Website.doctors.search');
         $doctor_specializes  = DoctorSpecialize::where('doctor_id',$id)->get();
-        $reviews=$doctor->reviews;
-        
+        $reviews             = $doctor->reviews;
+
         return view('website.doctor_profile',compact('doctor','doctor_specializes','reviews'));
     }
 }
