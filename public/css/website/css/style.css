@@ -8856,3 +8856,57 @@ textarea.form-control {
   color: #848e9f;
 }
 /*# sourceMappingURL=style.css.map */
+/* Reviews Section */
+.comment-content {
+    border-bottom: 1px solid #e5e5e5;
+    margin-bottom: 33px;
+    padding-bottom: 33px;
+}
+.comment-content {
+    margin-left: 101px;
+    position: relative; }
+.comment-content .name {
+    font-size: 17px;
+    font-weight: 500;
+    color: #333;
+    display: block; }
+ .comment-content .date {
+    color: #999;
+    padding: 2px 0 10px;
+    display: block; }
+ .comment-content .reply {
+    position: absolute;
+    right: 0;
+    top: 0; }
+ .comment-content .reply:hover {
+    right: -10px; }
+.comment-body {
+    margin-left: 102px; }
+
+.comment-author {
+    justify-content: space-between;
+    -moz-justify-content: space-between;
+    -webkit-justify-content: space-between;
+    -o-justify-content: space-between;
+    -ms-justify-content: space-between; }
+.comment-author span {
+    color: #333;
+    font-size: 17px;
+    font-weight: 500; }
+.comment-author .star-rating {
+    font-size: 20px;
+    color: #ffcc33; }
+.comment-author .author {
+    color: #333;
+    font-size: 17px;
+    font-weight: 500;
+}.star-rating {
+    font-size: 20px;
+    color: #ffcc33;
+    margin-right: 12px; }
+.img-review {
+width: 81px;
+    height: 81px;
+    float: left;
+    margin-top: 8px;
+}

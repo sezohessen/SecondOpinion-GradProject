@@ -73,4 +73,8 @@ class Doctor extends Model
     public function field(){
         return $this->belongsTo(Field::class,"field_id");
     }
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
 }

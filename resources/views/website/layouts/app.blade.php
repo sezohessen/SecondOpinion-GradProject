@@ -13,6 +13,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&amp;family=Roboto:wght@400;700&amp;display=swap">
+
+    <link rel="stylesheet" href="{{ asset('css/website/css/material-design-font.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/website/css/all.css') }}">
     <link rel="stylesheet" href="{{ asset('css/website/css/libraries.css') }}">
     <link rel="stylesheet" href="{{ asset('css/website/css/style.css') }}">

@@ -10,7 +10,7 @@
     {{-- Dashboard 1 --}}
     <div class="card card-custom gutter-b">
         <div class="card-header flex-wrap py-3" style="min-height: 50px">
-            <a href="{{ route('dashboard.doctor.create') }}" class="btn btn-primary font-weight-bolder">
+            <a href="{{ route('dashboard.center.create') }}" class="btn btn-primary font-weight-bolder">
                 <span class="svg-icon svg-icon-md">
                     <!--begin::Svg Icon | path:/metronic/theme/html/demo1/dist/assets/media/svg/icons/Design/Flatten.svg-->
                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
@@ -32,7 +32,7 @@
         <div class="container">
             <div class="row">
                 <div class="card-custom" style="width: 100%;">
-                    {!! Form::open(['id' => 'form_data', 'url' => 'dashboard/doctor/destroy/all', 'method' =>
+                    {!! Form::open(['id' => 'form_data', 'url' => 'dashboard/center/destroy/all', 'method' =>
                     'delete']) !!}
                     <div class="table-responsive">
                         {!! $dataTable->table(

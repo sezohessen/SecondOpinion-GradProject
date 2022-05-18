@@ -992,5 +992,15 @@
 "Max:3 files":"حد اقصي 3 ملفات",
 "Total Fees is":"إجمالي الرسوم هو",
 "Request has been sent successfully, Doctor will review the radiology and send the report.":"تم إرسال الطلب بنجاح ، سيقوم الطبيب بمراجعة الأشعة وإرسال التقرير.",
-"Sorry, File not found":"عذرا ، الملف غير موجود"
+"Sorry, File not found":"عذرا ، الملف غير موجود",
+"View Patients":"عرض المرضي",
+"Add Patient":"اضافة مريض",
+"Add new Patient":"اضافة مريض جديد ",
+"Edit Patient":"تعديل بيانات المريض",
+"Date of bith":"يوم ميلادك",
+"View Centers":"عرض المراكز الطبية",
+"based on":"اعتمادا علي",
+"reviews":"التقيمات",
+"Overall Rating":"التقيم الكلي",
+"Patients Review":"تقيم المرضي"
 }

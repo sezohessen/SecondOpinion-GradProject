@@ -125,6 +125,18 @@ return [
             'icon' => 'fas fa-user-nurse',
             'bullet' => 'dot',
             'root' => true,
+            'submenu' => [
+                [
+                    [
+                        'title' => 'Add Patient',
+                        'page' => "/dashboard/patient/create"
+                    ],
+                    [
+                        'title' => 'View Patients',
+                        'page' => '/dashboard/patient'
+                    ],
+                ],
+            ]
         ],
         // Reviews
         [
