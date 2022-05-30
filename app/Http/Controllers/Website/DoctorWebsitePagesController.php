@@ -1,13 +1,15 @@
 <?php
 
 namespace App\Http\Controllers\Website;
-use App\Http\Controllers\Controller;
 use App\Models\City;
-use App\Models\Doctor;
-use App\Models\DoctorSpecialize;
 use App\Models\Field;
+use App\Models\Doctor;
 use App\Models\Governorate;
 use Illuminate\Http\Request;
+use App\Models\DoctorSpecialize;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\AppointmentFormRequest;
+
 class DoctorWebsitePagesController extends Controller
 {
     public function home()
@@ -63,7 +65,12 @@ class DoctorWebsitePagesController extends Controller
         if(!$doctor)return redirect()->route('Website.doctors.search');
         $doctor_specializes  = DoctorSpecialize::where('doctor_id',$id)->get();
         $reviews=$doctor->reviews;
+
+        return view('website.doctor_profile',compact('doctor','doctor_specializes','reviews'));
+    }
+    public function validate_from(Doctor $doctor,AppointmentFormRequest $request){
         
+        session(['AppointmentFormRequest' => $request->all()]);
         return view('website.doctor_profile',compact('doctor','doctor_specializes','reviews'));
     }
 }

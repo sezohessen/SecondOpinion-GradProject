@@ -119,7 +119,9 @@
                 <section class="contact-layout4 bg-overlay bg-overlay-secondary-gradient pb-50 pb-50" >
                 <div class="bg-img"><img src="assets/images/banners/3.jpg" alt="banner" ></div>
                 <div class="contact-panel mb-0" id="Book">
-                    <form class="contact-panel__form" method="post" action="https://7oroof.com/demos/medcity/assets/php/contact.php" id="contactForm">
+                    <form class="contact-panel__form" method="POST" action="{{ route('Website.doctor.form.validate',['doctor'=> $doctor->id, ]) }}"   enctype="multipart/form-data" id="AppointmentForm">
+                        @csrf
+                        @method('POST')
                     <div class="row">
                         <div class="col-sm-12">
                         <h4 class="contact-panel__title">Book An Appointment</h4>
@@ -136,6 +138,7 @@
                             <option value="2">Pathology Clinic</option>
                             </select>
                         </div>
+
                         </div><!-- /.col-lg-6 -->
                         <div class="col-sm-6 col-md-6 col-lg-6">
                         <div class="form-group">
@@ -150,7 +153,7 @@
                         <div class="col-sm-6 col-md-6 col-lg-6">
                         <div class="form-group">
                             <i class="icon-news form-group-icon"></i>
-                            <input type="text" class="form-control" placeholder="Name" id="contact-name" name="contact-name"
+                            <input type="text" class="form-control" placeholder="Name" id="contact-name" name="contact-name" value="{{old("contact-name")}}"
                             required>
                         </div>
                         </div><!-- /.col-lg-6 -->
@@ -179,17 +182,95 @@
                             <i class="icon-clock form-group-icon"></i>
                             <input type="time" class="form-control" id="contact-time" name="contact-time" required>
                         </div>
+                        <input type="hidden" name="SessionID" id="SessionID">
+                        <input type="hidden" name="payment" id="payment" value="">
+
                         </div><!-- /.col-lg-4 -->
                         <div class="col-12">
+
                         <button type="submit" class="btn btn__primary btn__rounded btn__block btn__xhight mt-10">
                             <span>Book Appointment</span> <i class="icon-arrow-right"></i>
                         </button>
+
                         <div class="contact-result"></div>
                         </div><!-- /.col-lg-12 -->
+                                <!-- Button trigger modal -->
                     </div><!-- /.row -->
                     </form>
 
                 </section><!-- /.contact layout 2 -->
+
+
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        </div>
+                        <div class="modal-body">
+                            <fieldset>
+
+                                @error('SessionID')
+                                    <span class="invalid-feedback ml-4" role="alert">
+                                        <strong>@lang("Invalid Card Payment Details")</strong>
+                                    </span>
+                                @enderror
+                                <div class="form-group">
+                                    <label class="col-md-8 control-label" for="cardNumber">@lang("Card number")</label>
+                                    <div class="col-md-8">
+                                        <input type="text" id="cardNum"  name="cardNum"
+                                        placeholder="Valid Card Number"
+                                        value="{{old("cardNum")}}" class="form-control input-md"   readonly />
+                                    </div>
+                                </div>
+                                <span class="invalid-feedback ml-4" role="alert" id="cardNumError" >
+                                    <strong ></strong>
+                                </span>
+                                <div class="form-group">
+                                    <label class="col-md-8 control-label" for="cardMonth">@lang("Expiry month")</label>
+                                    <div class="col-md-8">
+                                        <input type="text" id="cardMonth" name="cardMonth" value="{{old("cardMonth")}}"
+                                        placeholder="00" class="form-control input-md" value="" />
+                                    </div>
+                                </div>
+                                <span class="invalid-feedback ml-4" role="alert" id="monthError">
+                                    <strong ></strong>
+                                </span>
+                                <div class="form-group">
+                                    <label class="col-md-8 control-label" for="cardYear">@lang("Expiry year")</label>
+                                    <div class="col-md-8">
+                                        <input type="text" id="cardYear" name="cardYear"    placeholder="0000"  value="{{old("cardYear")}}" class="form-control input-md" value="" />
+                                    </div>
+                                </div>
+                                <span class="invalid-feedback ml-4" role="alert" id="yearError">
+                                    <strong ></strong>
+                                </span>
+                                <div class="form-group">
+                                    <label class="col-md-8 control-label" for="cardCVC">@lang("Security code (CVC)")</label>
+                                    <div class="col-md-8">
+                                        <input type="text" id="cardCVC" name="cardCVC"value="{{old("cardCVC")}}"    placeholder="CVC"  class="form-control input-md" value="" readonly  />
+                                    </div>
+                                </div>
+                                <span class="invalid-feedback ml-4" role="alert" id="cardCVCError">
+                                    <strong ></strong>
+                                </span>
+                            </fieldset>
+                            <div class="alert alert-danger d-none " id="payment_failed">
+                                <i class="icon fa fa-times-circle" ></i>  <div class="text float-right"></div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button class="btn btn-primary pull-right" id="payButton" onclick="pay();">Pay</button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
                 <hr>
                 <div class="reviews">
                     <h4> @lang("Patients Review") <div class="star-rating float-left"> <i class="zmdi zmdi-star" style="font-size:39px"></i> </div> </h4>
@@ -227,11 +308,87 @@
 
 @endsection
 @section('js')
+
+<!-- INCLUDE SESSION.JS JAVASCRIPT LIBRARY -->
+<script src="https://api.vapulus.com:1338/app/session/script?appId={{env("appId")}}"></script>
+<style id="antiClickjack">body {disply: none !important;}</style>
 <script>
-    $("#ClickMe").click(function() {
+
+$("#ClickMe").click(function() {
         $('html, body').animate({
             scrollTop: $("#Book").offset().top - 200
         }, 100);
     });
 </script>
+@if($errors->count() == 1)
+    <script>
+        $('#exampleModalLong').modal('show')
+    </script>
+@endif
+<script>
+     $(document).ready(function(){
+
+        if(window.PaymentSession){
+            PaymentSession.configure({
+                fields: {
+                    // ATTACH HOSTED FIELDS IDS TO YOUR PAYMENT PAGE FOR A CREDIT CARD
+                    card: {
+                        cardNumber: "cardNum",
+                        securityCode: "cardCVC",
+                        expiryMonth: "cardMonth",
+                        expiryYear: "cardYear"
+                    }
+                },
+                callbacks: {
+                    initialized: function (err, response) {
+
+                        // console.log("init....");
+                        // console.log(err, response);
+                        // console.log("/init.....");
+                        // HANDLE INITIALIZATION RESPONSE
+                    },
+                    formSessionUpdate: function (err,response) {
+                        //console.log("update callback.....");
+                        // console.log(err,response);
+                        // console.log("/update callback....");x
+                        // HANDLE RESPONSE FOR UPDATE SESSION
+                        if (response.statusCode) {
+                            if (200 == response.statusCode) {
+                                $("#SessionID").val(response.data.sessionId);
+                                $("#payment").val("true");
+                                submit_form();
+                                //  console.log("Session updated with data: " + response.data.sessionId);
+                            } else if (201 == response.statusCode) {
+                                console.log("Session update failed with field errors.");
+                                if (response.message) {
+                                    console.log(response.message);
+                                    var field = response.message.indexOf('valid')
+                                    field = response.message.slice(field + 5, response.message.length);
+                                    $("#"+field.slice(1)+"Error").children().text(field + " Is Missing or invalid");
+                                }else {
+                                    $("#payment_failed").children().eq(1).text("Invalid Card Payment Details");
+                                    $("#payment_failed").removeClass("d-none");
+                                }
+                            } else {
+                                $("#payment_failed").children().eq(1).text("Invalid Card Payment Details");
+                                $("#payment_failed").removeClass("d-none");
+                                console.log(response.statusCode);
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        });
+
+        function pay() {
+            // UPDATE THE SESSION WITH THE INPUT FROM HOSTED FIELDS
+            PaymentSession.updateSessionFromForm();
+        }
+        function submit_form(){
+            $("#AppointmentForm").submit();
+        }
+
+</script>
+
 @endsection
