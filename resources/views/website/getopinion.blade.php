@@ -26,6 +26,7 @@
     </style>
 @endsection
 @section('website')
+
     <div class="container">
         <div class="card doctor-account">
             <div class="card-header">

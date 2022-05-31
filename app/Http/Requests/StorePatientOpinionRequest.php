@@ -32,8 +32,8 @@ class StorePatientOpinionRequest extends FormRequest
             'phone'         => 'required|numeric',
             'whats_app'     => 'nullable|numeric',
             'fees'          => 'required|integer',
-            'files'         => 'required|max:3',
-            'files.*'       => 'max:2048'
+/*             'files'         => 'required|max:3',
+            'files.*'       => 'max:2048' */
         ];
     }
 }
