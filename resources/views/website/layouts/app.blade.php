@@ -92,6 +92,16 @@
                             @if ($CountPendingRequest)
                                 <span class="number_pending">{{ $CountPendingRequest }}</span>
                             @endif
+                        @elseif (auth()->user()->hasRole(App\Models\User::CenterRole))
+                            @php
+                                $CountCompleteRequest = App\Models\Radiology::where('reviewed',1)
+                                    ->whereHas('center',function($q){
+                                            $q->where('centers.user_id',Auth()->user()->id);
+                                    })->where('center_seen',0)->get()->count();
+                            @endphp
+                            @if ($CountCompleteRequest)
+                            <span class="number_pending">{{ $CountCompleteRequest }}</span>
+                            @endif
                         @endif
                         {{ auth()->user()->first_name }}
 

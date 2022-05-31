@@ -18,6 +18,7 @@
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">@lang('Patient Name')</th>
+                            <th scope="col">@lang('Doctor Name')</th>
                             <th scope="col">@lang('Show')</th>
                         </tr>
                     </thead>
@@ -26,6 +27,7 @@
                             <tr>
                                 <th scope="row">{{ $key+1 }}</th>
                                 <td>{{ $rad->patient->user->getFullNameAttribute() }}</td>
+                                <td>{{ $rad->doctor->user->getFullNameAttribute() }}</td>
                                 <td>
                                     <button class="btn btn-primary">
                                         <a href="{{ route('center.show.completed',['id'=>$rad->id]) }}">

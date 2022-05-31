@@ -9,6 +9,7 @@ use App\Models\Doctor;
 use App\Models\DoctorFeedback;
 use App\Models\Image;
 use App\Models\Patient;
+use App\Models\Payment;
 use App\Models\Radiology;
 use App\Models\RadiologyFile;
 use App\Models\User;
@@ -34,6 +35,10 @@ class CenterController extends Controller
         ->whereHas('center',function($q){
             $q->where('centers.user_id',Auth()->user()->id);
         })->paginate(8);
+        Radiology::where('reviewed',1)
+        ->whereHas('center',function($q){
+            $q->where('centers.user_id',Auth()->user()->id);
+        })->update(['center_seen' => 1]);
         return view('Center.completed',compact('page_title','radiology'));
     }
     public function show($id)
@@ -81,8 +86,8 @@ class CenterController extends Controller
         /* Mandatory Check */
         /* Mandatory Check */
         $image      = Image::FindOrFail($id);
-        $filepath   = public_path().$image->base.$image->name;
-        if(file_exists($filepath))return Response::download($filepath);
+        $file_path = storage_path('app/public').'/'.$image->base.'/'.$image->name;
+        if(file_exists($file_path))return Response::download($file_path);
         else return redirect()->back();
 
     }
@@ -102,7 +107,7 @@ class CenterController extends Controller
     public function sendRadiology()
     {
         $doctors    = Doctor::all()->take(5);
-        return view('website.center_send_radiology',compact('doctors'));
+        return view('Center.send_radiology',compact('doctors'));
     }
     public function storeRadiology(CenterStoreRadiologyRequest $request)
     {
@@ -124,11 +129,12 @@ class CenterController extends Controller
         /* Attach Role */
         $user->attachRole(User::PatientRole);
         /* Upload Radiologies */
-
+        $center = Center::where('user_id',Auth()->user()->id)->first();
         $Radiology = Radiology::create([
             "desc"          => $request->desc,
             "doctor_id"     => $request->doctor_id,
             "patient_id"    => $patient->id,
+            "cener_id"      => $center->id
         ]);
         $DirectoryFilePath  = RadiologyFile::patient_radiology_path;
         foreach($request->file('files') as $file){
@@ -142,6 +148,17 @@ class CenterController extends Controller
                 'radiology_id'  => $Radiology->id
             ]);
         }
+
+        /* Assume Get Way */
+        Payment::create([
+             'doctor_id'            => $request->doctor_id,
+             'center'               => $center->id,
+             'patient_id'           => $patient->id,
+             'price'                => $request->fees,
+             'statusCode'           => Payment::Success,
+        ]);
+        session()->flash('created',__("Radiology has been sent successfully to the doctor"));
+        return redirect()->route('center.pending.radiology');
 
     }
     public function uploadFile($file,$base)
