@@ -24,7 +24,7 @@ class CenterStoreRadiologyRequest extends FormRequest
     public function rules()
     {
         return [
-            'desc'          => 'nullable|min:3|max:3000',
+            'desc'          => 'required|min:3|max:3000',
             'doctor_id'     => 'required|exists:doctors,id',
             'first_name'    => 'required|min:2|max:20',
             'last_name'     => 'required|min:2|max:20',

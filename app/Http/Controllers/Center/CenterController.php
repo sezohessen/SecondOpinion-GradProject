@@ -8,8 +8,12 @@ use App\Models\Center;
 use App\Models\Doctor;
 use App\Models\DoctorFeedback;
 use App\Models\Image;
+use App\Models\Patient;
 use App\Models\Radiology;
+use App\Models\RadiologyFile;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Response;
 
 class CenterController extends Controller
@@ -102,7 +106,52 @@ class CenterController extends Controller
     }
     public function storeRadiology(CenterStoreRadiologyRequest $request)
     {
+        /* Make user */
+        $user = User::create([
+            'first_name'    => $request->first_name,
+            'last_name'     => $request->last_name,
+            'email'         => $request->email,
+            'password'      => Hash::make($request->password)
+        ]);
+        if($request->phone)$user->phone = $request->phone;
+        if($request->whats_app)$user->whats_app = $request->whats_app;
+        $user->save();
+        /* Create Patient  */
+        $patient    = Patient::create([
+            'user_id'       => $user->id,
+            'date_of_birth' => date('Y-m-d',strtotime($request->year.'/'.$request->month.'/'.$request->day)),
+        ]);
+        /* Attach Role */
+        $user->attachRole(User::PatientRole);
+        /* Upload Radiologies */
 
+        $Radiology = Radiology::create([
+            "desc"          => $request->desc,
+            "doctor_id"     => $request->doctor_id,
+            "patient_id"    => $patient->id,
+        ]);
+        $DirectoryFilePath  = RadiologyFile::patient_radiology_path;
+        foreach($request->file('files') as $file){
+            $fileName  = $this->uploadFile($file,$DirectoryFilePath);
+            $CreateFile= Image::create([
+               'name'   => $fileName,
+               'base'   => $DirectoryFilePath
+            ]);
+            RadiologyFile::create([
+                'image_id'      => $CreateFile->id,
+                'radiology_id'  => $Radiology->id
+            ]);
+        }
+
+    }
+    public function uploadFile($file,$base)
+    {
+        $filenameWithExt        = $file->getClientOriginalName();
+        $filename               = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+        $extension              = $file->getClientOriginalExtension();
+        $fileNameToStore        = $filename.'_'.time().'.'.$extension;
+        $path                   = $file->storeAs('public/'.$base,$fileNameToStore);
+        return $fileNameToStore;
     }
     public function getFees($id)
     {
