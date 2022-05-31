@@ -33,7 +33,10 @@ class CreatePaymentsTable extends Migration
             ->onDelete('set null');
 
             $table->integer('price');
-            $table->integer('status');
+            $table->string('statusCode');
+            $table->integer("transactionId")->nullable();
+
+
             $table->timestamps();
         });
     }

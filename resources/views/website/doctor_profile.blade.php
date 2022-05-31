@@ -91,6 +91,11 @@
                             <p>{{ session('success') }}</p>
                         </div>
                     @endif
+                    @if (session()->has('failed'))
+                    <div class="alert alert-success  m-4  ">
+                        <p>{{ session('failed') }}</p>
+                    </div>
+                @endif
                     <div class="text-block mb-50">
                         <h5 class="text-block__title">@lang('Biography')</h5>
                         <p class="text-block__desc mb-20">{{ LangDetail($doctor->brief_desc, $doctor->brief_desc_ar) }}
@@ -177,9 +182,6 @@
 @endsection
 @section('js')
 
-<!-- INCLUDE SESSION.JS JAVASCRIPT LIBRARY -->
-<script src="https://api.vapulus.com:1338/app/session/script?appId={{env("appId")}}"></script>
-<style id="antiClickjack">body {disply: none !important;}</style>
 <script>
 
 $("#ClickMe").click(function() {
@@ -187,76 +189,6 @@ $("#ClickMe").click(function() {
             scrollTop: $("#Book").offset().top - 200
         }, 100);
     });
-</script>
-@if($errors->count() == 1)
-    <script>
-        $('#exampleModalLong').modal('show')
-    </script>
-@endif
-<script>
-     $(document).ready(function(){
-
-        if(window.PaymentSession){
-            PaymentSession.configure({
-                fields: {
-                    // ATTACH HOSTED FIELDS IDS TO YOUR PAYMENT PAGE FOR A CREDIT CARD
-                    card: {
-                        cardNumber: "cardNum",
-                        securityCode: "cardCVC",
-                        expiryMonth: "cardMonth",
-                        expiryYear: "cardYear"
-                    }
-                },
-                callbacks: {
-                    initialized: function (err, response) {
-
-                        // console.log("init....");
-                        // console.log(err, response);
-                        // console.log("/init.....");
-                        // HANDLE INITIALIZATION RESPONSE
-                    },
-                    formSessionUpdate: function (err,response) {
-                        //console.log("update callback.....");
-                        // console.log(err,response);
-                        // console.log("/update callback....");x
-                        // HANDLE RESPONSE FOR UPDATE SESSION
-                        if (response.statusCode) {
-                            if (200 == response.statusCode) {
-                                $("#SessionID").val(response.data.sessionId);
-                                $("#payment").val("true");
-                                submit_form();
-                                //  console.log("Session updated with data: " + response.data.sessionId);
-                            } else if (201 == response.statusCode) {
-                                console.log("Session update failed with field errors.");
-                                if (response.message) {
-                                    console.log(response.message);
-                                    var field = response.message.indexOf('valid')
-                                    field = response.message.slice(field + 5, response.message.length);
-                                    $("#"+field.slice(1)+"Error").children().text(field + " Is Missing or invalid");
-                                }else {
-                                    $("#payment_failed").children().eq(1).text("Invalid Card Payment Details");
-                                    $("#payment_failed").removeClass("d-none");
-                                }
-                            } else {
-                                $("#payment_failed").children().eq(1).text("Invalid Card Payment Details");
-                                $("#payment_failed").removeClass("d-none");
-                                console.log(response.statusCode);
-                            }
-                        }
-                    }
-                }
-            });
-        }
-        });
-
-        function pay() {
-            // UPDATE THE SESSION WITH THE INPUT FROM HOSTED FIELDS
-            PaymentSession.updateSessionFromForm();
-        }
-        function submit_form(){
-            $("#AppointmentForm").submit();
-        }
-
 </script>
 
 @endsection

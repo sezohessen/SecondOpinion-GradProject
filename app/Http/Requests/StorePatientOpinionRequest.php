@@ -23,7 +23,7 @@ class StorePatientOpinionRequest extends FormRequest
      */
     public function rules()
     {
-        return [
+        $rules=[
             'first_name'    => 'required|min:2|max:20',
             'last_name'     => 'required|min:2|max:20',
             'day'           => 'required|numeric|between:1,31',
@@ -32,8 +32,12 @@ class StorePatientOpinionRequest extends FormRequest
             'phone'         => 'required|numeric',
             'whats_app'     => 'nullable|numeric',
             'fees'          => 'required|integer',
-/*             'files'         => 'required|max:3',
-            'files.*'       => 'max:2048' */
         ];
+        if(!session("files")){
+            $rules['files']   = 'required|max:3';
+            $rules['files.*'] ='max:2048';
+        }
+
+        return $rules;
     }
 }

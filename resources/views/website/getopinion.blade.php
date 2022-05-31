@@ -13,7 +13,7 @@
             display: inline-flex;
         }
         .invaild-feedback{
-            display: block!important;
+            display: none !important;
         }
         .select2-container--default .select2-selection--multiple {
             height: 43px;
@@ -32,6 +32,11 @@
             <div class="card-header">
                 <h3>@lang('Get Second Opinion')</h3>
             </div>
+            @if (session()->has('failed'))
+                <div class="alert alert-success  m-4  ">
+                    <p>{{ session('failed') }}</p>
+                </div>
+            @endif
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-4">
@@ -85,11 +90,11 @@
                         </div>
                     </div>
                     <div class="col-md-8">
-                        <form action="{{ route('Website.book.store',['id'=>$doctor->id]) }}" method="POST"
+                        <form action="{{ route('Website.book.store',['doctor'=>$doctor->id,"patient"=> auth()->id()]) }}" method="POST" id="pay_processing"
                             enctype="multipart/form-data">
                             @csrf
                             @method('POST')
-                            <input type="hidden" name="fees" value="{{ $doctor->price }}">
+                            <input type="hidden" name="SessionID" id="SessionID" >
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
@@ -190,27 +195,167 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-12">
-                                    <label for="files">@lang('Upload Radiology and files')(@lang('Max:3 files'))<span
-                                            class="text-danger">*</span></label>
-                                    <div class="from-group">
-                                        <input type="file" id="files" name="files[]" multiple><br><br>
-                                        @error('files')
-                                            <div class="invalid-feedback">{{ $errors->first('files') }}</div>
-                                        @enderror
+                                @if($errors->count() != 1)
+                                    <div class="col-md-12">
+                                        <label for="files">@lang('Upload Radiology and files')(@lang('Max:3 files'))<span
+                                                class="text-danger">*</span></label>
+                                        <div class="from-group">
+                                            <input type="file" id="files" name="files[]" multiple><br><br>
+                                            @error('files')
+                                                <div class="invalid-feedback">{{ $errors->first('files') }}</div>
+                                            @enderror
+                                        </div>
+                                        <hr>
+                                        <h6>@lang('Total Fees is') : <span class="text-info">{{ $doctor->price }}
+                                                @lang('L.E')</span> </h6>
                                     </div>
-                                    <hr>
-                                    <h6>@lang('Total Fees is') : <span class="text-info">{{ $doctor->price }}
-                                            @lang('L.E')</span> </h6>
-                                </div>
+                                @endif
+
                                 <div class="col-md-12">
                                     <button class="btn btn-primary" type="submit">@lang('Get Second Opinion')</button>
                                 </div>
                             </div>
+
+
                         </form>
+
+                             <!-- Modal -->
+                             <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <fieldset>
+                                            <div class="form-group">
+                                                <label class="col-md-8 control-label" for="cardNumber">@lang("Card number")</label>
+                                                <div class="col-md-8">
+                                                    <input type="text" id="cardNum"  name="cardNum"
+                                                    placeholder="Valid Card Number"
+                                                    value="{{old("cardNum")}}" class="form-control input-md"   readonly />
+                                                </div>
+                                            </div>
+                                            <span class="invalid-feedback ml-4" role="alert" id="cardNumError" >
+                                                <strong ></strong>
+                                            </span>
+                                            <div class="form-group">
+                                                <label class="col-md-8 control-label" for="cardMonth">@lang("Expiry month")</label>
+                                                <div class="col-md-8">
+                                                    <input type="text" id="cardMonth" name="cardMonth" value="{{old("cardMonth")}}"
+                                                    placeholder="00" class="form-control input-md" value="" />
+                                                </div>
+                                            </div>
+                                            <span class="invalid-feedback ml-4" role="alert" id="monthError">
+                                                <strong ></strong>
+                                            </span>
+                                            <div class="form-group">
+                                                <label class="col-md-8 control-label" for="cardYear">@lang("Expiry year")</label>
+                                                <div class="col-md-8">
+                                                    <input type="text" id="cardYear" name="cardYear"    placeholder="0000"  value="{{old("cardYear")}}" class="form-control input-md" value="" />
+                                                </div>
+                                            </div>
+                                            <span class="invalid-feedback ml-4" role="alert" id="yearError">
+                                                <strong ></strong>
+                                            </span>
+                                            <div class="form-group">
+                                                <label class="col-md-8 control-label" for="cardCVC">@lang("Security code (CVC)")</label>
+                                                <div class="col-md-8">
+                                                    <input type="text" id="cardCVC" name="cardCVC"value="{{old("cardCVC")}}"    placeholder="CVC"  class="form-control input-md" value="" readonly  />
+                                                </div>
+                                            </div>
+                                            <span class="invalid-feedback ml-4" role="alert" id="cardCVCError">
+                                                <strong ></strong>
+                                            </span>
+                                        </fieldset>
+                                        <div class="alert alert-danger d-none " id="payment_failed">
+                                            <i class="icon fa fa-times-circle" ></i>  <div class="text float-right"></div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button class="btn btn-primary pull-right" id="payButton" onclick="pay();">Pay</button>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+@endsection
+@section('js')
+<!-- INCLUDE SESSION.JS JAVASCRIPT LIBRARY -->
+<script src="https://api.vapulus.com:1338/app/session/script?appId={{env("appId")}}"></script>
+<style id="antiClickjack">body {disply: none !important;}</style>
+@if($errors->count() == 1)
+    <script>
+        $('#exampleModalLong').modal('show');
+    </script>
+@endif
+<script type="text/javascript">
+    if(window.PaymentSession){
+        PaymentSession.configure({
+            fields: {
+                // ATTACH HOSTED FIELDS IDS TO YOUR PAYMENT PAGE FOR A CREDIT CARD
+                card: {
+                    cardNumber: "cardNum",
+                    securityCode: "cardCVC",
+                    expiryMonth: "cardMonth",
+                    expiryYear: "cardYear"
+                }
+            },
+            callbacks: {
+                initialized: function (err, response) {
+                    console.log("init....");
+                    console.log(err, response);
+                    console.log("/init.....");
+                    // HANDLE INITIALIZATION RESPONSE
+                },
+                formSessionUpdate: function (err,response) {
+                    console.log("update callback.....");
+                    console.log(err,response);
+                    console.log("/update callback....");
+
+                    if (response.statusCode) {
+
+                        if (200 == response.statusCode) {
+                            $("#SessionID").val(response.data.sessionId);
+                            $("#pay_processing").submit();
+                            // submit_form();
+                            //  console.log("Session updated with data: " + response.data.sessionId);
+                        } else if (201 == response.statusCode) {
+                            console.log("Session update failed with field errors.");
+                            if (response.message) {
+                                console.log(response.message);
+                                var field = response.message.indexOf('valid')
+                                field = response.message.slice(field + 5, response.message.length);
+                                $("#"+field.slice(1)+"Error").children().text(field + " Is Missing or invalid");
+                            }else {
+                                $("#payment_failed").children().eq(1).text("Invalid Card Payment Details");
+                                $("#payment_failed").removeClass("d-none");
+                            }
+                        } else {
+                            $("#payment_failed").children().eq(1).text("Invalid Card Payment Details");
+                            $("#payment_failed").removeClass("d-none");
+                            console.log(response.statusCode);
+                        }
+                    }else {
+                        console.log(response.statusCode);
+                    }
+                }
+            }
+        });
+    }
+    function pay() {
+        // UPDATE THE SESSION WITH THE INPUT FROM HOSTED FIELDS
+        PaymentSession.updateSessionFromForm();
+    }
+
+</script>
+
 @endsection
