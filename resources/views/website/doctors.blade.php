@@ -2,6 +2,14 @@
 @section('css')
     <link rel="stylesheet" href="{{ asset('css/website/css/doctor-search.css') }}">
     <link rel="stylesheet" href="{{ asset('css/website/css/doctors.css') }}">
+    <style>
+        .star-rating{
+            position: absolute;
+            left: 10px;
+            top: 10px;
+            right: 10px;
+            }
+        </style>
 @endsection
 @section('website')
 <section class="Doctor-search">
@@ -93,6 +101,23 @@
                     <div class="col-sm-6 col-md-4 col-lg-4">
                         <div class="member">
                         <div class="member__img">
+                            @php
+                                $avr_star       = App\Models\Review::where('doctor_id',$doctor->id)
+                                    ->selectRaw('SUM(rating)/COUNT(patient_id) AS avg_rating')
+                                    ->first()
+                                    ->avg_rating;
+                            @endphp
+                            @if ($avr_star)
+                                <div class="star-rating">
+                                @for ($i = 1; $i <= 5; $i++)
+                                    @if ($avr_star >= $i)
+                                        <i class="zmdi zmdi-star"></i>
+                                    @else
+                                        <i class="zmdi zmdi-star-outline"></i>
+                                    @endif
+                                @endfor
+                                </div>
+                            @endif
                             @if (file_exists(public_path($doctor->avatar->base.$doctor->avatar->name)))
                                 <a href="{{ route('Website.doctor.profile',[
                                     'field' => LangDetail($doctor->field->name,$doctor->field->name_ar),

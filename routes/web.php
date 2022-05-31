@@ -64,12 +64,22 @@ Route::group(['namespace'=>"Website",'as' => 'Website.'],function () {
     Route::get('/doctor/{field}/{id}/{name}','DoctorWebsitePagesController@show')->name('doctor.profile');
     Route::post('/doctor/{doctor}/validate','DoctorWebsitePagesController@validate_from')->name('doctor.form.validate');
 
+    Route::post('/register/patient','RegisterPatientController@create')->name('patient.create');
+    Route::get('/register/doctor','RegisterDoctorController@register')->name('doctor.register');
+    Route::post('/register/doctor','RegisterDoctorController@create')->name('doctor.create');
+    Route::get('/register/center','RegisterCenterController@register')->name('center.register');
+    Route::post('/register/center','RegisterCenterController@create')->name('center.create');
+    Route::get('/governorate/{id}','RegisterDoctorController@showCities')->name('governorate.show');
+    Route::get('/book-opinion/{id}','BookOpinionController@book')->name('book-opinion')->middleware(['role:patient','auth']);
+    Route::post('/book/{id}','BookOpinionController@store')->name('book.store')->middleware(['role:patient','auth']);
+    Route::get('/patient/completed-radiologies','PatientController@showComplete')->name('patient.completed.radiology')->middleware(['role:patient','auth']);
+    Route::get('/patient/view-radiologies/{id}','PatientController@Complete')->name('patient.show.radiology')->middleware(['role:patient','auth']);
 });
 Route::group(['as' => 'Website.','namespace'=>"Website", 'middleware' => 'auth'], function () {
 
 });
 
-Route::group(['prefix' => 'doctor','as' => 'doctor.','namespace'=>"Doctor", 'middleware' => ['role:doctor']], function () {
+Route::group(['as' => 'doctor.','namespace'=>"Doctor", 'middleware' => ['role:doctor']], function () {
     Route::get('/pending-radiologies','DoctorRadiologyController@index')->name('pending.radiology');
     Route::get('/completed-radiologies','DoctorRadiologyController@completed')->name('completed.radiology');
     Route::get('/feedback/{id}','DoctorRadiologyController@feedback')->name('feedback.radiology');

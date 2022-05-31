@@ -44,6 +44,7 @@ class DatabaseSeeder extends Seeder
         $this->call(RadiologySeeder::class);
         $this->call(RadiologyFileSeeder::class);
         $this->call(ContractSeeder::class);
+        $this->call(PaymentSeeder::class);
         $this->call(ReviewSeeder::class);
 
 

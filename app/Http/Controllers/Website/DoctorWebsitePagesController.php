@@ -69,7 +69,7 @@ class DoctorWebsitePagesController extends Controller
         return view('website.doctor_profile',compact('doctor','doctor_specializes','reviews'));
     }
     public function validate_from(Doctor $doctor,AppointmentFormRequest $request){
-        
+
         session(['AppointmentFormRequest' => $request->all()]);
         return view('website.doctor_profile',compact('doctor','doctor_specializes','reviews'));
     }

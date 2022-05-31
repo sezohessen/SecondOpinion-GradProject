@@ -47,10 +47,6 @@
                       <li class="nav__item">
                         <a href="{{ route('Website.page.doctors') }}" class="nav__item-link">@lang('Search for doctor')</a>
                       </li> <!-- /.nav-item -->
-                      <li class="nav__item">
-                        <a href="doctors-single-doctor1.html" class="nav__item-link">Doctor page</a>
-                      </li> <!-- /.nav-item -->
-
                     </ul><!-- /.dropdown-menu -->
                   </li><!-- /.nav-item -->
                   <li class="nav__item has-dropdown">
@@ -77,7 +73,28 @@
                     <a href="#" data-toggle="dropdown" class="dropdown-toggle nav__item-link">
                         <i class="fas fa-user"></i>
                         @auth
-                        {{ auth()->user()->FullName }}
+                        @if (auth()->user()->hasRole(App\Models\User::DoctorRole))
+                        @php
+                             $CountPendingRequest = App\Models\Radiology::whereHas('doctor',function($q){
+                                        $q->where('doctors.user_id',Auth()->user()->id);
+                                })->where('doctor_seen',0)->get()->count();
+                        @endphp
+                        @if ($CountPendingRequest)
+                            <span class="number_pending">{{ $CountPendingRequest }}</span>
+                        @endif
+                        @elseif(auth()->user()->hasRole(App\Models\User::PatientRole))
+                            @php
+                                $CountPendingRequest = App\Models\Radiology::where('reviewed',1)
+                                    ->whereHas('patient',function($q){
+                                            $q->where('patients.user_id',Auth()->user()->id);
+                                    })->where('patient_seen',0)->get()->count();
+                            @endphp
+                            @if ($CountPendingRequest)
+                                <span class="number_pending">{{ $CountPendingRequest }}</span>
+                            @endif
+                        @endif
+                        {{ auth()->user()->first_name }}
+
                         @endauth
                         @guest
                             @lang('My Account')
@@ -96,8 +113,18 @@
                     @auth
                         <ul class="dropdown-menu profile">
                             @if (auth()->user()->hasRole(App\Models\User::DoctorRole))
+                                @php
+                                    $CountPendingRequest = App\Models\Radiology::whereHas('doctor',function($q){
+                                            $q->where('doctors.user_id',Auth()->user()->id);
+                                    })->where('doctor_seen',0)->get()->count();
+                                @endphp
                                 <li class="nav__item">
-                                    <a href="{{ route('doctor.pending.radiology') }}" class="nav__item-link">@lang('Pending radiology')</a>
+                                    <a href="{{ route('doctor.pending.radiology') }}" class="nav__item-link">
+                                        @if ($CountPendingRequest)
+                                            <span class="number_pending">{{ $CountPendingRequest }}</span>
+                                        @endif
+                                        @lang('Pending radiology')
+                                    </a>
                                 </li><!-- /.nav-item -->
                                 <li class="nav__item">
                                     <a href="{{ route('doctor.completed.radiology') }}" class="nav__item-link">@lang('Completed radiology')</a>
@@ -111,6 +138,21 @@
                                 <a href="{{ route('center.pending.radiology') }}" class="nav__item-link">@lang('Pending Radiology')</a>
                                 <a href="{{ route('center.completed.radiology') }}" class="nav__item-link">@lang('Completed Radiology')</a>
                                 <a href="#" class="nav__item-link">@lang('Contracts')</a>
+                                </li><!-- /.nav-item -->
+                            @elseif(auth()->user()->hasRole(App\Models\User::PatientRole))
+                                @php
+                                    $CountPendingRequest = App\Models\Radiology::where('reviewed',1)
+                                    ->whereHas('patient',function($q){
+                                            $q->where('patients.user_id',Auth()->user()->id);
+                                    })->where('patient_seen',0)->get()->count();
+                                @endphp
+                                <li class="nav__item">
+                                    <a href="{{ route('Website.patient.completed.radiology') }}" class="nav__item-link">
+                                        @if ($CountPendingRequest)
+                                            <span class="number_pending">{{ $CountPendingRequest }}</span>
+                                        @endif
+                                        @lang('Completed Radiology')
+                                    </a>
                                 </li><!-- /.nav-item -->
                             @endif
                             <li class="nav__item">

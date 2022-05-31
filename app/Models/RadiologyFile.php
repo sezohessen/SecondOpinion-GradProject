@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class RadiologyFile extends Model
 {
     use HasFactory;
+    const patient_radiology_path = 'patient_radiology';
     protected $fillable=[
         "radiology_id",
         "image_id",

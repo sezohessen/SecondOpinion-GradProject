@@ -1,3 +1,11 @@
+/* New */
+.reg_doctor a h6{
+    color: #3454f1;
+    text-decoration: underline;
+}
+.field_age{
+    display: inline-flex;
+}
 .login.login-1 .login-aside .aside-img {
   min-height: 450px;
   max-height: 450px;

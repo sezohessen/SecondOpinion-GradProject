@@ -34,7 +34,7 @@
              <!--end::Form group-->
              <!--begin::Form group-->
              <div class="form-group">
-                 <input id="last_name" type="text" class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6 @error('last_name') is-invalid @enderror" name="last_name" value="{{ old('last_name')  ?? $doctor->user->first_name }}" required autocomplete="last_name"  placeholder="@lang('last name')">
+                 <input id="last_name" type="text" class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6 @error('last_name') is-invalid @enderror" name="last_name" value="{{ old('last_name')  ?? $doctor->user->last_name }}" required autocomplete="last_name"  placeholder="@lang('last name')">
                  @error('last_name')
                      <div class="fv-plugins-message-container">
                          <div class="fv-help-block">
