@@ -28,7 +28,9 @@ class PaymentSeeder extends Seeder
                 'patient_id'        => $patients->random()->id,
                 'center_id'         => $centers->random()->id,
                 'price'             => $faker->numberBetween(40,500),
-                'status'            => Payment::Success
+                'statusCode'        => "200",
+                'transactionId'     => $faker->randomAscii()
+
             ]);
         }
     }

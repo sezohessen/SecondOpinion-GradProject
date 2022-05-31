@@ -1005,5 +1005,6 @@
 "Patients Review":"تقيم المرضي",
 "Your Description":"وصفك للحالة",
 "Doctor Report":"تقرير الطبيب",
-"Doctor File":"ملف الطبيب"
+"Doctor File":"ملف الطبيب",
+"Processing doesn't complete successfully, please try later":"لم تكتمل العملية بنجاح ، يرجى المحاولة لاحقًا"
 }

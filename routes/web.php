@@ -62,7 +62,7 @@ Route::group(['namespace'=>"Website",'as' => 'Website.'],function () {
     Route::get('/doctors/getcity/{id}','DoctorWebsitePagesController@showCities');
     Route::get('/doctors/search','DoctorWebsitePagesController@search')->name('doctors.search');
     Route::get('/doctor/{field}/{id}/{name}','DoctorWebsitePagesController@show')->name('doctor.profile');
-    Route::post('/doctor/{doctor}/validate','DoctorWebsitePagesController@validate_from')->name('doctor.form.validate');
+
 
     Route::post('/register/patient','RegisterPatientController@create')->name('patient.create');
     Route::get('/register/doctor','RegisterDoctorController@register')->name('doctor.register');
@@ -71,7 +71,8 @@ Route::group(['namespace'=>"Website",'as' => 'Website.'],function () {
     Route::post('/register/center','RegisterCenterController@create')->name('center.create');
     Route::get('/governorate/{id}','RegisterDoctorController@showCities')->name('governorate.show');
     Route::get('/book-opinion/{id}','BookOpinionController@book')->name('book-opinion')->middleware(['role:patient','auth']);
-    Route::post('/book/{id}','BookOpinionController@store')->name('book.store')->middleware(['role:patient','auth']);
+    Route::get('/payment_status/{patient}/{doctor}','BookOpinionController@payment_status')->name('payment_status');
+    Route::post('/book/{doctor}/{patient}','BookOpinionController@store')->name('book.store')->middleware(['role:patient','auth']);
     Route::get('/patient/completed-radiologies','PatientController@showComplete')->name('patient.completed.radiology')->middleware(['role:patient','auth']);
     Route::get('/patient/view-radiologies/{id}','PatientController@Complete')->name('patient.show.radiology')->middleware(['role:patient','auth']);
 });
