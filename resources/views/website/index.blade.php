@@ -15,12 +15,8 @@
                 <p class="slide__desc">The health and well-being of our patients and their health care team will
                   always be our priority, so we follow the best practices for cleanliness.</p>
                 <div class="d-flex flex-wrap align-items-center">
-                  <a href="appointment.html" class="btn btn__primary btn__rounded mr-30">
-                    <span>Find A Doctor</span>
-                    <i class="icon-arrow-right"></i>
-                  </a>
-                  <a href="services.html" class="btn btn__white btn__rounded">
-                    <span>Our Services</span>
+                  <a href="{{ route('Website.page.doctors') }}" class="btn btn__primary btn__rounded mr-30">
+                    <span>@lang('Find A Doctor')</span>
                     <i class="icon-arrow-right"></i>
                   </a>
                 </div>
@@ -39,12 +35,8 @@
                 <p class="slide__desc">The health and well-being of our patients and their health care team will
                   always be our priority, so we follow the best practices for cleanliness.</p>
                 <div class="d-flex flex-wrap align-items-center">
-                  <a href="appointment.html" class="btn btn__primary btn__rounded mr-30">
-                    <span>Find A Doctor</span>
-                    <i class="icon-arrow-right"></i>
-                  </a>
-                  <a href="services.html" class="btn btn__white btn__rounded">
-                    <span>Our Services</span>
+                  <a href="{{ route('Website.page.doctors') }}" class="btn btn__primary btn__rounded mr-30">
+                    <span>@lang('Find A Doctor')</span>
                     <i class="icon-arrow-right"></i>
                   </a>
                 </div>

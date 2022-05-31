@@ -70,6 +70,7 @@ Route::group(['namespace'=>"Website",'as' => 'Website.'],function () {
     Route::get('/register/center','RegisterCenterController@register')->name('center.register');
     Route::post('/register/center','RegisterCenterController@create')->name('center.create');
     Route::get('/governorate/{id}','RegisterDoctorController@showCities')->name('governorate.show');
+    /* Patient Section */
     Route::get('/book-opinion/{id}','BookOpinionController@book')->name('book-opinion')->middleware(['role:patient','auth']);
     Route::post('/book/{id}','BookOpinionController@store')->name('book.store')->middleware(['role:patient','auth']);
     Route::get('/patient/completed-radiologies','PatientController@showComplete')->name('patient.completed.radiology')->middleware(['role:patient','auth']);
@@ -78,6 +79,7 @@ Route::group(['namespace'=>"Website",'as' => 'Website.'],function () {
     Route::get('/patient/pending/view-radiologies/{id}','PatientController@Pending')->name('patient.show.pending.radiology')->middleware(['role:patient','auth']);
     Route::get('/radiology/download/{id}/{radiology_id}','PatientController@DownloadFile')->name('radiology.downloadfile')->middleware(['role:patient','auth']);
     Route::get('/radiology/download-report/{id}','PatientController@DownloadReport')->name('radiology.download.report')->middleware(['role:patient','auth']);
+    /* Patient Section */
 });
 Route::group(['as' => 'Website.','namespace'=>"Website", 'middleware' => 'auth'], function () {
 
@@ -105,6 +107,7 @@ Route::group(['prefix' => 'center','as' => 'center.','namespace'=>"Center", 'mid
     Route::get('/show-completed-radiology/{id}','CenterController@ShowCompleted')->name('show.completed');
     Route::get('/download/{id}/{radiology_id}','CenterController@DownloadFile')->name('downloadfile');
     Route::get('/download-report/{id}/{rad}','CenterController@DownloadReport')->name('download.report');
+    Route::get('/send-radiology','CenterController@sendRadiology')->name('send.radiology');
 });
 
 

@@ -133,10 +133,23 @@
                                     <a href="{{ route('doctor.account') }}" class="nav__item-link">@lang('My account')</a>
                                 </li><!-- /.nav-item -->
                             @elseif(auth()->user()->hasRole(App\Models\User::CenterRole))
+                                @php
+                                    $CountCompleteRequest = App\Models\Radiology::where('reviewed',1)
+                                    ->whereHas('center',function($q){
+                                            $q->where('centers.user_id',Auth()->user()->id);
+                                    })->where('center_seen',0)->get()->count();
+                                @endphp
                             <li class="nav__item">
-                                <a href="#" class="nav__item-link">@lang('Send Radiology')</a>
-                                <a href="{{ route('center.pending.radiology') }}" class="nav__item-link">@lang('Pending Radiology')</a>
-                                <a href="{{ route('center.completed.radiology') }}" class="nav__item-link">@lang('Completed Radiology')</a>
+                                <a href="{{ route('center.send.radiology') }}" class="nav__item-link">@lang('Send Radiology')</a>
+                                <a href="{{ route('center.pending.radiology') }}" class="nav__item-link">
+                                    @lang('Pending Radiology')
+                                </a>
+                                <a href="{{ route('center.completed.radiology') }}" class="nav__item-link">
+                                    @if ($CountCompleteRequest)
+                                        <span class="number_pending">{{ $CountCompleteRequest }}</span>
+                                    @endif
+                                    @lang('Completed Radiology')
+                                </a>
                                 <a href="#" class="nav__item-link">@lang('Contracts')</a>
                                 </li><!-- /.nav-item -->
                             @elseif(auth()->user()->hasRole(App\Models\User::PatientRole))

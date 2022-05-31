@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Center;
 
 use App\Http\Controllers\Controller;
 use App\Models\Center;
+use App\Models\Doctor;
 use App\Models\DoctorFeedback;
 use App\Models\Image;
 use App\Models\Radiology;
@@ -92,5 +93,10 @@ class CenterController extends Controller
         $name       = $feedback->patient->user->getFullNameAttribute().$feedback->pdf_report;
         if (file_exists($path)) return Response::download($path,$name);
         else return redirect()->back();
+    }
+    public function sendRadiology()
+    {
+        $doctors    = Doctor::all()->take(5);
+        return view('website.center_send_radiology',compact('doctors'));
     }
 }
