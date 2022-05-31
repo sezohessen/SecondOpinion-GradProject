@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Center;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CenterStoreRadiologyRequest;
 use App\Models\Center;
 use App\Models\Doctor;
 use App\Models\DoctorFeedback;
@@ -98,5 +99,16 @@ class CenterController extends Controller
     {
         $doctors    = Doctor::all()->take(5);
         return view('website.center_send_radiology',compact('doctors'));
+    }
+    public function storeRadiology(CenterStoreRadiologyRequest $request)
+    {
+
+    }
+    public function getFees($id)
+    {
+        $doctor     = Doctor::findOrFail($id);
+        return response()->json([
+            'fees'         => $doctor->price,
+        ]);
     }
 }

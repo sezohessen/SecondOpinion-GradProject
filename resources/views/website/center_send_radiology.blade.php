@@ -36,17 +36,17 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-12">
-                        <form action="{{-- {{ route('Website.book.store',['id'=>$doctor->id]) }} --}}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('center.store.radiology') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('POST')
-                            {{-- <input type="hidden" name="fees" value="{{ $doctor->price }}"> --}}
+                            <input type="hidden" id="change_fees" name="fees" value="">
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>@lang('Select Doctor') <span class="text-danger">*</span></label>
-                                                <select class="form-control select2{{ $errors->has('doctor_id') ? 'is-invalid' : '' }}"
+                                                <select class="form-control doctor_select select2{{ $errors->has('doctor_id') ? 'is-invalid' : '' }}"
                                                     name="doctor_id" required>
                                                     <option value="">@lang('Choose doctor')</option>
                                                     @foreach ($doctors as $doctor)
@@ -242,8 +242,9 @@
                                 </div>
                                 <div class="col-md-12">
                                     <hr>
-                                    <h6>@lang('Total Fees is') : <span class="text-info">{{-- {{ $doctor->price }} --}}
-                                        @lang('L.E')</span>
+                                    <h6>@lang('Total Fees is') :
+                                        <span class="text-info" id="cost">
+                                        </span>
                                     </h6>
                                     <button class="btn btn-primary" type="submit">@lang('Get Second Opinion')</button>
                                 </div>
@@ -268,5 +269,21 @@
             y.type = "password";
         }
     }
+    $(document).on("change", '.doctor_select', function () {
+            // get city id
+            var id       = $(this).val()
+            // api url
+            var stateUrl = `get-fees/${id}`;
+            // ajax
+            $.get(stateUrl,
+            {option: $(this).val()},
+                    function (data) {
+                    var model = $('#cost');
+                    model.empty();
+                    model.append(data.fees +" @lang('L.E')");
+                    document.getElementById("change_fees").value = data.fees;
+                }
+            )
+        });
 </script>
 @endsection

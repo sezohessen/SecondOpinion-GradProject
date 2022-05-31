@@ -108,6 +108,8 @@ Route::group(['prefix' => 'center','as' => 'center.','namespace'=>"Center", 'mid
     Route::get('/download/{id}/{radiology_id}','CenterController@DownloadFile')->name('downloadfile');
     Route::get('/download-report/{id}/{rad}','CenterController@DownloadReport')->name('download.report');
     Route::get('/send-radiology','CenterController@sendRadiology')->name('send.radiology');
+    Route::post('/send-radiology','CenterController@storeRadiology')->name('store.radiology');
+    Route::get('/get-fees/{id}','CenterController@getFees');
 });
 
 
