@@ -118,16 +118,6 @@ class DoctorRadiologyController extends Controller
             session()->flash('notfound',__("Sorry, File not found"));
             return redirect()->back();
         }
-
-        /* $seller     = Seller::find($id);
-        $extension  = explode('.',$seller->file);
-        $fileName   = $seller->user->full_name . '.' . $extension[1];
-        $file       = storage_path('app\files\\') . $seller->file;
-        $headers    = array(
-            'Content-Type: application/' . $extension[1],
-        );
-        // dd(1);
-        return response()->download($file,$fileName,$headers); */
     }
     public function Account()
     {

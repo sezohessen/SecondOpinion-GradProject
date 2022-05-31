@@ -4,7 +4,7 @@
 <div class="container">
     <div class="pending-radiology card">
         <div class="card-heading">
-            <h1>@lang('Completed Radiology')</h1>
+            <h1>@lang('Pending Radiology')</h1>
         </div>
         @if ($radiology->count())
             <div class="card-body">
@@ -34,7 +34,7 @@
                                 </td>
                                 <td>
                                     <button class="btn btn-primary">
-                                        <a href="{{ route('Website.patient.show.radiology',['id'=>$rad->id]) }}">
+                                        <a href="{{ route('Website.patient.show.pending.radiology',['id'=>$rad->id]) }}">
                                             @lang('Show') <i class="fa fa-arrow-right"></i>
                                         </a>
                                     </button>

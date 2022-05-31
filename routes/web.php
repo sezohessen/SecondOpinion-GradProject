@@ -74,6 +74,10 @@ Route::group(['namespace'=>"Website",'as' => 'Website.'],function () {
     Route::post('/book/{id}','BookOpinionController@store')->name('book.store')->middleware(['role:patient','auth']);
     Route::get('/patient/completed-radiologies','PatientController@showComplete')->name('patient.completed.radiology')->middleware(['role:patient','auth']);
     Route::get('/patient/view-radiologies/{id}','PatientController@Complete')->name('patient.show.radiology')->middleware(['role:patient','auth']);
+    Route::get('/patient/pending-radiologies','PatientController@showPending')->name('patient.pending.radiology')->middleware(['role:patient','auth']);
+    Route::get('/patient/pending/view-radiologies/{id}','PatientController@Pending')->name('patient.show.pending.radiology')->middleware(['role:patient','auth']);
+    Route::get('/radiology/download/{id}/{radiology_id}','PatientController@DownloadFile')->name('radiology.downloadfile')->middleware(['role:patient','auth']);
+    Route::get('/radiology/download-report/{id}','PatientController@DownloadReport')->name('radiology.download.report')->middleware(['role:patient','auth']);
 });
 Route::group(['as' => 'Website.','namespace'=>"Website", 'middleware' => 'auth'], function () {
 

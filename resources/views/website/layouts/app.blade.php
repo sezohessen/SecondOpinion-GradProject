@@ -154,6 +154,11 @@
                                         @lang('Completed Radiology')
                                     </a>
                                 </li><!-- /.nav-item -->
+                                <li class="nav__item">
+                                    <a href="{{ route('Website.patient.pending.radiology') }}" class="nav__item-link">
+                                        @lang('Pending Radiology')
+                                    </a>
+                                </li><!-- /.nav-item -->
                             @endif
                             <li class="nav__item">
                                 <a class="nav__item-link" href="{{ route('logout') }}"
