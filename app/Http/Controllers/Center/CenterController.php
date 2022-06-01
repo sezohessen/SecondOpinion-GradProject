@@ -134,7 +134,7 @@ class CenterController extends Controller
             "desc"          => $request->desc,
             "doctor_id"     => $request->doctor_id,
             "patient_id"    => $patient->id,
-            "cener_id"      => $center->id
+            "center_id"      => $center->id
         ]);
         $DirectoryFilePath  = RadiologyFile::patient_radiology_path;
         foreach($request->file('files') as $file){
