@@ -8,6 +8,11 @@
     <div class="pending-radiology card">
         <div class="card-heading">
             <h1>@lang('Pending Radiology')</h1>
+            @if(session()->has('created'))
+                <div class="alert alert-success  m-4  ">
+                    <p>{{ session('created') }}</p>
+                </div>
+            @endif
         </div>
         @if ($radiology->count())
             <div class="card-body">
@@ -16,6 +21,7 @@
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">@lang('Patient Name')</th>
+                            <th scope="col">@lang('Doctor Name')</th>
                             <th scope="col">@lang('Date')</th>
                             <th scope="col">@lang('Show')</th>
                         </tr>
@@ -25,6 +31,7 @@
                             <tr>
                                 <th scope="row">{{ $key+1 }}</th>
                                 <td>{{ $rad->patient->user->getFullNameAttribute() }}</td>
+                                <td>{{ $rad->doctor->user->getFullNameAttribute() }}</td>
                                 <td>
                                     <span>{{ $rad->created_at->diffForHumans() }}</span>
                                 </td>

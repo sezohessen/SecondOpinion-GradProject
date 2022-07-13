@@ -17,7 +17,7 @@
                     <thead>
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">@lang('Patient Name')</th>
+                            <th scope="col">@lang('Doctor Name')</th>
                             <th scope="col">@lang('Center Name')</th>
                             <th scope="col">@lang('Show')</th>
                         </tr>
@@ -26,7 +26,7 @@
                         @foreach ($radiology as $key=>$rad)
                             <tr>
                                 <th scope="row">{{ $key+1 }}</th>
-                                <td>{{ $rad->patient->user->getFullNameAttribute() }}</td>
+                                <td>{{ $rad->doctor->user->getFullNameAttribute() }}</td>
                                 <td>
                                     @isset($rad->center->user)
                                     {{ $rad->center->user->getFullNameAttribute() }}

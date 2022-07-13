@@ -1006,5 +1006,12 @@
 "Your Description":"وصفك للحالة",
 "Doctor Report":"تقرير الطبيب",
 "Doctor File":"ملف الطبيب",
-"Processing doesn't complete successfully, please try later":"لم تكتمل العملية بنجاح ، يرجى المحاولة لاحقًا"
+"Doctor Name":"اسم الطبيب",
+"Find A Doctor":"اعثر على طبيب",
+"Sign Up As Center":"سجل كمركز اشعة",
+"Center image":"صورة مركز الاشعة",
+"Choose doctor":"اختر دكتور",
+"Select Doctor":"قم باختيار الدكتور",
+"Processing doesn't complete successfully, please try later":"لم تكتمل العملية بنجاح ، يرجى المحاولة لاحقًا",
+"Radiology has been sent successfully to the doctor":"تم إرسال الأشعة بنجاح إلى الطبيب"
 }

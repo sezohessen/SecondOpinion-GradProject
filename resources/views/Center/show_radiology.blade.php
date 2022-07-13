@@ -26,7 +26,7 @@
                                 <div class="from-group">
                                     <p><span>@lang('File') {{ $key+1 }}</span></p>
                                     @php
-                                        $file_path = public_path() .$file->image->base.$file->image->name;
+                                         $file_path = storage_path('app/public') . '/' . $file->image->base . '/' . $file->image->name;
                                     @endphp
                                     @if (file_exists($file_path))
                                         <a class="btn btn-primary" href="{{ route('center.downloadfile',['id'=>$file->image_id,'radiology_id' => $radiology->id]) }}" target="_blank">

@@ -11,10 +11,13 @@
             @endif
             <div class="card-header">
                 <div class="row">
+                    <h6><span>@lang('Doctor Name')</span>: <span
+                        class="patient-name">{{ $radiology->doctor->user->getFullNameAttribute() }}</span></h6>
                     @if ($radiology->center_id)
                         <h6><span>@lang('Center Name')</span>: <span
                                 class="patient-name">{{ $radiology->center->user->getFullNameAttribute() }}</span></h6>
                     @endif
+
                 </div>
             </div>
             <div class="card-body">
@@ -46,33 +49,6 @@
                                     </div>
                                 </div>
                             @endforeach
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <label class="mt-20" for="">@lang('Doctor Report')</label>
-                        <div class="form-group">
-                            <textarea class="form-control" disabled>{{ $feedback->desc }}</textarea>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="from-group">
-                            <p><span>@lang('Doctor File')</span></p>
-                            @if ($feedback->pdf_report)
-                                @php
-                                    $file_path = storage_path('app') . App\Models\DoctorFeedback::Files . $feedback->pdf_report;
-                                @endphp
-                                @if (file_exists($file_path))
-                                    <a class="btn btn-primary"
-                                        href="{{ route('Website.radiology.download.report', ['id' => $feedback->id]) }}"
-                                        target="_blank">
-                                        @lang('Download File')
-                                    </a>
-                                @else
-                                    <p><strong>@lang('File not found')</strong></p>
-                                @endif
-                            @else
-                                <p><strong>@lang('File not found')</strong></p>
-                            @endif
                         </div>
                     </div>
                 </div>

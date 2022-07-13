@@ -4,7 +4,7 @@
 <div class="container">
     <div class="pending-radiology card">
         <div class="card-heading">
-            <h1>@lang('Completed Radiology')</h1>
+            <h1>@lang('Pending Radiology')</h1>
         </div>
         @if ($radiology->count())
             <div class="card-body">
@@ -17,8 +17,8 @@
                     <thead>
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">@lang('Patient Name')</th>
                             <th scope="col">@lang('Doctor Name')</th>
+                            <th scope="col">@lang('Center Name')</th>
                             <th scope="col">@lang('Show')</th>
                         </tr>
                     </thead>
@@ -26,11 +26,15 @@
                         @foreach ($radiology as $key=>$rad)
                             <tr>
                                 <th scope="row">{{ $key+1 }}</th>
-                                <td>{{ $rad->patient->user->getFullNameAttribute() }}</td>
                                 <td>{{ $rad->doctor->user->getFullNameAttribute() }}</td>
                                 <td>
+                                    @isset($rad->center->user)
+                                    {{ $rad->center->user->getFullNameAttribute() }}
+                                    @endisset
+                                </td>
+                                <td>
                                     <button class="btn btn-primary">
-                                        <a href="{{ route('center.show.completed',['id'=>$rad->id]) }}">
+                                        <a href="{{ route('Website.patient.show.pending.radiology',['id'=>$rad->id]) }}">
                                             @lang('Show') <i class="fa fa-arrow-right"></i>
                                         </a>
                                     </button>
