@@ -103,7 +103,7 @@ class BookOpinionController extends Controller
                 "doctor_id"=>$doctor->id,
                 "patient_id"=>$patient->id,
                 'center_id' => null,
-                'price'     => $doctor->id,
+                'price'     => $doctor->price,
                 'statusCode'=> Payment::statusCode()[(int)$data->status],
                 'transactionId'=> $request->transactionId,
             ]);
